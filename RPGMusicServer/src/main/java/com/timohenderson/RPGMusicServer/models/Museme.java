@@ -6,7 +6,7 @@ public class Museme {
     private String fileName;
     private int darkness = -1;
     private int intensity = -1;
-    private int length;
+
     private ArrayList<Integer> startBars = new ArrayList<>();
 
     public String getFileName() {
@@ -31,14 +31,6 @@ public class Museme {
 
     public void setIntensity(int intensity) {
         this.intensity = intensity;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
     }
 
     public ArrayList<Integer> getStartBars() {
