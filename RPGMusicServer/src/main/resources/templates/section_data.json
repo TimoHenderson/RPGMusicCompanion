@@ -1,0 +1,10 @@
+{
+  "numBars":0,
+  "numBeats": 0,
+  "bpm": 0,
+  "beatValue": 0,
+  "pre-rendered": false,
+  "transitionTo": "out",
+  "transitionType": "LOOP_END",
+  "loop": true
+}
