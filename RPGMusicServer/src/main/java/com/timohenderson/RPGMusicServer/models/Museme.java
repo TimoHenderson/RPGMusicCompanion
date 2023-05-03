@@ -9,6 +9,16 @@ public class Museme {
 
     private ArrayList<Integer> startBars = new ArrayList<>();
 
+    public Museme() {
+    }
+
+    public Museme(String fileName, int darkness, int intensity) {
+        this.fileName = fileName;
+        this.darkness = darkness;
+        this.intensity = intensity;
+
+    }
+
     public String getFileName() {
         return fileName;
     }
