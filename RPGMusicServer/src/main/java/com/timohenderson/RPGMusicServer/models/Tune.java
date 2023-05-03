@@ -11,7 +11,8 @@ public class Tune {
     @Id
     private String Id;
     private String name;
-    private List<Section> sections = new ArrayList<>();
+    private List<Movement> movements = new ArrayList<>();
+    private int currentMovement = 0;
 
     public Tune() {
     }
@@ -36,11 +37,30 @@ public class Tune {
         this.name = name;
     }
 
-    public List<Section> getSections() {
-        return sections;
+    public List<Movement> getMovements() {
+        return movements;
     }
 
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
+    public void setMovements(List<Movement> movements) {
+        this.movements = movements;
     }
+
+    public Movement nextMovement() {
+        currentMovement += 1;
+        if (currentMovement >= movements.size()) {
+            currentMovement = 0;
+            return null;
+        }
+        return movements.get(currentMovement);
+    }
+
+    public Movement restartTune() {
+        currentMovement = 0;
+        return movements.get(currentMovement);
+    }
+
+    public Movement getCurrentMovement() {
+        return movements.get(currentMovement);
+    }
+
 }

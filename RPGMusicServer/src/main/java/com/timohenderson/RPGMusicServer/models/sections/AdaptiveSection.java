@@ -1,24 +1,19 @@
-package com.timohenderson.RPGMusicServer.models;
+package com.timohenderson.RPGMusicServer.models.sections;
+
+import com.timohenderson.RPGMusicServer.models.parts.Part;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Section {
-    private List<Part> melodyParts= new ArrayList<>();
-    private List<Part> padParts= new ArrayList<>();
-    private List<Part> bassParts= new ArrayList<>();
-    private List<Part> highRhythmParts= new ArrayList<>();
-    private List<Part> midRhythmParts= new ArrayList<>();
-    private List<Part> lowRhythmParts= new ArrayList<>();
-    private List<Part> cymbalRhythmParts= new ArrayList<>();
-
-    private int numBars;
-    private int numBeats;
-    private int bpm;
-    private int beatValue;
-    private boolean preRendered;
-
-
+public class AdaptiveSection extends Section {
+    private List<Part> melodyParts = new ArrayList<>();
+    private List<Part> padParts = new ArrayList<>();
+    private List<Part> bassParts = new ArrayList<>();
+    private List<Part> highRhythmParts = new ArrayList<>();
+    private List<Part> midRhythmParts = new ArrayList<>();
+    private List<Part> lowRhythmParts = new ArrayList<>();
+    private List<Part> cymbalRhythmParts = new ArrayList<>();
 
     public List<Part> getMelodyParts() {
         return melodyParts;
@@ -76,17 +71,8 @@ public class Section {
         this.cymbalRhythmParts = cymbalRhythmParts;
     }
 
-    private String name;
-
-    public String getName() {
-        return name;
+    @Override
+    public List<Part> getNextParts(HashMap<String, Integer> partsNeeded) {
+        return null;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
-
 }

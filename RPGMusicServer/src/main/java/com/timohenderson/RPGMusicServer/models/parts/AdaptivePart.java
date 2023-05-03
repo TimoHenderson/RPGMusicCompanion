@@ -1,9 +1,11 @@
-package com.timohenderson.RPGMusicServer.models;
+package com.timohenderson.RPGMusicServer.models.parts;
+
+import com.timohenderson.RPGMusicServer.models.Museme;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Part {
+public class AdaptivePart extends Part {
     private List<Museme> musemes = new ArrayList<>();
 
     public List<Museme> getMusemes() {
@@ -12,5 +14,9 @@ public class Part {
 
     public void setMusemes(List<Museme> musemes) {
         this.musemes = musemes;
+    }
+
+    public void addMuseme(Museme museme) {
+        musemes.add(museme);
     }
 }
