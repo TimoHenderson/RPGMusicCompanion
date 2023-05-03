@@ -3,7 +3,9 @@ package com.timohenderson.RPGMusicServer.DirectoryScanner;
 
 import com.google.gson.Gson;
 import com.timohenderson.RPGMusicServer.models.Movement;
+import com.timohenderson.RPGMusicServer.models.Museme;
 import com.timohenderson.RPGMusicServer.models.Tune;
+import com.timohenderson.RPGMusicServer.models.parts.LinearPart;
 import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
@@ -80,12 +82,16 @@ public class FileWalker {
                 })
                 .collect(Collectors.toList());
         for (Section section : sections) {
-            System.out.println(section.getSectionData());
+            Path sectionPath = movementPath.resolve(section.getName());
+            if (section instanceof AdaptiveSection) {
+                buildParts(sectionPath, (AdaptiveSection) section);
+            } else if (section instanceof RenderedSection) {
+                buildParts(sectionPath, (RenderedSection) section);
+            }
         }
         return sections;
     }
 
-    // private List<Tune> buildSections
     private Section buildSection(Path sectionPath) throws IOException {
         Path sectionDataPath = sectionPath.resolve("section_data.json");
         String sectionDataString = Files.readString(sectionDataPath);
@@ -97,7 +103,29 @@ public class FileWalker {
             return section;
         } else {
             RenderedSection section = new RenderedSection(name, sectionData);
+            LinearPart part = buildParts(sectionPath, section);
+            section.setPart(part);
             return section;
         }
+    }
+
+    private LinearPart buildParts(Path sectionPath, RenderedSection section) throws IOException {
+        Path partPath = sectionPath.resolve("Master/master");
+        LinearPart part = new LinearPart();
+        part.setName("Master");
+        Path musemePath = partPath.resolve("Master.wav");
+        Museme museme = new Museme(musemePath, section.getSectionData().numBars());
+        museme.addStartBar(1);
+        part.setMuseme(museme);
+        return part;
+    }
+
+//    private Museme buildMuseme(Path partPath, RenderedSection section) throws IOException {
+//
+//    }
+
+    private void buildParts(Path sectionPath, AdaptiveSection section) throws IOException {
+        // get list of all folders in sectionPath
+        // for each folder, create a list for each folder inside
     }
 }

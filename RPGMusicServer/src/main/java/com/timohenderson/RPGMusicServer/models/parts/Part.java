@@ -6,6 +6,7 @@ public abstract class Part {
 
     private String name = "Part";
 
+
     public int getDarkness() {
         return darkness;
     }

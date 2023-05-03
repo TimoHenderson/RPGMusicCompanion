@@ -18,6 +18,10 @@ public abstract class Section {
         this.sectionData = sectionData;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public SectionData getSectionData() {
         return sectionData;
     }

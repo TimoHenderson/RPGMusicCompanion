@@ -35,11 +35,11 @@ class RpgMusicServerApplicationTests {
     void canSaveToDB() {
         tuneRepository.deleteAll();
         //Museme
-        Museme museme1 = new Museme("Trumpet1.wav", 2);
+        Museme museme1 = new Museme(null, 2);
         museme1.addStartBar(1);
         museme1.addStartBar(3);
         //Museme
-        Museme museme2 = new Museme("Trumpet2.wav", 2);
+        Museme museme2 = new Museme(null, 2);
         museme2.addStartBar(4);
         museme2.addStartBar(5);
         //AdaptivePadPart
@@ -48,7 +48,7 @@ class RpgMusicServerApplicationTests {
         adaptivePart.addMuseme(museme2);
 
         //Museme
-        Museme museme3 = new Museme("fullMelody.wav", 4);
+        Museme museme3 = new Museme(null, 4);
         //LinearMelodyPart
         LinearPart melodyPart = new LinearPart();
         melodyPart.setMuseme(museme3);
@@ -61,7 +61,7 @@ class RpgMusicServerApplicationTests {
         adaptiveSection.setMelodyParts(melodyParts);
 
         //Museme
-        Museme museme4 = new Museme("IntroRendered", 4);
+        Museme museme4 = new Museme(null, 4);
         //LinearPart
         LinearPart linearPart = new LinearPart();
         linearPart.setMuseme(museme4);

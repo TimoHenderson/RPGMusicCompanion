@@ -1,25 +1,27 @@
 package com.timohenderson.RPGMusicServer.models;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class Museme {
-    private String fileName;
+    private Path filePath;
     private int length;
     private ArrayList<Integer> startBars = new ArrayList<>();
 
     public Museme() {
     }
 
-    public Museme(String fileName, int length) {
-        this.fileName = fileName;
+    public Museme(Path filePath, int length) {
+        this.filePath = filePath;
+        this.length = length;
     }
 
-    public String getFileName() {
-        return fileName;
+    public Path getFileName() {
+        return filePath;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFileName(Path fileName) {
+        this.filePath = fileName;
     }
 
     public int getLength() {
