@@ -1,5 +1,6 @@
 package com.timohenderson.RPGMusicServer;
 
+import com.timohenderson.RPGMusicServer.DirectoryScanner.FileWalker;
 import com.timohenderson.RPGMusicServer.models.Museme;
 import com.timohenderson.RPGMusicServer.models.Part;
 import com.timohenderson.RPGMusicServer.models.Section;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
 class RpgMusicServerApplicationTests {
     @Autowired
     TuneRepository tuneRepository;
+    @Autowired
+    FileWalker fileWalker;
 
     @Test
     void contextLoads() {
@@ -45,5 +49,15 @@ class RpgMusicServerApplicationTests {
         tune1.setName("Eggy");
         tuneRepository.save(tune1);
 
+    }
+
+//    @Test
+//    void canFindPathToResource() {
+//        System.out.println(fileWalker.getResourcePath("section_data.json"));
+//    }
+
+    @Test
+    void canWalkFiles() throws IOException {
+        fileWalker.walkFiles();
     }
 }
