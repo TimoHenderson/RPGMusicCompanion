@@ -10,6 +10,7 @@ import com.timohenderson.RPGMusicServer.models.parts.Part;
 import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ class RpgMusicServerApplicationTests {
 
     @Test
     void canSaveToDB() {
-        //tuneRepository.deleteAll();
+        tuneRepository.deleteAll();
         //Museme
         Museme museme1 = new Museme("Trumpet1.wav", 2);
         museme1.addStartBar(1);
@@ -96,6 +97,13 @@ class RpgMusicServerApplicationTests {
 
     @Test
     void canWalkFiles() throws IOException {
-        fileWalker.walkFiles();
+        List<Tune> tunes = fileWalker.walkFiles();
+        System.out.println(tunes);
+    }
+
+    @Test
+    void canCreateSectionData() {
+        SectionData sectionData = new SectionData(1, 2, 4, 4, 110, false, true, "LOOP_END");
+        System.out.println(sectionData.numBeats());
     }
 }

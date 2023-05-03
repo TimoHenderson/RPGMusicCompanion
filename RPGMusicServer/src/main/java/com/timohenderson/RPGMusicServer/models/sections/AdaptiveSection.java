@@ -15,6 +15,13 @@ public class AdaptiveSection extends Section {
     private List<Part> lowRhythmParts = new ArrayList<>();
     private List<Part> cymbalRhythmParts = new ArrayList<>();
 
+    public AdaptiveSection() {
+    }
+
+    public AdaptiveSection(String name, SectionData sectionData) {
+        super(name, sectionData);
+    }
+
     public List<Part> getMelodyParts() {
         return melodyParts;
     }

@@ -14,6 +14,10 @@ public class Movement {
     public Movement() {
     }
 
+    public Movement(String name) {
+        this.name = name;
+    }
+
     public List<Section> getSections() {
         return sections;
     }

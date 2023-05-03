@@ -9,6 +9,13 @@ public class RenderedSection extends Section {
 
     Part part;
 
+    public RenderedSection() {
+    }
+
+    public RenderedSection(String name, SectionData sectionData) {
+        super(name, sectionData);
+    }
+    
     public Part getPart() {
         return part;
     }
