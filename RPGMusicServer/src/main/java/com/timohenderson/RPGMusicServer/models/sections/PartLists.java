@@ -8,9 +8,9 @@ public record PartLists(
         List<Part> melodyParts,
         List<Part> padParts,
         List<Part> bassParts,
-        List<Part> highRhythmParts,
-        List<Part> midRhythmParts,
-        List<Part> lowRhythmParts,
-        List<Part> cymbalRhythmParts
+        List<Part> highPercParts,
+        List<Part> midPercParts,
+        List<Part> lowPercParts,
+        List<Part> cymbalParts
 ) {
 }

@@ -1,20 +1,18 @@
 package com.timohenderson.RPGMusicServer.models.musemes;
 
-import java.nio.file.Path;
-
 public class Museme {
     MusemeData musemeData;
-    private Path filePath;
+    private String filePath;
 
     public Museme() {
     }
 
-    public Museme(Path filePath, MusemeData musemeData) {
+    public Museme(String filePath, MusemeData musemeData) {
         this.filePath = filePath;
         this.musemeData = musemeData;
     }
 
-    public Path getFileName() {
+    public String getFileName() {
         return filePath;
     }
 

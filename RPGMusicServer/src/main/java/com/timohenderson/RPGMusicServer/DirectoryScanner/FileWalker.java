@@ -17,12 +17,10 @@ public class FileWalker {
     private ApplicationContext ctx;
 
     public Path getResourcePath(String path) {
-
         Resource resource = ctx.getResource("classpath:/static/tunes/" + path);
         try {
             String pathString = resource.getURL().getPath();
             return Path.of(pathString);
-
         } catch (IOException e) {
             throw new RuntimeException("Error getting resource path", e);
         }
@@ -30,7 +28,6 @@ public class FileWalker {
 
     public List<Tune> walkFiles() throws IOException {
         Path startPath = getResourcePath("");
-
         List<Tune> tunes = TunesFactory.buildTunes(startPath);
         return tunes;
     }

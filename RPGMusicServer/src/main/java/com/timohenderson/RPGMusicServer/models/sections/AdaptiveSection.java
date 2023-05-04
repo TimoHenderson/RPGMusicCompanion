@@ -1,19 +1,19 @@
 package com.timohenderson.RPGMusicServer.models.sections;
 
+import com.timohenderson.RPGMusicServer.enums.MusicalType;
 import com.timohenderson.RPGMusicServer.models.parts.Part;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class AdaptiveSection extends Section {
-    private PartLists partLists;
+    private HashMap<MusicalType, List<Part>> partLists;
 
-    public AdaptiveSection() {
-    }
 
-    public AdaptiveSection(String name, SectionData sectionData) {
+    public AdaptiveSection(String name, SectionData sectionData, HashMap<MusicalType, List<Part>> partLists) {
         super(name, sectionData);
-        
+
+        this.partLists = partLists;
     }
 
 
@@ -22,11 +22,7 @@ public class AdaptiveSection extends Section {
         return null;
     }
 
-    public PartLists getPartLists() {
+    public HashMap<MusicalType, List<Part>> getPartLists() {
         return partLists;
-    }
-
-    public void setPartLists(PartLists partLists) {
-        this.partLists = partLists;
     }
 }

@@ -9,13 +9,12 @@ public class RenderedSection extends Section {
 
     Part part;
 
-    public RenderedSection() {
+
+    public RenderedSection(String name, SectionData sectionData, Part part) {
+        super(name, sectionData);
+        this.part = part;
     }
 
-    public RenderedSection(String name, SectionData sectionData) {
-        super(name, sectionData);
-    }
-    
     public Part getPart() {
         return part;
     }

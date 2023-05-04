@@ -90,6 +90,11 @@ class RpgMusicServerApplicationTests {
     void canWalkFiles() throws IOException {
         List<Tune> tunes = fileWalker.walkFiles();
         System.out.println(tunes);
+        tuneRepository.deleteAll();
+        tuneRepository.saveAll(tunes);
+        List<Tune> tunesFromDB = tuneRepository.findAll();
+        System.out.println(tunesFromDB);
+
     }
 
     @Test

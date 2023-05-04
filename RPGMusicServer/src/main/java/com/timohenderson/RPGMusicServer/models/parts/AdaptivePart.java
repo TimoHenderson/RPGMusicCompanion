@@ -9,7 +9,7 @@ public class AdaptivePart extends Part {
 
     private List<Museme> musemes = new ArrayList<>();
 
-    public AdaptivePart(PartData partData) {
+    public AdaptivePart(PartData partData, List<Museme> musemes) {
         super(partData);
     }
 

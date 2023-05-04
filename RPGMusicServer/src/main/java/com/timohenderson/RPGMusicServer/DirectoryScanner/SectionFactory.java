@@ -1,7 +1,9 @@
 package com.timohenderson.RPGMusicServer.DirectoryScanner;
 
 import com.google.gson.Gson;
+import com.timohenderson.RPGMusicServer.enums.MusicalType;
 import com.timohenderson.RPGMusicServer.models.parts.LinearPart;
+import com.timohenderson.RPGMusicServer.models.parts.Part;
 import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
@@ -10,10 +12,13 @@ import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildParts;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildPartLists;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildRenderedParts;
 
 class SectionFactory {
     static List<Section> buildSections(Path movementPath) throws IOException {
@@ -24,26 +29,31 @@ class SectionFactory {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                })
+                }).sorted(
+                        Comparator.comparingInt(s -> s.getSectionData().order()))
                 .collect(Collectors.toList());
+        System.out.println(sections);
         return sections;
     }
 
     private static Section buildSection(Path sectionPath) throws IOException {
+        SectionData sectionData = buildSectionData(sectionPath);
+        String name = sectionPath.getFileName().toString();
+        if (!sectionData.preRendered()) {
+            HashMap<MusicalType, List<Part>> partLists = buildPartLists(sectionPath, sectionData);
+            AdaptiveSection section = new AdaptiveSection(name, sectionData, partLists);
+            return section;
+        } else {
+            LinearPart part = buildRenderedParts(sectionPath, sectionData);
+            RenderedSection section = new RenderedSection(name, sectionData, part);
+            return section;
+        }
+    }
+
+    private static SectionData buildSectionData(Path sectionPath) throws IOException {
         Path sectionDataPath = sectionPath.resolve("section_data.json");
         String sectionDataString = Files.readString(sectionDataPath);
         Gson gson = new Gson();
-        SectionData sectionData = gson.fromJson(sectionDataString, SectionData.class);
-        String name = sectionPath.getFileName().toString();
-        if (!sectionData.preRendered()) {
-            AdaptiveSection section = new AdaptiveSection(name, sectionData);
-            // PartLists partLists = buildPartLists(sectionPath,sectionData);
-            return section;
-        } else {
-            RenderedSection section = new RenderedSection(name, sectionData);
-            LinearPart part = buildParts(sectionPath, section);
-            section.setPart(part);
-            return section;
-        }
+        return gson.fromJson(sectionDataString, SectionData.class);
     }
 }

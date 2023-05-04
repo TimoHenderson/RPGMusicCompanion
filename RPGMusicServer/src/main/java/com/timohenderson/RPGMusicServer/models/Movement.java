@@ -8,13 +8,15 @@ import java.util.List;
 public class Movement {
     private List<Section> sections = new ArrayList<>();
 
+    private int order = 0;
+
     private int currentSection = 0;
     private String name;
 
     public Movement() {
     }
 
-    public Movement(String name) {
+    public Movement(String name, int order) {
         this.name = name;
     }
 
@@ -24,6 +26,10 @@ public class Movement {
 
     public void setSections(List<Section> sections) {
         this.sections = sections;
+    }
+
+    public int getOrder() {
+        return order;
     }
 
     public String getName() {

@@ -11,8 +11,10 @@ import java.util.ArrayList;
 class MusemeFactory {
     static Museme buildMuseme(Path musemePath, SectionData sectionData) throws IOException {
         String fileName = musemePath.getFileName().toString();
+        String fullPath = musemePath.toString();
+        String relativePath = fullPath.substring(fullPath.indexOf("/static/"));
         MusemeData musemeData = parseMusemeData(fileName, sectionData);
-        return new Museme(musemePath, musemeData);
+        return new Museme(relativePath, musemeData);
     }
 
     private static MusemeData parseMusemeData(String fileName, SectionData sectionData) {
