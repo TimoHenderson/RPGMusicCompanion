@@ -77,6 +77,7 @@ class PartFactory {
                                         }
                                     }
                             ).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+            System.out.println(musemeList);
             return new AdaptivePart(partData, musemeList);
 
         }

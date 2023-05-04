@@ -1,9 +1,9 @@
 {
   "order": 0,
-  "numBars": 4,
+  "numBars": 8,
   "numBeats": 4,
   "beatValue": 4,
-  "bpm": 110,
+  "bpm": 90,
   "preRendered": false,
   "loop": true,
   "transitionType": "LOOP_END"
