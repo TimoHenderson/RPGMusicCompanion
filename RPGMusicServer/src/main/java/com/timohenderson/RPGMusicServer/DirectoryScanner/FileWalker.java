@@ -3,8 +3,9 @@ package com.timohenderson.RPGMusicServer.DirectoryScanner;
 
 import com.google.gson.Gson;
 import com.timohenderson.RPGMusicServer.models.Movement;
-import com.timohenderson.RPGMusicServer.models.Museme;
 import com.timohenderson.RPGMusicServer.models.Tune;
+import com.timohenderson.RPGMusicServer.models.musemes.Museme;
+import com.timohenderson.RPGMusicServer.models.musemes.MusemeData;
 import com.timohenderson.RPGMusicServer.models.parts.LinearPart;
 import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,14 +83,6 @@ public class FileWalker {
                     }
                 })
                 .collect(Collectors.toList());
-        for (Section section : sections) {
-            Path sectionPath = movementPath.resolve(section.getName());
-            if (section instanceof AdaptiveSection) {
-                buildParts(sectionPath, (AdaptiveSection) section);
-            } else if (section instanceof RenderedSection) {
-                buildParts(sectionPath, (RenderedSection) section);
-            }
-        }
         return sections;
     }
 
@@ -98,8 +92,9 @@ public class FileWalker {
         Gson gson = new Gson();
         SectionData sectionData = gson.fromJson(sectionDataString, SectionData.class);
         String name = sectionPath.getFileName().toString();
-        if (sectionData.preRendered()) {
+        if (!sectionData.preRendered()) {
             AdaptiveSection section = new AdaptiveSection(name, sectionData);
+            // PartLists partLists = buildPartLists(sectionPath,sectionData);
             return section;
         } else {
             RenderedSection section = new RenderedSection(name, sectionData);
@@ -112,9 +107,56 @@ public class FileWalker {
     private LinearPart buildParts(Path sectionPath, RenderedSection section) throws IOException {
         Path partPath = sectionPath.resolve("Master/master");
         LinearPart part = new LinearPart();
+        part.setName("master");
+        Path musemePath = Files.list(partPath).findFirst().get();
+        part.setMuseme(buildMuseme(musemePath, section.getSectionData()));
+        return part;
+    }
+
+    private Museme buildMuseme(Path musemePath, SectionData sectionData) throws IOException {
+        String fileName = musemePath.getFileName().toString();
+        MusemeData musemeData = parseMusemeData(fileName, sectionData);
+        return new Museme(musemePath, musemeData);
+    }
+
+    private MusemeData parseMusemeData(String fileName, SectionData sectionData) {
+        ArrayList<Integer> startBars = new ArrayList<>();
+        int length = 0;
+        fileName = fileName.substring(0, fileName.lastIndexOf('.'));
+        String[] parts = fileName.split("_");
+        String name = parts[0];
+        for (int i = 1; i < parts.length; i++) {
+            if (parts[i].startsWith("b")) {
+                parts[i] = parts[i].substring(1);
+                String[] bars = parts[i].split("&");
+                for (int j = 0; j < bars.length; j++) {
+                    startBars.add(Integer.parseInt(bars[j]));
+                }
+                continue;
+            }
+            if (parts[i].startsWith("l")) {
+                parts[i] = parts[i].substring(1);
+                length = Integer.parseInt(parts[i]);
+                continue;
+            }
+        }
+        if (startBars.isEmpty()) {
+            startBars.add(1);
+        }
+        if (length == 0) {
+            length = sectionData.numBars();
+        }
+        MusemeData musemeData = new MusemeData(name, length, startBars);
+        return musemeData;
+    }
+
+    // todo: buildLinearPart needs generalizing
+    private LinearPart buildLinearPart(Path sectionPath, SectionData sectionData) throws IOException {
+        Path partPath = sectionPath.resolve("Master/master");
+        LinearPart part = new LinearPart();
         part.setName("Master");
         Path musemePath = partPath.resolve("Master.wav");
-        Museme museme = new Museme(musemePath, section.getSectionData().numBars());
+        Museme museme = new Museme(musemePath, sectionData.numBars());
         museme.addStartBar(1);
         part.setMuseme(museme);
         return part;

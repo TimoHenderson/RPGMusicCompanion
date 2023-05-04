@@ -1,6 +1,6 @@
 package com.timohenderson.RPGMusicServer.models.parts;
 
-import com.timohenderson.RPGMusicServer.models.Museme;
+import com.timohenderson.RPGMusicServer.models.musemes.Museme;
 
 import java.util.ArrayList;
 import java.util.List;
