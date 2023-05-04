@@ -26,6 +26,12 @@ class MusemeFactory {
         for (int i = 1; i < parts.length; i++) {
             if (parts[i].startsWith("b")) {
                 parts[i] = parts[i].substring(1);
+                if (parts[i].equals("x")) {
+                    for (int j = 1; j <= sectionData.numBars(); j++) {
+                        startBars.add(j);
+                    }
+                    continue;
+                }
                 String[] bars = parts[i].split("&");
                 for (int j = 0; j < bars.length; j++) {
                     startBars.add(Integer.parseInt(bars[j]));

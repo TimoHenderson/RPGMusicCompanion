@@ -1,0 +1,10 @@
+{
+  "order": 3,
+  "numBars": 4,
+  "numBeats": 4,
+  "beatValue": 4,
+  "bpm": 150,
+  "preRendered": true,
+  "loop": false,
+  "transitionType": "END"
+}
