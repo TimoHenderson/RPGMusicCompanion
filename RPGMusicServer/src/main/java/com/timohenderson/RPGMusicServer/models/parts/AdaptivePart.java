@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptivePart extends Part {
+
     private List<Museme> musemes = new ArrayList<>();
+
+    public AdaptivePart(PartData partData) {
+        super(partData);
+    }
 
     public List<Museme> getMusemes() {
         return musemes;
