@@ -1,6 +1,7 @@
 package com.timohenderson.RPGMusicServer;
 
 import com.timohenderson.RPGMusicServer.DirectoryScanner.FileWalker;
+import com.timohenderson.RPGMusicServer.enums.TransitionType;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
@@ -17,6 +18,7 @@ class RpgMusicServerApplicationTests {
     TuneRepository tuneRepository;
     @Autowired
     FileWalker fileWalker;
+
 
     @Test
     void contextLoads() {
@@ -99,7 +101,7 @@ class RpgMusicServerApplicationTests {
 
     @Test
     void canCreateSectionData() {
-        SectionData sectionData = new SectionData(1, 2, 4, 4, 110, false, true, "LOOP_END");
+        SectionData sectionData = new SectionData(1, 2, 4, 4, 110, false, true, TransitionType.END);
         System.out.println(sectionData.numBeats());
     }
 }

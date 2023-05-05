@@ -6,5 +6,5 @@
   "bpm": 150,
   "preRendered": true,
   "loop": false,
-  "transitionType": "LOOP_END"
+  "transitionType": "END"
 }
