@@ -13,18 +13,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 @Service
 public class TimelineService {
+    private final LinkedBlockingQueue<SectionData> sectionQueue = new LinkedBlockingQueue<>();
+    private final BarEvent[] barEvents = new BarEvent[16];
     Clock clock = Clock.systemUTC();
     private SectionData currentSectionData;
-    private LinkedBlockingQueue<SectionData> sectionQueue = new LinkedBlockingQueue<>();
-    private volatile boolean end;
+    private volatile boolean end = false;
     private volatile boolean runTimer;
     private int currentBar = 1;
-    private int stopAtBar = 0;
-    private BarEvent[] barEvents = new BarEvent[16];
     private long barLength = 0;
-    private long sleepTime = 0;
     private long previousTime = 0;
-    private long currentTime = 0;
     private long overTime = 0;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
@@ -42,41 +39,33 @@ public class TimelineService {
             runTimer = true;
             while (runTimer) {
                 applicationEventPublisher.publishEvent(barEvents[currentBar - 1]);
-                if (shouldTimeLineEnd()) { //todo: fix ending so it actually stops
-                    loadNextSection();
-                    end = false;
-                } else {
-                    nextBar();
-                }
-
-                currentTime = clock.millis();
+                long currentTime = clock.millis();
                 if (previousTime != 0) {
                     overTime = currentTime - previousTime - barLength;
                 }
                 previousTime = currentTime;
                 Thread.sleep(barLength - overTime);
+                if (shouldTimeLineEnd()) {
+                    loadNextSection();
+                    end = false;
+                }
+                nextBar();
             }
         }
+        previousTime = 0;
     }
 
-    //Todo: fix this
     private boolean shouldTimeLineEnd() {
+        if (currentSectionData == null) return false;
         if (end || !currentSectionData.loop()) {
             switch (currentSectionData.transitionType()) {
-                case END:
+                case END -> {
                     return currentBar == currentSectionData.numBars();
-                case NOW:
+                }
+                case NEXT_BAR -> {
+                    currentBar = 0;
                     return true;
-                case NEXT_BAR:
-                    if (stopAtBar != 0) {
-                        if (currentBar == stopAtBar) {
-                            stopAtBar = 0;
-                            return true;
-                        }
-                    } else {
-                        stopAtBar = currentBar + 1;
-                        return false;
-                    }
+                }
             }
         }
         return false;
@@ -95,13 +84,12 @@ public class TimelineService {
         end = true;
     }
 
-    private int nextBar() {
+    private void nextBar() {
         currentBar++;
-        boolean lastBarPlayed = currentBar > currentSectionData.numBars();
+        boolean lastBarPlayed = currentSectionData != null && currentBar > currentSectionData.numBars();
         if (lastBarPlayed) {
             currentBar = 1;
         }
-        return currentBar;
     }
 
     public void addToSectionQueue(SectionData sectionData) throws InterruptedException {
@@ -116,9 +104,23 @@ public class TimelineService {
         this.barLength = (long) (60000.0 / currentSectionData.bpm()) * currentSectionData.numBeats();
         previousTime = 0;
         overTime = 0;
+    }
 
+    public void stopAndCleanUp() {
+        stop();
+        sectionQueue.clear();
+        currentSectionData = null;
+        currentBar = 1;
+        previousTime = 0;
+        overTime = 0;
+        end = false;
+        runTimer = false;
+        barLength = 0;
 
     }
 
+    public SectionData getCurrentSectionData() {
+        return currentSectionData;
+    }
 }
 

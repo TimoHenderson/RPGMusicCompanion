@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.services;
+package com.timohenderson.RPGMusicServer.TestingUtils;
 
 import com.timohenderson.RPGMusicServer.events.BarEvent;
 import com.timohenderson.RPGMusicServer.events.TransportEvent;
@@ -12,9 +12,10 @@ import java.util.ArrayList;
 @Component
 public class EventCatcher {
     ArrayList<BarEvent> barEvents = new ArrayList<>();
-    ArrayList<Long> log = new ArrayList<>();
+    volatile ArrayList<EventWithDelta> log = new ArrayList<>();
+    EventWithDelta lastEvent;
     Clock clock = Clock.systemUTC();
-
+    int eventNum = 0;
     long previousTime = 0;
 
     @EventListener
@@ -22,12 +23,13 @@ public class EventCatcher {
         System.out.println("TransportEvent: " + event.getAction());
     }
 
-
     @Async
     @EventListener
     public void handleBarEvent(BarEvent event) {
         long now = clock.millis();
-        log.add(getTimeDelta(now));
+        lastEvent = new EventWithDelta(eventNum, event, getTimeDelta(now));
+        log.add(lastEvent);
+        eventNum++;
         //barEvents.add(event);
     }
 
@@ -46,19 +48,32 @@ public class EventCatcher {
         return barEvents;
     }
 
-    public ArrayList<Long> getLog() {
+    public ArrayList<EventWithDelta> getLog() {
         return log;
     }
 
     public void printLog() {
-        for (Long s : log) {
+        for (EventWithDelta s : log) {
             System.out.println(s);
         }
         //ignore first in log then get the average of the rest
-        long sum = 0;
-        for (int i = 1; i < log.size(); i++) {
-            sum += log.get(i);
-        }
-        System.out.println("Average: " + sum / (log.size() - 1));
+//        long sum = 0;
+//        for (int i = 1; i < log.size(); i++) {
+//            sum += log.get(i);
+//        }
+//        System.out.println("Average: " + sum / (log.size() - 1));
     }
+
+    public EventWithDelta getLastEvent() {
+        return lastEvent;
+    }
+
+    public void clearLog() {
+        log.clear();
+        eventNum = 0;
+        lastEvent = null;
+        previousTime = 0;
+    }
+
+
 }
