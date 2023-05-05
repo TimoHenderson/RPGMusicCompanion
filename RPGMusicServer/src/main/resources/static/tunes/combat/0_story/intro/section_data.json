@@ -1,8 +1,8 @@
 {
   "order": 0,
   "numBars": 1,
-  "numBeats": 4,
-  "beatValue": 4,
+  "numBeats": 7,
+  "beatValue": 8,
   "bpm": 150,
   "preRendered": true,
   "loop": false,
