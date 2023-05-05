@@ -8,15 +8,15 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.Clock;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 @Service
 public class TimelineService {
     Clock clock = Clock.systemUTC();
-    private TimelineParams currentParams;
-    private TimelineParams nextParams;
+    private SectionData currentSectionData;
+    private LinkedBlockingQueue<SectionData> sectionQueue = new LinkedBlockingQueue<>();
     private volatile boolean end;
-    private volatile boolean goToNextParams;
     private volatile boolean runTimer;
     private int currentBar = 1;
     private int stopAtBar = 0;
@@ -33,6 +33,7 @@ public class TimelineService {
         for (int i = 0; i < 16; i++) {
             barEvents[i] = new BarEvent(this, i + 1);
         }
+
     }
 
     @Async
@@ -40,32 +41,30 @@ public class TimelineService {
         if (!runTimer) {
             runTimer = true;
             while (runTimer) {
-                if (shouldTimeLineStop()) {
-                    runTimer = false;
+                applicationEventPublisher.publishEvent(barEvents[currentBar - 1]);
+                if (shouldTimeLineEnd()) { //todo: fix ending so it actually stops
+                    loadNextSection();
                     end = false;
                 } else {
                     nextBar();
                 }
-                applicationEventPublisher.publishEvent(barEvents[currentBar - 1]);
-                currentTime = clock.millis();
 
+                currentTime = clock.millis();
                 if (previousTime != 0) {
                     overTime = currentTime - previousTime - barLength;
                 }
                 previousTime = currentTime;
-
-
                 Thread.sleep(barLength - overTime);
-
             }
         }
     }
 
-    private boolean shouldTimeLineStop() {
-        if (end) {
-            switch (currentParams.getTransitionType()) {
+    //Todo: fix this
+    private boolean shouldTimeLineEnd() {
+        if (end || !currentSectionData.loop()) {
+            switch (currentSectionData.transitionType()) {
                 case END:
-                    return currentBar == currentParams.getNumBars();
+                    return currentBar == currentSectionData.numBars();
                 case NOW:
                     return true;
                 case NEXT_BAR:
@@ -79,33 +78,46 @@ public class TimelineService {
                         return false;
                     }
             }
-
         }
         return false;
     }
+
 
     public void stop() {
         runTimer = false;
     }
 
+    public void end() {
+        end = true;
+    }
+
+    public void triggerNextSection() {
+        end = true;
+    }
+
     private int nextBar() {
         currentBar++;
-        if (currentBar > currentParams.getNumBars()) {
+        boolean lastBarPlayed = currentBar > currentSectionData.numBars();
+        if (lastBarPlayed) {
             currentBar = 1;
         }
         return currentBar;
     }
 
-    public void createNextParams(SectionData sectionData) {
-        nextParams = new TimelineParams(sectionData);
-        if (currentParams == null) {
-            setCurrentParams(nextParams);
+    public void addToSectionQueue(SectionData sectionData) throws InterruptedException {
+        sectionQueue.put(sectionData);
+        if (currentSectionData == null) {
+            loadNextSection();
         }
     }
 
-    public void setCurrentParams(TimelineParams currentParams) {
-        this.currentParams = currentParams;
-        this.barLength = (long) currentParams.getBarLength();
+    public void loadNextSection() throws InterruptedException {
+        currentSectionData = sectionQueue.take();
+        this.barLength = (long) (60000.0 / currentSectionData.bpm()) * currentSectionData.numBeats();
+        previousTime = 0;
+        overTime = 0;
+
+
     }
 
 }
