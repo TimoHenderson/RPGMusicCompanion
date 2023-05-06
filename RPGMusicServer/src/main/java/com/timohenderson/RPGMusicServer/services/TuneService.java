@@ -1,6 +1,8 @@
 package com.timohenderson.RPGMusicServer.services;
 
+import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.Tune;
+import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,15 @@ public class TuneService {
         return tuneRepository.findNames();
     }
 
-
     public Tune getCurrentTune() {
         return currentTune;
+    }
+
+    public Movement getCurrentMovement() {
+        return currentTune.getCurrentMovement();
+    }
+
+    public List<Section> getCurrentSections() {
+        return currentTune.getCurrentMovement().getSections();
     }
 }

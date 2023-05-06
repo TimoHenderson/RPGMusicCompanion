@@ -2,30 +2,23 @@ package com.timohenderson.RPGMusicServer.models;
 
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Movement {
-    private List<Section> sections = new ArrayList<>();
-
-    private int order = 0;
-
+    private final List<Section> sections;
+    private final int order;
+    private final String name;
     private int currentSection = 0;
-    private String name;
 
-    public Movement() {
-    }
-
-    public Movement(String name, int order) {
+    public Movement(String name, int order, List<Section> sections) {
         this.name = name;
+        this.order = order;
+        this.sections = sections;
     }
+
 
     public List<Section> getSections() {
-        return sections;
-    }
-
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
+        return List.copyOf(sections);
     }
 
     public int getOrder() {
@@ -36,9 +29,6 @@ public class Movement {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Section nextSection() {
         currentSection += 1;

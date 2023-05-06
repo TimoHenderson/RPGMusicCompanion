@@ -1,6 +1,7 @@
 package com.timohenderson.RPGMusicServer.DirectoryScanner;
 
 import com.timohenderson.RPGMusicServer.models.Movement;
+import com.timohenderson.RPGMusicServer.models.sections.Section;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,16 +19,16 @@ class MovementsFactory {
                 .map((f) -> {
                     String fileName = f.getFileName().toString();
                     int order = parseMovementOrder(fileName);
-                    return new Movement(fileName, order);
+                    List<Section> sections;
+                    try {
+                        sections = buildSections(tunePath.resolve(fileName));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return new Movement(fileName, order, sections);
                 }).sorted(
                         Comparator.comparingInt(Movement::getOrder))
                 .collect(Collectors.toList());
-
-        for (Movement movement : movements) {
-            Path movementPath = tunePath.resolve(movement.getName());
-            movement.setSections(buildSections(movementPath));
-        }
-
         return movements;
     }
 
