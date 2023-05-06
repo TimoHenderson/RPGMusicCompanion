@@ -28,6 +28,7 @@ public class EventCatcher {
     public void handleBarEvent(BarEvent event) {
         long now = clock.millis();
         lastEvent = new EventWithDelta(eventNum, event, getTimeDelta(now));
+        System.out.println(lastEvent);
         log.add(lastEvent);
         eventNum++;
         //barEvents.add(event);
