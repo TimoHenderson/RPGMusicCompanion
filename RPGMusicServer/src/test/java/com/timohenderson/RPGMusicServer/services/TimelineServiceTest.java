@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.sound.sampled.LineUnavailableException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -72,7 +74,7 @@ class TimelineServiceTest {
     }
 
     @Test
-    void canPlay() throws InterruptedException {
+    void canPlay() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(section);
         timelineService.play();
         Thread.sleep(3200);
@@ -82,7 +84,7 @@ class TimelineServiceTest {
     }
 
     @Test
-    void canStopTimer() throws InterruptedException {
+    void canStopTimer() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(section);
         timelineService.play();
         Thread.sleep(2000l);
@@ -93,7 +95,7 @@ class TimelineServiceTest {
     }
 
     @Test
-    void canResume() throws InterruptedException {
+    void canResume() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(loopingSection);
         timelineService.play();
         Thread.sleep(5000l);
@@ -108,7 +110,7 @@ class TimelineServiceTest {
     }
 
     @Test
-    void goToNextSectionWhenNonLoopingSectionReachesEnd() throws InterruptedException {
+    void goToNextSectionWhenNonLoopingSectionReachesEnd() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(section);
         timelineService.addToSectionQueue(loopingSection);
         timelineService.play();
@@ -119,7 +121,7 @@ class TimelineServiceTest {
     }
 
     @Test
-    void goToNextSectionWhenLoopingSectionWithNextBarIsTriggered() throws InterruptedException {
+    void goToNextSectionWhenLoopingSectionWithNextBarIsTriggered() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(loopingSection);
         timelineService.addToSectionQueue(section);
         timelineService.play();
@@ -137,7 +139,7 @@ class TimelineServiceTest {
     }
 
     @Test
-    void loopingSectionWillRunMultipleTimes() throws InterruptedException {
+    void loopingSectionWillRunMultipleTimes() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(loopingSection);
         timelineService.play();
         Thread.sleep(8000l);
