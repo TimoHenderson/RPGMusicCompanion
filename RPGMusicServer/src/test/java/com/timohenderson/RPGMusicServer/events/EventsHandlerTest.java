@@ -2,6 +2,7 @@ package com.timohenderson.RPGMusicServer.events;
 
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
 import com.timohenderson.RPGMusicServer.enums.TransportAction;
+import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 import com.timohenderson.RPGMusicServer.services.TimelineService;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +42,18 @@ class EventsHandlerTest {
 
     @Test
     void canPlayAndStopTimeline() throws InterruptedException {
-        timelineService.addToSectionQueue(new SectionData(1, 4, 2, 4, 150, false, true, TransitionType.END));
+        timelineService.addToSectionQueue(
+                new RenderedSection(
+                        "Hello",
+                        new SectionData(1,
+                                4,
+                                2,
+                                4,
+                                150,
+                                false,
+                                true,
+                                TransitionType.END),
+                        null));
         applicationEventPublisher.publishEvent(new TransportEvent(this, TransportAction.PLAY));
         Thread.sleep(2000);
         applicationEventPublisher.publishEvent(new TransportEvent(this, TransportAction.STOP));

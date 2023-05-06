@@ -1,22 +1,23 @@
 package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.events.BarEvent;
-import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.events.SectionLoadedEvent;
+import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.Clock;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 @Service
 public class TimelineService {
-    private final LinkedBlockingQueue<SectionData> sectionQueue = new LinkedBlockingQueue<>();
+    private final ConcurrentLinkedQueue<Section> sectionQueue = new ConcurrentLinkedQueue<>();
     private final BarEvent[] barEvents = new BarEvent[17];
     Clock clock = Clock.systemUTC();
-    private SectionData currentSectionData;
+    private volatile Section currentSection;
     private volatile boolean end = false;
     private volatile boolean runTimer;
     private int currentBar = 0;
@@ -37,7 +38,7 @@ public class TimelineService {
         if (!runTimer) {
             runTimer = true;
             while (runTimer) {
-                applicationEventPublisher.publishEvent(barEvents[currentBar]);
+                sendBarEvent();
                 long currentTime = clock.millis();
                 if (previousTime != 0) {
                     overTime = currentTime - previousTime - barLength;
@@ -54,12 +55,17 @@ public class TimelineService {
         previousTime = 0;
     }
 
+    private void sendBarEvent() {
+        applicationEventPublisher.publishEvent(barEvents[currentBar]);
+    }
+    
+
     private boolean shouldTimeLineEnd() {
-        if (currentSectionData == null) return false;
-        if (end || !currentSectionData.loop()) {
-            switch (currentSectionData.transitionType()) {
+        if (currentSection == null) return false;
+        if (end || !currentSection.getSectionData().loop()) {
+            switch (currentSection.getSectionData().transitionType()) {
                 case END -> {
-                    return currentBar == currentSectionData.numBars();
+                    return currentBar == currentSection.getSectionData().numBars();
                 }
                 case NEXT_BAR -> {
                     currentBar = 0;
@@ -85,30 +91,35 @@ public class TimelineService {
 
     private void nextBar() {
         currentBar++;
-        boolean lastBarPlayed = currentSectionData != null && currentBar > currentSectionData.numBars();
+        boolean lastBarPlayed = currentSection != null && currentBar > currentSection.getSectionData().numBars();
         if (lastBarPlayed) {
             currentBar = 1;
         }
     }
 
-    public void addToSectionQueue(SectionData sectionData) throws InterruptedException {
-        sectionQueue.put(sectionData);
-        if (currentSectionData == null) {
+    public void addToSectionQueue(Section section) throws InterruptedException {
+        sectionQueue.offer(section);
+        if (currentSection == null) {
             loadNextSection();
         }
     }
 
     public void loadNextSection() throws InterruptedException {
-        currentSectionData = sectionQueue.take();
-        this.barLength = (long) (60000.0 / currentSectionData.bpm()) * currentSectionData.numBeats();
+        currentSection = sectionQueue.poll();
+        if (currentSection == null) {
+            stopAndCleanUp();
+            return;
+        }
+        this.barLength = (long) (60000.0 / currentSection.getSectionData().bpm()) * currentSection.getSectionData().numBeats();
         previousTime = 0;
         overTime = 0;
+        applicationEventPublisher.publishEvent(new SectionLoadedEvent(this, currentSection));
     }
 
     public void stopAndCleanUp() {
         stop();
         sectionQueue.clear();
-        currentSectionData = null;
+        currentSection = null;
         currentBar = 0;
         previousTime = 0;
         overTime = 0;
@@ -118,8 +129,8 @@ public class TimelineService {
 
     }
 
-    public SectionData getCurrentSectionData() {
-        return currentSectionData;
+    public Section getCurrentSection() {
+        return currentSection;
     }
 }
 
