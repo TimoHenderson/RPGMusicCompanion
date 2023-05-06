@@ -86,7 +86,7 @@ class TimelineServiceTest {
         timelineService.addToSectionQueue(loopingSectionData);
         timelineService.addToSectionQueue(sectionData);
         timelineService.play();
-        Thread.sleep(4500l);
+        Thread.sleep(4000l);
         timelineService.triggerNextSection();
         EventWithDelta eventWithDelta = eventCatcher.getLastEvent();
         Thread.sleep(6000l);

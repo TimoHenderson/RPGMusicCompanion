@@ -1,17 +1,15 @@
 package com.timohenderson.RPGMusicServer.events;
 
 import com.timohenderson.RPGMusicServer.enums.TransportAction;
-import org.springframework.context.ApplicationEvent;
 
-public class TransportEvent extends ApplicationEvent {
-    private TransportAction action;
+public class TransportEvent extends Event {
 
     public TransportEvent(Object source, TransportAction action) {
-        super(source);
-        this.action = action;
+        super(source, action);
+
     }
 
     public TransportAction getAction() {
-        return action;
+        return (TransportAction) super.getPayload();
     }
 }

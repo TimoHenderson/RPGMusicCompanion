@@ -20,7 +20,7 @@ public class EventCatcher {
 
     @EventListener
     public void handleTransportEvent(TransportEvent event) {
-        System.out.println("TransportEvent: " + event.getAction());
+        //System.out.println("TransportEvent: " + event.getAction());
     }
 
     @Async

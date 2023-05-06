@@ -14,12 +14,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Service
 public class TimelineService {
     private final LinkedBlockingQueue<SectionData> sectionQueue = new LinkedBlockingQueue<>();
-    private final BarEvent[] barEvents = new BarEvent[16];
+    private final BarEvent[] barEvents = new BarEvent[17];
     Clock clock = Clock.systemUTC();
     private SectionData currentSectionData;
     private volatile boolean end = false;
     private volatile boolean runTimer;
-    private int currentBar = 1;
+    private int currentBar = 0;
     private long barLength = 0;
     private long previousTime = 0;
     private long overTime = 0;
@@ -27,10 +27,9 @@ public class TimelineService {
     private ApplicationEventPublisher applicationEventPublisher;
 
     public TimelineService() {
-        for (int i = 0; i < 16; i++) {
-            barEvents[i] = new BarEvent(this, i + 1);
+        for (int i = 0; i < 17; i++) {
+            barEvents[i] = new BarEvent(this, i);
         }
-
     }
 
     @Async
@@ -38,7 +37,7 @@ public class TimelineService {
         if (!runTimer) {
             runTimer = true;
             while (runTimer) {
-                applicationEventPublisher.publishEvent(barEvents[currentBar - 1]);
+                applicationEventPublisher.publishEvent(barEvents[currentBar]);
                 long currentTime = clock.millis();
                 if (previousTime != 0) {
                     overTime = currentTime - previousTime - barLength;
@@ -110,7 +109,7 @@ public class TimelineService {
         stop();
         sectionQueue.clear();
         currentSectionData = null;
-        currentBar = 1;
+        currentBar = 0;
         previousTime = 0;
         overTime = 0;
         end = false;

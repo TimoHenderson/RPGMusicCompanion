@@ -25,9 +25,9 @@ class TuneServiceTest {
 
     @Test
     void changeCurrentTune() {
-        tuneService.changeCurrentTune("Abandoned_Mine");
+        tuneService.loadTune("Abandoned_Mine");
         assertEquals("Abandoned_Mine", tuneService.getCurrentTune().getName());
-        tuneService.changeCurrentTune("Combat");
+        tuneService.loadTune("Combat");
         assertEquals("Combat", tuneService.getCurrentTune().getName());
     }
 

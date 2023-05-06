@@ -15,8 +15,11 @@ public class TuneService {
     @Autowired
     TuneRepository tuneRepository;
     private Tune currentTune;
+    private int movementIndex = 0;
+    private int sectionIndex = 0;
 
-    public Tune changeCurrentTune(String name) {
+
+    public Tune loadTune(String name) {
         currentTune = tuneRepository.findByName(name);
         return currentTune;
     }
@@ -36,4 +39,6 @@ public class TuneService {
     public List<Section> getCurrentSections() {
         return currentTune.getCurrentMovement().getSections();
     }
+
+   
 }

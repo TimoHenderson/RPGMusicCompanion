@@ -1,17 +1,14 @@
 package com.timohenderson.RPGMusicServer.events;
 
-import org.springframework.context.ApplicationEvent;
-
-public class BarEvent extends ApplicationEvent {
-    private int bar;
+public class BarEvent extends Event {
+    //private Integer bar;
 
 
-    public BarEvent(Object source, int bar) {
-        super(source);
-        this.bar = bar;
+    public BarEvent(Object source, Integer bar) {
+        super(source, bar);
     }
 
     public int getBar() {
-        return bar;
+        return (Integer) super.getPayload();
     }
 }
