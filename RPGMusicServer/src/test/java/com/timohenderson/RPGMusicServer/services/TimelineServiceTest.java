@@ -3,6 +3,9 @@ package com.timohenderson.RPGMusicServer.services;
 import com.timohenderson.RPGMusicServer.TestingUtils.EventCatcher;
 import com.timohenderson.RPGMusicServer.TestingUtils.EventWithDelta;
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
+import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
+import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
+import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -20,13 +23,46 @@ class TimelineServiceTest {
     TimelineService timelineService;
     @Autowired
     EventCatcher eventCatcher;
-    SectionData sectionData;
-    SectionData loopingSectionData;
+    Section section;
+    Section loopingSection;
+    Section slowSection;
 
     @BeforeEach
     void setUp() {
-        sectionData = new SectionData(1, 4, 2, 4, 150, false, false, TransitionType.END);
-        loopingSectionData = new SectionData(1, 4, 2, 4, 120, true, true, TransitionType.NEXT_BAR);
+        section = new RenderedSection("section",
+                new SectionData(
+                        1,
+                        4,
+                        2,
+                        4,
+                        150,
+                        false,
+                        false,
+                        TransitionType.END),
+                null);
+        loopingSection = new RenderedSection(
+                "loopingSection",
+                new SectionData(1,
+                        4,
+                        2,
+                        4,
+                        120,
+                        true,
+                        true,
+                        TransitionType.NEXT_BAR),
+                null);
+        SectionData slowSectionData = new SectionData(1, 8, 2, 4, 110, false, false, TransitionType.END);
+        slowSection = new AdaptiveSection("slowSection",
+                new SectionData(
+                        1,
+                        8,
+                        2,
+                        4,
+                        110,
+                        false,
+                        false,
+                        TransitionType.END),
+                null);
     }
 
     @AfterEach
@@ -37,7 +73,7 @@ class TimelineServiceTest {
 
     @Test
     void canPlay() throws InterruptedException {
-        timelineService.addToSectionQueue(sectionData);
+        timelineService.addToSectionQueue(section);
         timelineService.play();
         Thread.sleep(20000l);
         timelineService.stop();
@@ -47,7 +83,7 @@ class TimelineServiceTest {
 
     @Test
     void canStopTimer() throws InterruptedException {
-        timelineService.addToSectionQueue(sectionData);
+        timelineService.addToSectionQueue(section);
         timelineService.play();
         Thread.sleep(5000l);
         timelineService.stop();
@@ -58,7 +94,7 @@ class TimelineServiceTest {
 
     @Test
     void canResume() throws InterruptedException {
-        timelineService.addToSectionQueue(sectionData);
+        timelineService.addToSectionQueue(loopingSection);
         timelineService.play();
         Thread.sleep(5000l);
         timelineService.stop();
@@ -71,20 +107,19 @@ class TimelineServiceTest {
 
     @Test
     void goToNextSectionWhenNonLoopingSectionReachesEnd() throws InterruptedException {
-        timelineService.addToSectionQueue(sectionData);
-        SectionData slowSectionData = new SectionData(1, 8, 2, 4, 110, false, false, TransitionType.END);
-        timelineService.addToSectionQueue(slowSectionData);
+        timelineService.addToSectionQueue(section);
+        timelineService.addToSectionQueue(slowSection);
         timelineService.play();
         Thread.sleep(10000l);
         timelineService.stop();
         eventCatcher.printLog();
-        assertEquals(slowSectionData, timelineService.getCurrentSectionData());
+        assertEquals(slowSection, timelineService.getCurrentSection());
     }
 
     @Test
     void goToNextSectionWhenLoopingSectionWithNextBarIsTriggered() throws InterruptedException {
-        timelineService.addToSectionQueue(loopingSectionData);
-        timelineService.addToSectionQueue(sectionData);
+        timelineService.addToSectionQueue(loopingSection);
+        timelineService.addToSectionQueue(section);
         timelineService.play();
         Thread.sleep(4000l);
         timelineService.triggerNextSection();
@@ -92,7 +127,7 @@ class TimelineServiceTest {
         Thread.sleep(6000l);
         timelineService.stop();
         eventCatcher.printLog();
-        assertEquals(sectionData, timelineService.getCurrentSectionData());
+        assertEquals(section, timelineService.getCurrentSection());
         assertTrue(eventWithDelta.event().getBar() != 4);
         int changeIndex = eventWithDelta.eventNum() + 1;
         assertTrue(eventCatcher.getLog().get(changeIndex).event().getBar() == 1);
@@ -100,7 +135,7 @@ class TimelineServiceTest {
 
     @Test
     void loopingSectionWillRunMultipleTimes() throws InterruptedException {
-        timelineService.addToSectionQueue(loopingSectionData);
+        timelineService.addToSectionQueue(loopingSection);
         timelineService.play();
         Thread.sleep(8000l);
         timelineService.stop();
