@@ -12,10 +12,7 @@ public class TuneService {
 
     @Autowired
     TuneRepository tuneRepository;
-
-
     private Tune currentTune;
-
 
     public Tune changeCurrentTune(String name) {
         currentTune = tuneRepository.findByName(name);
@@ -27,4 +24,7 @@ public class TuneService {
     }
 
 
+    public Tune getCurrentTune() {
+        return currentTune;
+    }
 }
