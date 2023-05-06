@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
-import java.time.Clock;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
@@ -17,9 +16,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class TimelineService {
     private final LinkedBlockingQueue<Section> sectionQueue = new LinkedBlockingQueue<Section>();
     private final BarEvent[] barEvents = new BarEvent[17];
-    Clock clock = Clock.systemUTC();
-    @Autowired
-    AudioPlayerService audioPlayerService;
+    //Clock clock = Clock.systemUTC();
+
     private Section currentSection;
     private volatile boolean end = false;
     private volatile boolean runTimer;
@@ -44,14 +42,14 @@ public class TimelineService {
 //                audioPlayerService.play();
                 applicationEventPublisher.publishEvent(barEvents[currentBar]);
 
-                long currentTime = clock.millis();
-                if (previousTime != 0) {
-                    overTime = currentTime - previousTime - barLength;
-                }
-                previousTime = currentTime;
+//                long currentTime = clock.millis();
+//                if (previousTime != 0) {
+//                    overTime = currentTime - previousTime - barLength;
+//                }
+//                previousTime = currentTime;
                 System.out.println("Bar: " + currentBar + " OverTime: " + overTime + " BarLength: " + barLength);
-                Thread.sleep(barLength - overTime);
-//                Thread.sleep(barLength);
+//                Thread.sleep(barLength - overTime);
+                Thread.sleep(barLength - 4);
                 nextBar();
                 if (shouldTimeLineEnd()) {
                     loadNextSection();

@@ -3,14 +3,14 @@ package com.timohenderson.RPGMusicServer.services;
 import com.adonax.audiocue.AudioCue;
 import com.adonax.audiocue.AudioMixer;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
 
-@Component
+@Service
 public class AudioPlayerService {
     AudioCue audioCue1;
     AudioCue audioCue2;
@@ -20,7 +20,7 @@ public class AudioPlayerService {
     AudioCue audioCue6;
     AudioCue hitCue;
     AudioMixer audioMixer;
-    int currentBar = 0;
+
     AudioCue[] audioCues = new AudioCue[4];
 
 
