@@ -13,36 +13,19 @@ public class Tune {
     private String name;
     private List<Movement> movements = new ArrayList<>();
     private int currentMovement = 0;
+    
 
-    public Tune() {
-    }
-
-    public Tune(String name) {
+    public Tune(String name, List<Movement> movements) {
         this.name = name;
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
+        this.movements = movements;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Movement> getMovements() {
-        return movements;
-    }
-
-    public void setMovements(List<Movement> movements) {
-        this.movements = movements;
+        return List.copyOf(movements);
     }
 
     public Movement nextMovement() {
