@@ -13,15 +13,4 @@ public class AdaptivePart extends Part {
         this.musemes = musemes;
     }
 
-//    public List<Museme> getMusemes() {
-//        return musemes;
-//    }
-
-//    public void setMusemes(List<Museme> musemes) {
-//        this.musemes = musemes;
-//    }
-//
-//    public void addMuseme(Museme museme) {
-//        musemes.add(museme);
-//    }
 }

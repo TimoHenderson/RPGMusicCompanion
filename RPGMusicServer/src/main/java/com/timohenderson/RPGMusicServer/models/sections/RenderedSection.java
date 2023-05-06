@@ -15,13 +15,6 @@ public class RenderedSection extends Section {
         this.part = part;
     }
 
-    public Part getPart() {
-        return part;
-    }
-
-    public void setPart(Part part) {
-        this.part = part;
-    }
 
     @Override
     public List<Part> getNextParts(HashMap<String, Integer> partsNeeded) {
