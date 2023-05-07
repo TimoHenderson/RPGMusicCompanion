@@ -7,5 +7,7 @@ public abstract class Part {
         this.partData = partData;
     }
 
-
+    public PartData getPartData() {
+        return partData;
+    }
 }

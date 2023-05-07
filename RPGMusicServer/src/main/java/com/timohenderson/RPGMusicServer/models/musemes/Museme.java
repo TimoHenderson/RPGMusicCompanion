@@ -12,9 +12,11 @@ public class Museme {
         this.musemeData = musemeData;
     }
 
-    public String getFileName() {
+    public String getFilePath() {
         return filePath;
     }
 
-
+    public MusemeData getMusemeData() {
+        return musemeData;
+    }
 }

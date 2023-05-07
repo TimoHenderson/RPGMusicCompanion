@@ -17,4 +17,6 @@ public class LinearPart extends Part {
     public void setMuseme(Museme museme) {
         this.museme = museme;
     }
+
+
 }

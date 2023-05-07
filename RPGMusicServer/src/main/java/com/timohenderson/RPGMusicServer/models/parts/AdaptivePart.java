@@ -13,4 +13,7 @@ public class AdaptivePart extends Part {
         this.musemes = musemes;
     }
 
+    public List<Museme> getMusemes() {
+        return List.copyOf(musemes);
+    }
 }

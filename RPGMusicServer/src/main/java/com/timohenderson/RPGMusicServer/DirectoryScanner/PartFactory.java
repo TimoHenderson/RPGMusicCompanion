@@ -23,9 +23,9 @@ class PartFactory {
         Path partPath = sectionPath.resolve("Master/master");
         Path musemePath = Files.list(partPath).findFirst().get();
         Museme museme = buildMuseme(musemePath, sectionData);
-        PartData partData = parsePartData(partPath.getFileName().toString());
-        LinearPart part = new LinearPart(partData, museme);
-        return part;
+        PartData partData = parsePartData(partPath.getFileName().toString(), sectionData.numBars());
+        return new LinearPart(partData, museme);
+
     }
 
     static HashMap<MusicalType, List<Part>> buildPartLists(Path sectionPath, SectionData sectionData) throws IOException {
@@ -58,7 +58,7 @@ class PartFactory {
     }
 
     private static Part buildPart(Path partPath, SectionData sectionData) throws IOException {
-        PartData partData = parsePartData(partPath.getFileName().toString());
+        PartData partData = parsePartData(partPath.getFileName().toString(), sectionData.numBars());
         ArrayList<Path> musemePaths = Files.list(partPath)
                 .filter(Files::isRegularFile)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
@@ -84,7 +84,7 @@ class PartFactory {
         return null;
     }
 
-    private static PartData parsePartData(String directoryName) {
+    private static PartData parsePartData(String directoryName, int sectionLength) {
         int intensity = 0;
         int darkness = 0;
         String[] parts = directoryName.split("_");
@@ -101,7 +101,7 @@ class PartFactory {
             }
         }
 
-        PartData partData = new PartData(name, intensity, darkness);
-        return partData;
+        return new PartData(name, intensity, darkness, sectionLength);
+        
     }
 }
