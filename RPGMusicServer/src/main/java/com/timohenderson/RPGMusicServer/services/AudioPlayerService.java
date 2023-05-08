@@ -74,7 +74,7 @@ public class AudioPlayerService {
         return section;
     }
 
-    
+
     public void playNextCues() throws LineUnavailableException {
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {

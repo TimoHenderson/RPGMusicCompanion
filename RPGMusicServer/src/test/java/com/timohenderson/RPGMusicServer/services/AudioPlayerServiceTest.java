@@ -131,7 +131,7 @@ class AudioPlayerServiceTest {
         System.out.println("stopped");
         Thread.sleep(8000);
         System.out.println("resumed");
-        timelineService.resume();
+        timelineService.play();
         Thread.sleep(2000);
     }
 
