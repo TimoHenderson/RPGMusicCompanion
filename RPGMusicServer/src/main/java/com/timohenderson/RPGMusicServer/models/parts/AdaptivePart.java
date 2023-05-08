@@ -10,45 +10,36 @@ import java.util.List;
 public class AdaptivePart extends Part {
     HashMap<Integer, List<Museme>> musemesByStartBars = new HashMap<>();
     @Transient
-    Museme nextMuseme;
+    int currentMusemeLength = 0;
     @Transient
-    int nextBarToFill = 0;
-    @Transient
-    boolean needsNextMuseme = true;
-    @Transient
-    int nextMusemeStartBar = 0;
-    @Transient
-    boolean isPlaying = false;
+    int barsPassedSinceMusemeLoaded = 0;
+
 
     public AdaptivePart(PartData partData, HashMap<Integer, List<Museme>> musemesByStartBars) {
         super(partData);
         this.musemesByStartBars = musemesByStartBars;
     }
 
-
-    public void chooseNextMuseme(int bar) {
-        if (!needsNextMuseme) return;
-        if (nextBarToFill == 0) nextBarToFill = bar;
-        List<Museme> musemes = null;
-        while (musemes == null) {
-            musemes = musemesByStartBars.get(nextBarToFill);
-            nextMusemeStartBar = nextBarToFill;
-            if (musemes == null) incrementNextBarBy(1);
+    public Museme chooseNextMuseme(int bar) {
+        barsPassedSinceMusemeLoaded++;
+        if (barsPassedSinceMusemeLoaded == currentMusemeLength || currentMusemeLength == 0) {
+            List<Museme> potentialMusemes = musemesByStartBars.get(bar);
+            return potentialMusemes.get((int) (Math.random() * potentialMusemes.size()));
         }
-        nextMuseme = musemes.get((int) (Math.random() * musemes.size()));
-        incrementNextBarBy(nextMuseme.getMusemeData().length());
-        needsNextMuseme = false;
+
+        return null;
     }
 
     @Override
     public URL getURL(int bar) {
-        if (bar == nextMusemeStartBar) {
-            return nextMuseme.getURL();
-        } else return null;
+        Museme museme = chooseNextMuseme(bar);
+        if (museme != null) {
+            currentMusemeLength = museme.getMusemeData().length();
+            barsPassedSinceMusemeLoaded = 0;
+            return museme.getURL();
+        }
+        return null;
     }
 
-    private void incrementNextBarBy(int amount) {
-        nextBarToFill += amount;
-        if (nextBarToFill > partData.sectionLength()) nextBarToFill -= partData.sectionLength();
-    }
+
 }
