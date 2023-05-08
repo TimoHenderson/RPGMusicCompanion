@@ -24,6 +24,7 @@ public class AdaptivePart extends Part {
         barsPassedSinceMusemeLoaded++;
         if (barsPassedSinceMusemeLoaded == currentMusemeLength || currentMusemeLength == 0) {
             List<Museme> potentialMusemes = musemesByStartBars.get(bar);
+            if (potentialMusemes == null) return null;
             return potentialMusemes.get((int) (Math.random() * potentialMusemes.size()));
         }
 

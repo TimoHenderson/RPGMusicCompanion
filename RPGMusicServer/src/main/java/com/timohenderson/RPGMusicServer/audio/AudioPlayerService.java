@@ -22,6 +22,8 @@ public class AudioPlayerService {
 
     ArrayList<AudioCue> nextCues = new ArrayList<AudioCue>();
 
+    AudioCue[] nextCuesArray;
+
     public void loadSection(Section section) {
         this.section = section;
     }
@@ -34,16 +36,19 @@ public class AudioPlayerService {
     public void queueNextMusemes() throws LineUnavailableException {
         List<URL> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
         System.out.println(nextMusemeURLs);
-        nextMusemeURLs.forEach((url) -> {
-            try {
-                AudioCue audioCue = AudioCue.makeStereoCue(url, 1);
-                audioCue.open(mixer);
-                nextCues.add(audioCue);
-            } catch (UnsupportedAudioFileException | IOException e) {
-                e.printStackTrace();
-            }
-            mixer.setNextCues(nextCues.toArray(new AudioCue[nextCues.size()]));
-        });
+        if (nextMusemeURLs != null) {
+            nextMusemeURLs.forEach((url) -> {
+                try {
+                    AudioCue audioCue = AudioCue.makeStereoCue(url, 1);
+                    audioCue.open(mixer);
+                    nextCues.add(audioCue);
+                } catch (UnsupportedAudioFileException | IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            nextCuesArray = (nextCues.toArray(new AudioCue[nextCues.size()]));
+            nextCues.clear();
+        }
     }
 
     public void stop() {
@@ -51,5 +56,19 @@ public class AudioPlayerService {
 
     public Section getLoadedSection() {
         return section;
+    }
+
+    public void playNextCues(int bar) throws LineUnavailableException {
+        if (nextCuesArray != null) {
+            for (int i = 0; i < nextCuesArray.length; i++) {
+                // print current system time
+                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
+                nextCuesArray[i].play();
+                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
+            }
+        }
+        nextCuesArray = null;
+        setCurrentBar(bar);
+
     }
 }

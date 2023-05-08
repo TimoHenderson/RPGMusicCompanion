@@ -4,6 +4,7 @@ import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
+import com.timohenderson.RPGMusicServer.services.TimelineService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,9 +22,10 @@ class AudioPlayerServiceTest {
     @Autowired
     TuneRepository tuneRepository;
     @Autowired
-    RPGMixer mixer;
+    TimelineService timelineService;
     Section renderedSection;
     Section adaptiveSection;
+    Section combatAdaptiveSection;
 
     @BeforeEach
     void setUp() {
@@ -31,6 +33,11 @@ class AudioPlayerServiceTest {
         Movement intro = tune.getMovements().get(0);
         renderedSection = intro.getSections().get(1);
         adaptiveSection = intro.getSections().get(0);
+
+        Tune combat = tuneRepository.findByName("Combat");
+        Movement mainCombat = combat.getMovements().get(0);
+        combatAdaptiveSection = mainCombat.getSections().get(1);
+
     }
 
     @AfterEach
@@ -51,7 +58,7 @@ class AudioPlayerServiceTest {
         System.out.println("loaded");
         Thread.sleep(2000);
         System.out.println("mixerStart");
-        mixer.playNextCues();
+        audioPlayerService.playNextCues(1);
         Thread.sleep(2000);
     }
 
@@ -62,8 +69,30 @@ class AudioPlayerServiceTest {
         System.out.println("loaded");
         Thread.sleep(2000);
         System.out.println("mixerStart");
-        mixer.playNextCues();
+        audioPlayerService.playNextCues(1);
         Thread.sleep(2000);
+    }
+
+
+    @Test
+    void canPlay() throws InterruptedException {
+        timelineService.addToSectionQueue(renderedSection);
+        timelineService.play();
+        Thread.sleep(60000);
+    }
+
+    @Test
+    void canPlayAdaptive() throws InterruptedException {
+        timelineService.addToSectionQueue(adaptiveSection);
+        timelineService.play();
+        Thread.sleep(60000);
+    }
+
+    @Test
+    void canPlayAdaptiveCombat() throws InterruptedException {
+        timelineService.addToSectionQueue(combatAdaptiveSection);
+        timelineService.play();
+        Thread.sleep(60000);
     }
 
     @Test

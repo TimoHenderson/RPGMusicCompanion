@@ -20,7 +20,8 @@ public class RenderedSection extends Section {
     @Override
     public List<URL> getNextMusemeURLs(int currentBar) {
         nextMusemeURLs.clear();
-        nextMusemeURLs.add(part.getURL(nextBarNum(currentBar)));
+        URL url = part.getURL(nextBarNum(currentBar));
+        if (url != null) nextMusemeURLs.add(url);
         return nextMusemeURLs;
     }
 

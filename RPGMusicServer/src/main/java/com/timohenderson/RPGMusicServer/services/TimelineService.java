@@ -1,15 +1,17 @@
 package com.timohenderson.RPGMusicServer.services;
 
+import com.timohenderson.RPGMusicServer.audio.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.events.BarEvent;
 import com.timohenderson.RPGMusicServer.events.SectionLoadedEvent;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.time.Clock;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
@@ -18,7 +20,7 @@ public class TimelineService {
     private final LinkedBlockingQueue<Section> sectionQueue = new LinkedBlockingQueue<Section>();
     private final BarEvent[] barEvents = new BarEvent[17];
     Clock clock = Clock.systemUTC();
-
+    Timer timer = new Timer();
     private Section currentSection;
     private volatile boolean end = false;
     private volatile boolean runTimer;
@@ -28,44 +30,54 @@ public class TimelineService {
     private long overTime = 0;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
+    @Autowired
+    private AudioPlayerService audioPlayerService;
+
 
     public TimelineService() {
         for (int i = 0; i < 17; i++) {
             barEvents[i] = new BarEvent(this, i);
         }
+        timer = new Timer();
     }
 
-    @Async
-    public void play() throws InterruptedException, LineUnavailableException {
+//    @Async
+//    public void play() throws InterruptedException, LineUnavailableException {
+//        if (!runTimer) {
+//            runTimer = true;
+//            while (runTimer) {
+////                audioPlayerService.play();
+//                applicationEventPublisher.publishEvent(barEvents[currentBar]);
+//                nextBar();
+//                if (shouldTimeLineEnd()) {
+//                    loadNextSection();
+//                    end = false;
+//                }
+//                long currentTime = clock.millis();
+//                if (previousTime != 0) {
+//                    overTime = (currentTime - previousTime - barLength) / 2;
+//                }
+//                previousTime = currentTime;
+//                System.out.println("Bar: " + currentBar + " OverTime: " + overTime + " BarLength: " + barLength);
+//                Thread.sleep(barLength - overTime);
+////                Thread.sleep(barLength);
+//
+//
+//            }
+//        }
+//        previousTime = 0;
+//    }
+
+    public void play() {
         if (!runTimer) {
             runTimer = true;
-            while (runTimer) {
-//                audioPlayerService.play();
-                applicationEventPublisher.publishEvent(barEvents[currentBar]);
-                nextBar();
-                if (shouldTimeLineEnd()) {
-                    loadNextSection();
-                    end = false;
-                }
-                long currentTime = clock.millis();
-                if (previousTime != 0) {
-                    overTime = (currentTime - previousTime - barLength) / 2;
-                }
-                previousTime = currentTime;
-                System.out.println("Bar: " + currentBar + " OverTime: " + overTime + " BarLength: " + barLength);
-                Thread.sleep(barLength - overTime);
-//                Thread.sleep(barLength);
-
-
-            }
+            timer.scheduleAtFixedRate(new PlayTask(), 0, barLength);
         }
-        previousTime = 0;
     }
 
     private void sendBarEvent() {
 
     }
-
 
     private boolean shouldTimeLineEnd() {
         //System.out.println("shouldTimeLineEnd: " + currentBar + " " + currentSection.getSectionData().numBars());
@@ -83,7 +95,6 @@ public class TimelineService {
         }
         return false;
     }
-
 
     public void stop() {
         runTimer = false;
@@ -122,12 +133,12 @@ public class TimelineService {
         reset();
         this.barLength = (long) (60000.0 / currentSection.getSectionData().bpm()) * currentSection.getSectionData().numBeats();
         System.out.println("Loading section: " + currentSection.getName());
-
+        audioPlayerService.loadSection(currentSection);
         applicationEventPublisher.publishEvent(new SectionLoadedEvent(this, currentSection));
     }
 
     private void reset() {
-        currentBar = 1;
+        currentBar = 0;
         previousTime = 0;
         overTime = 0;
         end = false;
@@ -148,6 +159,34 @@ public class TimelineService {
 
     public Section getCurrentSection() {
         return currentSection;
+    }
+
+    private class PlayTask extends TimerTask {
+
+        @Override
+        public void run() {
+            try {
+                audioPlayerService.playNextCues(currentBar);
+            } catch (LineUnavailableException e) {
+                throw new RuntimeException(e);
+            }
+            nextBar();
+            if (shouldTimeLineEnd()) {
+                try {
+                    loadNextSection();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                end = false;
+            }
+            long currentTime = clock.millis();
+            if (previousTime != 0) {
+                overTime = (currentTime - previousTime - barLength) / 2;
+            }
+            previousTime = currentTime;
+            System.out.println("Bar: " + currentBar + " OverTime: " + overTime + " BarLength: " + barLength);
+            // Thread.sleep(barLength - overTime);
+        }
     }
 }
 
