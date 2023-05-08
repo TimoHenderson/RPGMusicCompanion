@@ -26,18 +26,28 @@ public class AudioPlayerService {
 
     AudioCue[] nextCuesArray;
 
-    public void loadSection(Section section) {
+    public void loadSection(Section section) throws LineUnavailableException {
         this.section = section;
+        currentBar = 0;
+        queueNextMusemes();
     }
 
+    public void loadNextSection(Section section) throws LineUnavailableException {
+
+        this.section = section;
+        currentBar = 0;
+        queueNextMusemes();
+    }
+
+    @Async
     public void setCurrentBar(int currentBar) throws LineUnavailableException {
         this.currentBar = currentBar;
         queueNextMusemes();
     }
 
     public void queueNextMusemes() throws LineUnavailableException {
+        nextCues.clear();
         List<URL> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
-        System.out.println(nextMusemeURLs);
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {
@@ -49,11 +59,16 @@ public class AudioPlayerService {
                 }
             });
             nextCuesArray = (nextCues.toArray(new AudioCue[nextCues.size()]));
-            nextCues.clear();
+
         }
     }
 
     public void stop() {
+        mixer.stop();
+    }
+
+    public void play() throws LineUnavailableException {
+        mixer.start();
     }
 
     public Section getLoadedSection() {
@@ -61,7 +76,7 @@ public class AudioPlayerService {
     }
 
     @Async
-    public void playNextCues(int bar) throws LineUnavailableException {
+    public void playNextCues() throws LineUnavailableException {
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {
                 // print current system time
@@ -71,7 +86,7 @@ public class AudioPlayerService {
             }
         }
         nextCuesArray = null;
-        setCurrentBar(bar);
+
 
     }
 }

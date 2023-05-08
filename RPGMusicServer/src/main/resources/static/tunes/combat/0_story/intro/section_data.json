@@ -3,7 +3,7 @@
   "numBars": 1,
   "numBeats": 7,
   "beatValue": 8,
-  "bpm": 150,
+  "bpm": 300,
   "preRendered": true,
   "loop": false,
   "transitionType": "END"

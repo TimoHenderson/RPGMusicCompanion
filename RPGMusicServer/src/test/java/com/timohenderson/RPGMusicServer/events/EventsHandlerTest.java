@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,7 +42,7 @@ class EventsHandlerTest {
     }
 
     @Test
-    void canPlayAndStopTimeline() throws InterruptedException {
+    void canPlayAndStopTimeline() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(
                 new RenderedSection(
                         "Hello",
