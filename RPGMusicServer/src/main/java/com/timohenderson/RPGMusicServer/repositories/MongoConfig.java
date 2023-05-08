@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.configurations;
+package com.timohenderson.RPGMusicServer.repositories;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

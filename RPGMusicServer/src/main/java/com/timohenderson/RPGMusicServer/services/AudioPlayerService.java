@@ -1,8 +1,10 @@
-package com.timohenderson.RPGMusicServer.audio;
+package com.timohenderson.RPGMusicServer.services;
 
 import com.adonax.audiocue.AudioCue;
+import com.timohenderson.RPGMusicServer.audio.RPGMixer;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -58,13 +60,14 @@ public class AudioPlayerService {
         return section;
     }
 
+    @Async
     public void playNextCues(int bar) throws LineUnavailableException {
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {
                 // print current system time
-                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
+//                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
                 nextCuesArray[i].play();
-                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
+//                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
             }
         }
         nextCuesArray = null;
