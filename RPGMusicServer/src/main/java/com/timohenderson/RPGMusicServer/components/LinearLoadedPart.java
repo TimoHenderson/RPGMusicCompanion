@@ -17,6 +17,8 @@ public class LinearLoadedPart extends LoadedPart {
 
     @Override
     public void play(int bar) {
-        loadedMuseme.play();
+        if (loadedMuseme.getStartBars().contains(bar)) {
+            loadedMuseme.play();
+        }
     }
 }

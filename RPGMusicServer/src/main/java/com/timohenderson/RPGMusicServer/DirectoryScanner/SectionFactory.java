@@ -2,8 +2,8 @@ package com.timohenderson.RPGMusicServer.DirectoryScanner;
 
 import com.google.gson.Gson;
 import com.timohenderson.RPGMusicServer.enums.MusicalType;
+import com.timohenderson.RPGMusicServer.models.parts.AdaptivePart;
 import com.timohenderson.RPGMusicServer.models.parts.LinearPart;
-import com.timohenderson.RPGMusicServer.models.parts.Part;
 import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
@@ -40,7 +40,7 @@ class SectionFactory {
         SectionData sectionData = buildSectionData(sectionPath);
         String name = sectionPath.getFileName().toString();
         if (!sectionData.preRendered()) {
-            HashMap<MusicalType, List<Part>> partLists = buildPartLists(sectionPath, sectionData);
+            HashMap<MusicalType, List<AdaptivePart>> partLists = buildPartLists(sectionPath, sectionData);
             AdaptiveSection section = new AdaptiveSection(name, sectionData, partLists);
             return section;
         } else {

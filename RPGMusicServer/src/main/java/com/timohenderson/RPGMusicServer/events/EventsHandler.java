@@ -1,5 +1,7 @@
 package com.timohenderson.RPGMusicServer.events;
 
+import com.timohenderson.RPGMusicServer.components.AdaptiveLoadedPart;
+import com.timohenderson.RPGMusicServer.components.LoadedPart;
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.services.TimelineService;
 import com.timohenderson.RPGMusicServer.services.TuneService;
@@ -21,6 +23,7 @@ public class EventsHandler {
     AudioPlayerService audioPlayerService;
 
     private ArrayList<String> log = new ArrayList<>();
+    private ArrayList<LoadedPart> barSubscribers = new ArrayList<>();
 
     @EventListener
     public void logEvents(Event event) {
@@ -43,10 +46,21 @@ public class EventsHandler {
         log.clear();
     }
 
+    public void subscribeToBarEvent(LoadedPart part) {
+        barSubscribers.add(part);
+    }
 
+    @Async
     @EventListener
     public void handleBarEvent(BarEvent event) throws LineUnavailableException {
-        audioPlayerService.play(event.getBar());
+        //audioPlayerService.play(event.getBar());
+        for (LoadedPart part : barSubscribers) {
+            part.play(event.getBar());
+        }
+        for (LoadedPart part : barSubscribers) {
+            if (part instanceof AdaptiveLoadedPart)
+                ((AdaptiveLoadedPart) part).chooseNextMuseme(event.getBar());
+        }
     }
 
     @Async

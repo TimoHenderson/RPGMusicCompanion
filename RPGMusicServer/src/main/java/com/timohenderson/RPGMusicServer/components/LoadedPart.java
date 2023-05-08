@@ -26,7 +26,7 @@ public abstract class LoadedPart {
 
     public LoadedMuseme loadMuseme(Museme museme, AudioMixer mixer) throws UnsupportedAudioFileException, IOException {
         URL url = this.getClass().getResource(museme.getFilePath());
-        AudioCue audioCue = AudioCue.makeStereoCue(url, 2);
+        AudioCue audioCue = AudioCue.makeStereoCue(url, 3);
         audioCue.open(mixer);
         return new LoadedMuseme(audioCue, museme.getMusemeData());
     }

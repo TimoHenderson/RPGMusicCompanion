@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class AdaptiveLoadedPart extends LoadedPart {
     HashMap<Integer, List<LoadedMuseme>> loadedMusemesByStartBars = new HashMap<>();
     LoadedMuseme nextMuseme;
     int nextBarToFill = 0;
+    boolean needsNextMuseme = true;
+    int nextMusemeStartBar = 0;
     boolean isPlaying = false;
 
     public AdaptiveLoadedPart(AdaptivePart part, AudioMixer mixer) {
@@ -41,15 +44,16 @@ public class AdaptiveLoadedPart extends LoadedPart {
                 });
     }
 
+
     @Override
     public void play(int bar) {
         if (!isPlaying) {
             chooseNextMuseme(bar);
             isPlaying = true;
         }
-        if (nextMuseme != null && nextMuseme.getStartBars().contains(bar)) {
+        if (bar == nextMusemeStartBar) {
             nextMuseme.play();
-            chooseNextMuseme(bar);
+            needsNextMuseme = true;
         }
     }
 
@@ -59,15 +63,19 @@ public class AdaptiveLoadedPart extends LoadedPart {
         isPlaying = false;
     }
 
-    private void chooseNextMuseme(int bar) {
+    public void chooseNextMuseme(int bar) {
+        if (!needsNextMuseme) return;
         if (nextBarToFill == 0) nextBarToFill = bar;
         List<LoadedMuseme> musemes = null;
         while (musemes == null) {
             musemes = loadedMusemesByStartBars.get(nextBarToFill);
+            nextMusemeStartBar = nextBarToFill;
             if (musemes == null) incrementNextBarBy(1);
         }
         nextMuseme = musemes.get((int) (Math.random() * musemes.size()));
         incrementNextBarBy(nextMuseme.getLength());
+
+        needsNextMuseme = false;
     }
 
     private void incrementNextBarBy(int amount) {
