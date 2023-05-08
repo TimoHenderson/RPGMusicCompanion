@@ -28,11 +28,12 @@ class AudioPlayerServiceTest {
     Section mineAdaptiveSection;
     Section combatRenderedSection1;
     Section combatRenderedSection2;
+    Tune forestTune;
 
     @BeforeEach
     void setUp() {
-        Tune tune = tuneRepository.findByName("Enchanted_Forest");
-        Movement intro = tune.getMovements().get(0);
+        forestTune = tuneRepository.findByName("Enchanted_Forest");
+        Movement intro = forestTune.getMovements().get(0);
         renderedSection = intro.getSections().get(1);
         adaptiveSection = intro.getSections().get(0);
 
@@ -155,6 +156,22 @@ class AudioPlayerServiceTest {
     }
 
     @Test
-    void queueNextMusemes() {
+    void canLoadMovement() throws LineUnavailableException, InterruptedException {
+        timelineService.loadMovement(forestTune.getMovements().get(0));
+        timelineService.play();
+        Thread.sleep(1000);
+        timelineService.triggerNextSection();
+//        Thread.sleep(3000);
+        timelineService.loadMovement(forestTune.getMovements().get(1));
+//        timelineService.play();play
+        Thread.sleep(30000);
+        System.out.println("end");
+    }
+
+    @Test
+    void canLoadForestMain() throws LineUnavailableException, InterruptedException {
+        timelineService.loadMovement(forestTune.getMovements().get(1));
+        timelineService.play();
+        Thread.sleep(5000);
     }
 }

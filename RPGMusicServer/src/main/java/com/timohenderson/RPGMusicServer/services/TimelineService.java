@@ -2,6 +2,7 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.events.BarEvent;
 import com.timohenderson.RPGMusicServer.events.SectionLoadedEvent;
+import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class TimelineService {
     private final LinkedBlockingQueue<Section> sectionQueue = new LinkedBlockingQueue<Section>();
+    private final LinkedBlockingQueue<Section> nextMovementSectionQueue = new LinkedBlockingQueue<>();
     private final BarEvent[] barEvents = new BarEvent[17];
     // Clock clock = Clock.systemUTC();
     //  Timer timer = new Timer();
@@ -38,18 +40,10 @@ public class TimelineService {
         for (int i = 0; i < 17; i++) {
             barEvents[i] = new BarEvent(this, i);
         }
-        //  timer = new Timer();
     }
 
-//
-
-
-    private void sendBarEvent() {
-
-    }
 
     private boolean shouldTimeLineEnd() {
-        //System.out.println("shouldTimeLineEnd: " + currentBar + " " + currentSection.getSectionData().numBars());
         if (currentSection == null) return false;
         if (end || !currentSection.getSectionData().loop()) {
             switch (currentSection.getSectionData().transitionType()) {
@@ -73,6 +67,11 @@ public class TimelineService {
     public void stop() {
         runTimer = false;
         audioPlayerService.stop();
+        executorService.shutdown();
+    }
+
+    public void stopLoop() {
+        runTimer = false;
         executorService.shutdownNow();
     }
 
@@ -100,10 +99,14 @@ public class TimelineService {
     }
 
     public void addToSectionQueue(Section section) throws InterruptedException, LineUnavailableException {
+        System.out.println("Adding section to queue: " + section.getName());
+        System.out.println("Section queue size: " + sectionQueue.size());
         sectionQueue.put(section);
+        System.out.println("Section queue size: " + sectionQueue.size());
         if (currentSection == null) {
+            System.out.println("current section is null");
             loadNextSection();
-            audioPlayerService.loadSection(section);
+//            audioPlayerService.loadSection(section);
         }
     }
 
@@ -113,14 +116,53 @@ public class TimelineService {
 
     }
 
-    public void loadNextSection() throws InterruptedException, LineUnavailableException {
+    public void loadMovement(Movement movement) throws LineUnavailableException, InterruptedException {
+        System.out.println(movement.getSections());
+        nextMovementSectionQueue.addAll(movement.getSections());
         if (sectionQueue.isEmpty()) {
-            System.out.println("No more sections to play");
+            loadNextMovement();
+        }
+    }
+
+    public void loadNextMovement() throws LineUnavailableException, InterruptedException {
+        System.out.println("Loading next movement");
+        if (nextMovementSectionQueue.isEmpty()) {
+            System.out.println("No more movements to play");
             stopAndCleanUp();
             return;
         } else {
+            runTimer = false;
+            System.out.println("Loading next movement else");
+            int size = nextMovementSectionQueue.size();
+            for (int i = 0; i < size; i++) {
+                System.out.println("Loading movement: " + i);
+                addToSectionQueue(nextMovementSectionQueue.poll());
+                System.out.println("Movement queue size: " + nextMovementSectionQueue.size());
+            }
+            nextMovementSectionQueue.clear();
+            // loadNextSection();
+
+            System.out.println("before play");
+            play();
+            System.out.println("after play");
+        }
+    }
+
+   
+    public void loadNextSection() throws InterruptedException, LineUnavailableException {
+        if (sectionQueue.isEmpty()) {
+            stopAndCleanUp();
+            System.out.println("No more sections to play1");
+            currentSection = null;
+            loadNextMovement();
+            runTimer = false;
+            // play();
+            return;
+        } else {
+            System.out.println("Loading next section else");
             currentSection = sectionQueue.take();
         }
+
         if (currentSection == null) {
             System.out.println("No more sections to play");
             stopAndCleanUp();
@@ -129,7 +171,11 @@ public class TimelineService {
         reset();
         this.barLength = (long) (60000.0 / currentSection.getSectionData().bpm()) * currentSection.getSectionData().numBeats();
         System.out.println("Loading section: " + currentSection.getName());
-        audioPlayerService.loadNextSection(currentSection);
+        if (!runTimer) {
+            audioPlayerService.loadSection(currentSection);
+        } else {
+            audioPlayerService.loadNextSection(currentSection);
+        }
         applicationEventPublisher.publishEvent(new SectionLoadedEvent(this, currentSection));
     }
 
@@ -138,7 +184,7 @@ public class TimelineService {
     }
 
     public void stopAndCleanUp() {
-        stop();
+        stopLoop();
         sectionQueue.clear();
         currentSection = null;
         currentBar = 1;
@@ -154,19 +200,21 @@ public class TimelineService {
         return currentSection;
     }
 
-    public void play() {
+    public void play() throws LineUnavailableException {
         if (!runTimer) {
             runTimer = true;
             runExecutor();
         }
     }
 
+
     private class TimeLineLoop implements Runnable {
         @Override
         public void run() {
-            // code to be executed repeatedly goes here
+            System.out.println("looping");
             try {
                 audioPlayerService.playNextCues();
+                System.out.println("playing next cues");
             } catch (LineUnavailableException e) {
                 throw new RuntimeException(e);
             }
@@ -175,6 +223,7 @@ public class TimelineService {
                 try {
                     loadNextSectionHandler();
                 } catch (InterruptedException e) {
+
                     throw new RuntimeException(e);
                 } catch (LineUnavailableException e) {
                     throw new RuntimeException(e);
