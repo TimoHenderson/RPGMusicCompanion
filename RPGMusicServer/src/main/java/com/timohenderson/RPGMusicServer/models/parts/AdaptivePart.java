@@ -40,6 +40,7 @@ public class AdaptivePart extends Part {
         needsNextMuseme = false;
     }
 
+    @Override
     public URL getURL(int bar) {
         if (bar == nextMusemeStartBar) {
             return nextMuseme.getURL();

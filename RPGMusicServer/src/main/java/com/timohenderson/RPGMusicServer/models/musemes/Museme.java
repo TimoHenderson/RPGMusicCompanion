@@ -10,13 +10,11 @@ public class Museme {
     @Transient
     private URL url;
 
-    public Museme() {
-    }
 
     public Museme(String filePath, MusemeData musemeData) {
         this.filePath = filePath;
         this.musemeData = musemeData;
-        url = getClass().getResource(filePath);
+        this.url = getClass().getResource(filePath);
     }
 
     public URL getUrl() {

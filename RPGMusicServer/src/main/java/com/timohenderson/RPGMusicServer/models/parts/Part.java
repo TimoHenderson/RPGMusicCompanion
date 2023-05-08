@@ -1,5 +1,7 @@
 package com.timohenderson.RPGMusicServer.models.parts;
 
+import java.net.URL;
+
 public abstract class Part {
     PartData partData;
 
@@ -10,4 +12,6 @@ public abstract class Part {
     public PartData getPartData() {
         return partData;
     }
+
+    public abstract URL getURL(int bar);
 }
