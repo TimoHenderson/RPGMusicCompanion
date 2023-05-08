@@ -49,7 +49,7 @@ class AudioPlayerServiceTest {
     }
 
     @Test
-    void loadSection() {
+    void loadSection() throws LineUnavailableException {
         audioPlayerService.loadSection(renderedSection);
         Section loadedSection = audioPlayerService.getLoadedSection();
         assertEquals(renderedSection, loadedSection);
@@ -79,31 +79,55 @@ class AudioPlayerServiceTest {
 
 
     @Test
-    void canPlay() throws InterruptedException {
+    void canPlay() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(renderedSection);
         timelineService.play();
         Thread.sleep(60000);
     }
 
     @Test
-    void canPlayAdaptive() throws InterruptedException {
+    void canPlayAdaptive() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(adaptiveSection);
         timelineService.play();
         Thread.sleep(60000);
     }
 
     @Test
-    void canPlayAdaptiveCombat() throws InterruptedException {
+    void canPlayAdaptiveCombat() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(combatAdaptiveSection);
         timelineService.play();
         Thread.sleep(60000);
     }
 
     @Test
-    void canPlayAdaptiveMine() throws InterruptedException {
+    void canPlayAdaptiveMine() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(mineAdaptiveSection);
         timelineService.play();
         Thread.sleep(60000);
+    }
+
+    @Test
+    void canPlayAdaptiveMineAndStop() throws InterruptedException, LineUnavailableException {
+        timelineService.addToSectionQueue(mineAdaptiveSection);
+        timelineService.play();
+        Thread.sleep(10000);
+        timelineService.stop();
+        System.out.println("stopped");
+        Thread.sleep(2000);
+        System.out.println("end");
+    }
+
+    @Test
+    void canPlayAdaptiveMineAndStopAndResume() throws InterruptedException, LineUnavailableException {
+        timelineService.addToSectionQueue(mineAdaptiveSection);
+        timelineService.play();
+        Thread.sleep(10000);
+        timelineService.stop();
+        System.out.println("stopped");
+        Thread.sleep(8000);
+        System.out.println("resumed");
+        timelineService.resume();
+        Thread.sleep(2000);
     }
 
     @Test

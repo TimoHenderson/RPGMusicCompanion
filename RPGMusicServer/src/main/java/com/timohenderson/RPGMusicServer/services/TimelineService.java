@@ -20,7 +20,7 @@ public class TimelineService {
     private final BarEvent[] barEvents = new BarEvent[17];
     // Clock clock = Clock.systemUTC();
     //  Timer timer = new Timer();
-    ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+    ScheduledExecutorService executorService;
     private Section currentSection;
     private volatile boolean end = false;
     private volatile boolean runTimer;
@@ -65,8 +65,21 @@ public class TimelineService {
         return false;
     }
 
+    private void runExecutor() {
+        executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(new TimeLineLoop(), 0, barLength, TimeUnit.MILLISECONDS);
+    }
+
     public void stop() {
         runTimer = false;
+        audioPlayerService.stop();
+        executorService.shutdownNow();
+    }
+
+    public void resume() throws LineUnavailableException {
+        runTimer = true;
+        audioPlayerService.play();
+        runExecutor();
     }
 
     public void end() {
@@ -85,14 +98,14 @@ public class TimelineService {
         }
     }
 
-    public void addToSectionQueue(Section section) throws InterruptedException {
+    public void addToSectionQueue(Section section) throws InterruptedException, LineUnavailableException {
         sectionQueue.offer(section);
         if (currentSection == null) {
             loadNextSection();
         }
     }
 
-    public void loadNextSection() throws InterruptedException {
+    public void loadNextSection() throws InterruptedException, LineUnavailableException {
         currentSection = sectionQueue.poll();
         if (currentSection == null) {
             System.out.println("No more sections to play");
@@ -107,7 +120,7 @@ public class TimelineService {
     }
 
     private void reset() {
-        currentBar = 0;
+        currentBar = 1;
         previousTime = 0;
         overTime = 0;
         end = false;
@@ -133,7 +146,7 @@ public class TimelineService {
     public void play() {
         if (!runTimer) {
             runTimer = true;
-            executorService.scheduleAtFixedRate(new TimeLineLoop(), 0, barLength, TimeUnit.MILLISECONDS);
+            runExecutor();
         }
     }
 
@@ -152,6 +165,8 @@ public class TimelineService {
                     loadNextSection();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
                 }
                 end = false;
             }
@@ -166,4 +181,5 @@ public class TimelineService {
     }
 
 }
+
 

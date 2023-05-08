@@ -4,7 +4,6 @@ import com.adonax.audiocue.AudioCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -26,8 +25,9 @@ public class AudioPlayerService {
 
     AudioCue[] nextCuesArray;
 
-    public void loadSection(Section section) {
+    public void loadSection(Section section) throws LineUnavailableException {
         this.section = section;
+        queueNextMusemes();
     }
 
     public void setCurrentBar(int currentBar) throws LineUnavailableException {
@@ -54,13 +54,18 @@ public class AudioPlayerService {
     }
 
     public void stop() {
+        mixer.stop();
+    }
+
+    public void play() throws LineUnavailableException {
+        mixer.start();
     }
 
     public Section getLoadedSection() {
         return section;
     }
 
-    @Async
+
     public void playNextCues(int bar) throws LineUnavailableException {
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {
