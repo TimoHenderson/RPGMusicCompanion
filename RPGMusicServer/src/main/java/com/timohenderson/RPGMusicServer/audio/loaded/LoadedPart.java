@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.components;
+package com.timohenderson.RPGMusicServer.audio.loaded;
 
 import com.adonax.audiocue.AudioCue;
 import com.adonax.audiocue.AudioMixer;
@@ -25,7 +25,7 @@ public abstract class LoadedPart {
     public abstract void play(int bar);
 
     public LoadedMuseme loadMuseme(Museme museme, AudioMixer mixer) throws UnsupportedAudioFileException, IOException {
-        URL url = this.getClass().getResource(museme.getFilePath());
+        URL url = museme.getURL();
         AudioCue audioCue = AudioCue.makeStereoCue(url, 3);
         audioCue.open(mixer);
         return new LoadedMuseme(audioCue, museme.getMusemeData());

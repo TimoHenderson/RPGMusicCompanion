@@ -73,9 +73,25 @@ class PartFactory {
                                     }
                                 }
                         ).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-        System.out.println(musemeList);
-        return new AdaptivePart(partData, musemeList);
 
+        return new AdaptivePart(partData, populateMap(musemeList));
+    }
+
+    private static HashMap<Integer, List<Museme>> populateMap(List<Museme> musemes) {
+        HashMap<Integer, List<Museme>> musemesByStartBars = new HashMap<>();
+        musemes.stream()
+                .forEach(m -> {
+                    for (Integer startBar : m.getMusemeData().startBars()) {
+                        if (musemesByStartBars.containsKey(startBar)) {
+                            musemesByStartBars.get(startBar).add(m);
+                        } else {
+                            List<Museme> newList = new ArrayList<>();
+                            newList.add(m);
+                            musemesByStartBars.put(startBar, newList);
+                        }
+                    }
+                });
+        return musemesByStartBars;
     }
 
 

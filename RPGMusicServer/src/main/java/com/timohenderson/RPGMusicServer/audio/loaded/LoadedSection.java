@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.components;
+package com.timohenderson.RPGMusicServer.audio.loaded;
 
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 

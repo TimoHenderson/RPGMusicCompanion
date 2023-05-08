@@ -1,6 +1,7 @@
 package com.timohenderson.RPGMusicServer.components;
 
 import com.adonax.audiocue.AudioMixer;
+import com.timohenderson.RPGMusicServer.audio.loaded.AdaptiveLoadedPart;
 import com.timohenderson.RPGMusicServer.enums.MusicalType;
 import com.timohenderson.RPGMusicServer.events.EventsHandler;
 import com.timohenderson.RPGMusicServer.models.Movement;

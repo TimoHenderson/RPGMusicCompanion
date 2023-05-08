@@ -1,6 +1,7 @@
 package com.timohenderson.RPGMusicServer.components;
 
 import com.adonax.audiocue.AudioMixer;
+import com.timohenderson.RPGMusicServer.audio.loaded.LinearLoadedPart;
 import com.timohenderson.RPGMusicServer.models.musemes.Museme;
 import com.timohenderson.RPGMusicServer.models.musemes.MusemeData;
 import com.timohenderson.RPGMusicServer.models.parts.LinearPart;

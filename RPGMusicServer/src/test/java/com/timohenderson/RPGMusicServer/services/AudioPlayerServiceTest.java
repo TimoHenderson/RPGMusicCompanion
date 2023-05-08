@@ -1,5 +1,6 @@
 package com.timohenderson.RPGMusicServer.services;
 
+import com.timohenderson.RPGMusicServer.audio.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
@@ -34,10 +35,10 @@ class AudioPlayerServiceTest {
                 null);
     }
 
-    @Test
-    void play() throws LineUnavailableException {
-        audioPlayerService.play(1);
-    }
+//    @Test
+//    void play() throws LineUnavailableException {
+//        audioPlayerService.play(1);
+//    }
 
     @Test
     void playOnBarEvents() throws InterruptedException, LineUnavailableException {

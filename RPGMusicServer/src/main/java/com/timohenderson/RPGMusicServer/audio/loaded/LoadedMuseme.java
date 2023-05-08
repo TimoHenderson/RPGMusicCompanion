@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.components;
+package com.timohenderson.RPGMusicServer.audio.loaded;
 
 import com.adonax.audiocue.AudioCue;
 import com.timohenderson.RPGMusicServer.models.musemes.MusemeData;

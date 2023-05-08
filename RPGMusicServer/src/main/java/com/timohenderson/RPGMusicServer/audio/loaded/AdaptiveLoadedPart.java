@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.components;
+package com.timohenderson.RPGMusicServer.audio.loaded;
 
 import com.adonax.audiocue.AudioMixer;
 import com.timohenderson.RPGMusicServer.models.musemes.Museme;
@@ -19,7 +19,7 @@ public class AdaptiveLoadedPart extends LoadedPart {
 
     public AdaptiveLoadedPart(AdaptivePart part, AudioMixer mixer) {
         super(part.getPartData());
-        populateMap(part.getMusemes(), mixer);
+        // populateMap(part.getMusemes(), mixer);
     }
 
     private void populateMap(List<Museme> musemes, AudioMixer mixer) {
