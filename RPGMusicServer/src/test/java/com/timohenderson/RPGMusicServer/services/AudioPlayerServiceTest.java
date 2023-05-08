@@ -26,6 +26,8 @@ class AudioPlayerServiceTest {
     Section adaptiveSection;
     Section combatAdaptiveSection;
     Section mineAdaptiveSection;
+    Section combatRenderedSection1;
+    Section combatRenderedSection2;
 
     @BeforeEach
     void setUp() {
@@ -36,7 +38,9 @@ class AudioPlayerServiceTest {
 
         Tune combat = tuneRepository.findByName("Combat");
         Movement mainCombat = combat.getMovements().get(0);
+        combatRenderedSection1 = mainCombat.getSections().get(0);
         combatAdaptiveSection = mainCombat.getSections().get(1);
+        combatRenderedSection2 = mainCombat.getSections().get(2);
 
         Tune mine = tuneRepository.findByName("Abandoned_Mine");
         Movement mainMine = mine.getMovements().get(1);
@@ -62,7 +66,7 @@ class AudioPlayerServiceTest {
         System.out.println("loaded");
         Thread.sleep(2000);
         System.out.println("mixerStart");
-        audioPlayerService.playNextCues(1);
+        audioPlayerService.playNextCues();
         Thread.sleep(2000);
     }
 
@@ -73,7 +77,7 @@ class AudioPlayerServiceTest {
         System.out.println("loaded");
         Thread.sleep(2000);
         System.out.println("mixerStart");
-        audioPlayerService.playNextCues(1);
+        audioPlayerService.playNextCues();
         Thread.sleep(2000);
     }
 
@@ -128,6 +132,26 @@ class AudioPlayerServiceTest {
         System.out.println("resumed");
         timelineService.resume();
         Thread.sleep(2000);
+    }
+
+    @Test
+    void canAutoMoveFromRenderedToAdaptiveCombat() throws LineUnavailableException, InterruptedException {
+        timelineService.addToSectionQueue(combatRenderedSection1);
+        timelineService.addToSectionQueue(combatAdaptiveSection);
+        timelineService.play();
+        Thread.sleep(60000);
+    }
+
+    @Test
+    void canAutoMoveFromRenderedToAdaptiveCombatThenOut() throws LineUnavailableException, InterruptedException {
+        timelineService.addToSectionQueue(combatRenderedSection1);
+        timelineService.addToSectionQueue(combatAdaptiveSection);
+        timelineService.addToSectionQueue(combatRenderedSection2);
+        timelineService.play();
+        Thread.sleep(5000);
+        System.out.println("next");
+        timelineService.triggerNextSection();
+        Thread.sleep(60000);
     }
 
     @Test

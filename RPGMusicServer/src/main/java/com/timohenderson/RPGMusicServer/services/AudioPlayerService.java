@@ -4,6 +4,7 @@ import com.adonax.audiocue.AudioCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -27,17 +28,26 @@ public class AudioPlayerService {
 
     public void loadSection(Section section) throws LineUnavailableException {
         this.section = section;
+        currentBar = 0;
         queueNextMusemes();
     }
 
+    public void loadNextSection(Section section) throws LineUnavailableException {
+
+        this.section = section;
+        currentBar = 0;
+        queueNextMusemes();
+    }
+
+    @Async
     public void setCurrentBar(int currentBar) throws LineUnavailableException {
         this.currentBar = currentBar;
         queueNextMusemes();
     }
 
     public void queueNextMusemes() throws LineUnavailableException {
+        nextCues.clear();
         List<URL> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
-        System.out.println(nextMusemeURLs);
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {
@@ -49,7 +59,7 @@ public class AudioPlayerService {
                 }
             });
             nextCuesArray = (nextCues.toArray(new AudioCue[nextCues.size()]));
-            nextCues.clear();
+
         }
     }
 
@@ -65,8 +75,8 @@ public class AudioPlayerService {
         return section;
     }
 
-
-    public void playNextCues(int bar) throws LineUnavailableException {
+    @Async
+    public void playNextCues() throws LineUnavailableException {
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {
                 // print current system time
@@ -76,7 +86,7 @@ public class AudioPlayerService {
             }
         }
         nextCuesArray = null;
-        setCurrentBar(bar);
+
 
     }
 }

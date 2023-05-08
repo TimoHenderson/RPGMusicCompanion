@@ -22,7 +22,7 @@ public class TimelineService {
     //  Timer timer = new Timer();
     ScheduledExecutorService executorService;
     private Section currentSection;
-    private volatile boolean end = false;
+    private boolean end = false;
     private volatile boolean runTimer;
     private int currentBar = 1;
     private long barLength = 0;
@@ -96,17 +96,31 @@ public class TimelineService {
         if (lastBarPlayed) {
             currentBar = 1;
         }
+        System.out.println(currentBar);
     }
 
     public void addToSectionQueue(Section section) throws InterruptedException, LineUnavailableException {
-        sectionQueue.offer(section);
+        sectionQueue.put(section);
         if (currentSection == null) {
             loadNextSection();
+            audioPlayerService.loadSection(section);
         }
     }
 
+    public void loadNextSectionHandler() throws LineUnavailableException, InterruptedException {
+        // end = false;
+        loadNextSection();
+
+    }
+
     public void loadNextSection() throws InterruptedException, LineUnavailableException {
-        currentSection = sectionQueue.poll();
+        if (sectionQueue.isEmpty()) {
+            System.out.println("No more sections to play");
+            stopAndCleanUp();
+            return;
+        } else {
+            currentSection = sectionQueue.take();
+        }
         if (currentSection == null) {
             System.out.println("No more sections to play");
             stopAndCleanUp();
@@ -115,15 +129,12 @@ public class TimelineService {
         reset();
         this.barLength = (long) (60000.0 / currentSection.getSectionData().bpm()) * currentSection.getSectionData().numBeats();
         System.out.println("Loading section: " + currentSection.getName());
-        audioPlayerService.loadSection(currentSection);
+        audioPlayerService.loadNextSection(currentSection);
         applicationEventPublisher.publishEvent(new SectionLoadedEvent(this, currentSection));
     }
 
     private void reset() {
         currentBar = 1;
-        previousTime = 0;
-        overTime = 0;
-        end = false;
     }
 
     public void stopAndCleanUp() {
@@ -155,20 +166,28 @@ public class TimelineService {
         public void run() {
             // code to be executed repeatedly goes here
             try {
-                audioPlayerService.playNextCues(currentBar);
+                audioPlayerService.playNextCues();
             } catch (LineUnavailableException e) {
                 throw new RuntimeException(e);
             }
-            nextBar();
+
             if (shouldTimeLineEnd()) {
                 try {
-                    loadNextSection();
+                    loadNextSectionHandler();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 } catch (LineUnavailableException e) {
                     throw new RuntimeException(e);
                 }
+
                 end = false;
+            } else {
+                try {
+                    audioPlayerService.setCurrentBar(currentBar);
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                }
+                nextBar();
             }
 //            long currentTime = clock.millis();
 //            if (previousTime != 0) {
