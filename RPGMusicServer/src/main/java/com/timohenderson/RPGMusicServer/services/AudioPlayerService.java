@@ -4,7 +4,6 @@ import com.adonax.audiocue.AudioCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -39,7 +38,7 @@ public class AudioPlayerService {
         queueNextMusemes();
     }
 
-    @Async
+
     public void setCurrentBar(int currentBar) throws LineUnavailableException {
         this.currentBar = currentBar;
         queueNextMusemes();
@@ -75,7 +74,7 @@ public class AudioPlayerService {
         return section;
     }
 
-    @Async
+
     public void playNextCues() throws LineUnavailableException {
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {
