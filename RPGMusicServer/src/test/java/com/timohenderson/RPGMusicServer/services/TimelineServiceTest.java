@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sound.sampled.LineUnavailableException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -146,6 +148,24 @@ class TimelineServiceTest {
         timelineService.stop();
         eventCatcher.printLog();
         assertTrue(eventCatcher.getLog().size() > 4);
+    }
+
+    @Test
+    void testTimer() throws InterruptedException {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Timer task started at:" + System.currentTimeMillis());
+                //do a task that takes time but doesn't use thread sleep
+                int i = 0;
+                while (i < 100000) {
+                    i++;
+                }
+                System.out.println("Timer task finished at:" + System.currentTimeMillis());
+            }
+        };
+        new Timer().scheduleAtFixedRate(timerTask, 0, 1000);
+        Thread.sleep(4000l);
     }
 
     @Test

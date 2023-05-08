@@ -2,20 +2,22 @@ package com.timohenderson.RPGMusicServer.models.sections;
 
 import com.timohenderson.RPGMusicServer.models.parts.Part;
 
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public abstract class Section {
 
-    private String name;
-    private SectionData sectionData;
+    List<URL> nextMusemeURLs;
+    String name;
+    SectionData sectionData;
 
-    public Section() {
-    }
 
     public Section(String name, SectionData sectionData) {
         this.name = name;
         this.sectionData = sectionData;
+        nextMusemeURLs = new ArrayList<>();
     }
 
     public String getName() {
@@ -24,6 +26,14 @@ public abstract class Section {
 
     public SectionData getSectionData() {
         return sectionData;
+    }
+
+    public abstract List<URL> getNextMusemeURLs(int currentBar);
+
+    int nextBarNum(int currentBar) {
+        int nextBarNum = currentBar + 1;
+        if (nextBarNum > sectionData.numBars()) nextBarNum -= sectionData.numBars();
+        return nextBarNum;
     }
 
     public abstract List<Part> getNextParts(HashMap<String, Integer> partsNeeded);
