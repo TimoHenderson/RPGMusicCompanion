@@ -14,7 +14,7 @@ public abstract class Section {
     List<Pair<PartData, URL>> nextMusemeURLs;
     String name;
     SectionData sectionData;
-    
+
     public Section(String name, SectionData sectionData) {
         this.name = name;
         this.sectionData = sectionData;
@@ -29,7 +29,7 @@ public abstract class Section {
         return sectionData;
     }
 
-    public abstract List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar);
+    public abstract List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar, double darkness, double intensity);
 
     int nextBarNum(int currentBar) {
         int nextBarNum = currentBar + 1;

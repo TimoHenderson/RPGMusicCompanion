@@ -18,17 +18,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class EventsHandlerTest {
+class EventHandlerTest {
     @Autowired
     ApplicationEventPublisher applicationEventPublisher;
     @Autowired
-    EventsHandler eventsHandler;
+    EventHandler eventHandler;
     @Autowired
     TimelineService timelineService;
 
     @BeforeEach
     void setUp() {
-        eventsHandler.clearLog();
+        eventHandler.clearLog();
     }
 
     @Test
@@ -36,8 +36,8 @@ class EventsHandlerTest {
         applicationEventPublisher.publishEvent(new BarEvent(this, 1));
         applicationEventPublisher.publishEvent(new BarEvent(this, 2));
         applicationEventPublisher.publishEvent(new BarEvent(this, 3));
-        ArrayList<String> log = eventsHandler.getLog();
-        eventsHandler.printLog();
+        ArrayList<String> log = eventHandler.getLog();
+        eventHandler.printLog();
         assertEquals(3, log.size());
     }
 
@@ -58,11 +58,11 @@ class EventsHandlerTest {
         applicationEventPublisher.publishEvent(new TransportEvent(this, TransportActionType.PLAY));
         Thread.sleep(2000);
         applicationEventPublisher.publishEvent(new TransportEvent(this, TransportActionType.STOP));
-        int numEvents = eventsHandler.getLog().size();
-        eventsHandler.printLog();
+        int numEvents = eventHandler.getLog().size();
+        eventHandler.printLog();
         Thread.sleep(2000);
-        int numEventsAfter = eventsHandler.getLog().size();
-        eventsHandler.printLog();
+        int numEventsAfter = eventHandler.getLog().size();
+        eventHandler.printLog();
         assertTrue(numEvents > 1);
         assertTrue(numEvents == numEventsAfter);
 

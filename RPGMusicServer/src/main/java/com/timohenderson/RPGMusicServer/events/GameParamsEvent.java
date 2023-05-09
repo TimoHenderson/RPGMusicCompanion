@@ -9,7 +9,7 @@ public class GameParamsEvent extends Event {
         super(source, payload);
     }
 
-    public HashMap<ParamType, Integer> getParams() {
-        return (HashMap<ParamType, Integer>) super.getPayload();
+    public HashMap<ParamType, Double> getParams() {
+        return (HashMap<ParamType, Double>) super.getPayload();
     }
 }

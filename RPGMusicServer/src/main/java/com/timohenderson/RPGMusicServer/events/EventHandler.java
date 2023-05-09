@@ -1,5 +1,6 @@
 package com.timohenderson.RPGMusicServer.events;
 
+import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.services.TuneService;
 import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
@@ -12,16 +13,14 @@ import javax.sound.sampled.LineUnavailableException;
 import java.util.ArrayList;
 
 @Service
-public class EventsHandler {
+public class EventHandler {
     @Autowired
     TuneService tuneService;
     @Autowired
     TimelineService timelineService;
     @Autowired
     AudioPlayerService audioPlayerService;
-
     private ArrayList<String> log = new ArrayList<>();
-
 
     @EventListener
     public void logEvents(Event event) {
@@ -37,7 +36,6 @@ public class EventsHandler {
         for (int i = 0; i < log.size(); i++) {
             System.out.println(i + ": " + log.get(i));
         }
-
     }
 
     public void clearLog() {
@@ -51,32 +49,35 @@ public class EventsHandler {
 
     }
 
-    @Async
+
     @EventListener
     public void handleTransportEvent(TransportEvent event) throws InterruptedException, LineUnavailableException {
         switch (event.getAction()) {
             case PLAY:
                 System.out.println("PLAY");
-                //timelineService.play();
+                timelineService.play();
                 break;
             case STOP:
                 System.out.println("STOP");
-                //timelineService.stop();
+                timelineService.stop();
                 break;
             case PAUSE:
                 System.out.println("PAUSE");
         }
     }
 
+    @Async
     @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
         System.out.println("GameParamsEvent" + event.toString());
+        audioPlayerService.setGameParams(event.getParams());
     }
 
     @EventListener
-    public void handleLoadTuneEvent(LoadTuneEvent event) {
+    public void handleLoadTuneEvent(LoadTuneEvent event) throws LineUnavailableException, InterruptedException {
         System.out.println("LoadTuneEvent");
-        tuneService.loadTune(event.getTuneName());
+        Tune tune = tuneService.loadTune(event.getTuneName());
+        timelineService.loadTune(tune, true);
     }
 
     @EventListener
