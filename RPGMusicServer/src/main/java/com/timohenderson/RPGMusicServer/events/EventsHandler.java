@@ -1,8 +1,8 @@
 package com.timohenderson.RPGMusicServer.events;
 
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
-import com.timohenderson.RPGMusicServer.services.TimelineService;
 import com.timohenderson.RPGMusicServer.services.TuneService;
+import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;

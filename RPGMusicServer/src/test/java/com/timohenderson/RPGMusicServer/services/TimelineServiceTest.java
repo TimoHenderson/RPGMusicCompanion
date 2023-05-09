@@ -7,6 +7,7 @@ import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,7 +71,7 @@ class TimelineServiceTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws LineUnavailableException {
         timelineService.stopAndCleanUp();
         eventCatcher.clearLog();
     }

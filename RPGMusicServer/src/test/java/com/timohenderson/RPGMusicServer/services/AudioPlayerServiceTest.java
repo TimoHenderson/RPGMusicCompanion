@@ -4,6 +4,7 @@ import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
+import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -96,21 +97,21 @@ class AudioPlayerServiceTest {
     void canPlayAdaptive() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(adaptiveSection);
         timelineService.play();
-        Thread.sleep(60000);
+        Thread.sleep(10000);
     }
 
     @Test
     void canPlayAdaptiveCombat() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(combatAdaptiveSection);
         timelineService.play();
-        Thread.sleep(60000);
+        Thread.sleep(10000);
     }
 
     @Test
     void canPlayAdaptiveMine() throws InterruptedException, LineUnavailableException {
         timelineService.addToSectionQueue(mineAdaptiveSection);
         timelineService.play();
-        Thread.sleep(60000);
+        Thread.sleep(10000);
     }
 
     @Test
@@ -142,7 +143,7 @@ class AudioPlayerServiceTest {
         timelineService.addToSectionQueue(combatRenderedSection1);
         timelineService.addToSectionQueue(combatAdaptiveSection);
         timelineService.play();
-        Thread.sleep(60000);
+        Thread.sleep(10000);
     }
 
     @Test
@@ -154,7 +155,7 @@ class AudioPlayerServiceTest {
         Thread.sleep(5000);
         System.out.println("next");
         timelineService.triggerNextSection();
-        Thread.sleep(60000);
+        Thread.sleep(10000);
     }
 
     @Test
@@ -188,25 +189,52 @@ class AudioPlayerServiceTest {
 
     @Test
     void canLoadTune() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(forestTune);
+        timelineService.loadTune(forestTune, false);
         timelineService.play();
         Thread.sleep(5000);
     }
 
     @Test
     void canLoadCombatTune() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(combatTune);
+        timelineService.loadTune(combatTune, false);
         timelineService.play();
         Thread.sleep(5000);
     }
 
     @Test
     void canLoadForestTuneThenChangeToCombat() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(forestTune);
+        timelineService.loadTune(forestTune, false);
         timelineService.play();
-        Thread.sleep(20000);
-        timelineService.loadTune(combatTune);
-
         Thread.sleep(10000);
+        timelineService.loadTune(combatTune, true);
+        Thread.sleep(10000);
+        timelineService.triggerNextSection();
+        Thread.sleep(50000);
     }
+
+    @Test
+    void canGoBetweenLocations() throws LineUnavailableException, InterruptedException {
+        timelineService.loadTune(forestTune, false);
+        Thread.sleep(5000);
+        timelineService.triggerNextSection();
+        Thread.sleep(15000);
+        System.out.println("To Mine");
+        timelineService.loadTune(mineTune, false);
+        timelineService.triggerNextSection();
+//        timelineService.triggerNextSection();
+        Thread.sleep(30000);
+    }
+
+    @Test
+    void canGoBetweenLocationsWithFade() throws LineUnavailableException, InterruptedException {
+        timelineService.addToSectionQueue(adaptiveSection);
+        timelineService.play();
+        Thread.sleep(3000);
+        timelineService.loadTune(mineTune, false);
+        timelineService.triggerNextSection();
+//        timelineService.triggerNextSection();
+        Thread.sleep(30000);
+    }
+
+
 }

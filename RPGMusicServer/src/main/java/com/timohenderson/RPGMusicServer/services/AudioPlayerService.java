@@ -6,15 +6,14 @@ import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AudioPlayerService {
@@ -23,26 +22,20 @@ public class AudioPlayerService {
     RPGMixer mixer;
     Section section;
     int currentBar = 0;
-
+    Timer timer;
     ArrayList<MusicCue> nextCues = new ArrayList<MusicCue>();
     ArrayList<MusicCue> currentCues = new ArrayList<MusicCue>();
+    ArrayList<MusicCue> fadingCues = new ArrayList<>();
 
     MusicCue[] nextCuesArray;
     int[] ids;
 
     public void loadSection(Section section) throws LineUnavailableException {
+        section.reset();
         this.section = section;
         currentBar = 0;
         queueNextMusemes();
     }
-
-    public void loadNextSection(Section section) throws LineUnavailableException {
-
-        this.section = section;
-        currentBar = 0;
-        queueNextMusemes();
-    }
-
 
     public void setCurrentBar(int currentBar) throws LineUnavailableException {
         this.currentBar = currentBar;
@@ -52,6 +45,7 @@ public class AudioPlayerService {
     public void queueNextMusemes() throws LineUnavailableException {
         nextCues.clear();
         List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
+        nextMusemeURLs.stream().forEach(m -> System.out.println(m.getValue1()));
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {
@@ -62,7 +56,6 @@ public class AudioPlayerService {
                     e.printStackTrace();
                 }
             });
-
             nextCuesArray = (nextCues.toArray(new MusicCue[nextCues.size()]));
             ids = new int[nextCuesArray.length];
             cleanCurrentCues();
@@ -70,17 +63,13 @@ public class AudioPlayerService {
     }
 
     private void cleanCurrentCues() {
-
         Iterator<MusicCue> cueItr = currentCues.iterator();
         while (cueItr.hasNext()) {
             MusicCue musicCue = cueItr.next();
-            System.out.println("Checking " + musicCue + " for running");
             if (!musicCue.getIsActive()) {
-                System.out.println("Removing " + musicCue + " from currentCues");
                 cueItr.remove();
             }
         }
-
     }
 
     public void stop() {
@@ -98,33 +87,55 @@ public class AudioPlayerService {
         currentCues.clear();
     }
 
+    @Async
     public void fadeCurrentCues() throws LineUnavailableException {
         cleanCurrentCues();
-        for (MusicCue cue : currentCues) {
-            cue.setVolume(0);
-        }
+        fadingCues.addAll(currentCues);
         currentCues.clear();
+        timer = new Timer();
+        timer.schedule(new FadeTask(), 0, 24);
     }
 
     public Section getLoadedSection() {
         return section;
     }
 
-
     public void playNextCues() throws LineUnavailableException {
-
         if (nextCuesArray != null) {
             for (int i = 0; i < nextCuesArray.length; i++) {
-                // print current system time
-//                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
                 nextCuesArray[i].play();
-//                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
             }
         }
         for (int i = 0; i < nextCuesArray.length; i++) {
             currentCues.add(nextCuesArray[i]);
         }
         nextCuesArray = null;
-
     }
+
+    private class FadeTask extends TimerTask {
+        @Override
+        public void run() {
+            //System.out.println("Fading");
+            Iterator<MusicCue> cueItr = fadingCues.iterator();
+            while (cueItr.hasNext()) {
+                MusicCue cue = cueItr.next();
+                //System.out.println("Fading " + cue.getVolume());
+                if (cue.getIsActive()) {
+                    double cueVolume = cue.getVolume();
+                    if (cueVolume > 0.5) cue.setVolume(cueVolume - 0.05);
+                    else if (cueVolume > 0.05) cue.setVolume(cueVolume - 0.02);
+                    else if (cueVolume > 0.01) cue.setVolume(cueVolume - 0.01);
+                    else if (cueVolume <= 0.01) cue.setVolume(0);
+                    else cueItr.remove();
+                } else cueItr.remove();
+            }
+            if (fadingCues.size() == 0) {
+                System.out.println("Fading complete");
+                timer.cancel();
+            }
+
+        }
+    }
+
+
 }
