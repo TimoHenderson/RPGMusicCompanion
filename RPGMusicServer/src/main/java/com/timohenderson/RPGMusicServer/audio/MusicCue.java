@@ -9,7 +9,7 @@ public class MusicCue {
     private int id;
 
     public MusicCue(URL url) {
-        this.audioCue = audioCue;
+        //this.audioCue = audioCue;
     }
 
     public void setId(int id) {
