@@ -29,6 +29,7 @@ class AudioPlayerServiceTest {
     Section combatRenderedSection1;
     Section combatRenderedSection2;
     Tune forestTune;
+    Tune combatTune;
 
     @BeforeEach
     void setUp() {
@@ -37,8 +38,8 @@ class AudioPlayerServiceTest {
         renderedSection = intro.getSections().get(1);
         adaptiveSection = intro.getSections().get(0);
 
-        Tune combat = tuneRepository.findByName("Combat");
-        Movement mainCombat = combat.getMovements().get(0);
+        combatTune = tuneRepository.findByName("Combat");
+        Movement mainCombat = combatTune.getMovements().get(0);
         combatRenderedSection1 = mainCombat.getSections().get(0);
         combatAdaptiveSection = mainCombat.getSections().get(1);
         combatRenderedSection2 = mainCombat.getSections().get(2);
@@ -173,5 +174,14 @@ class AudioPlayerServiceTest {
         timelineService.loadMovement(forestTune.getMovements().get(1));
         timelineService.play();
         Thread.sleep(5000);
+    }
+
+    @Test
+    void canChangeMovementNow() throws LineUnavailableException, InterruptedException {
+        timelineService.loadMovement(forestTune.getMovements().get(1));
+        timelineService.play();
+        Thread.sleep(5000);
+        timelineService.loadMovementNow(combatTune.getMovements().get(0));
+        Thread.sleep(10000);
     }
 }

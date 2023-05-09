@@ -56,7 +56,6 @@ public class TimeLoop {
     private class TimeLineLoop implements Runnable {
         @Override
         public void run() {
-            System.out.println("looping");
             try {
                 audioPlayer.playNextCues();
                 System.out.println("playing next cues");
