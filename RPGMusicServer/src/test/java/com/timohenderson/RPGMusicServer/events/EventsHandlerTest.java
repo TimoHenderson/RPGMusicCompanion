@@ -1,7 +1,7 @@
 package com.timohenderson.RPGMusicServer.events;
 
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
-import com.timohenderson.RPGMusicServer.enums.TransportAction;
+import com.timohenderson.RPGMusicServer.enums.TransportActionType;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
 import com.timohenderson.RPGMusicServer.services.TimelineService;
@@ -55,9 +55,9 @@ class EventsHandlerTest {
                                 true,
                                 TransitionType.END),
                         null));
-        applicationEventPublisher.publishEvent(new TransportEvent(this, TransportAction.PLAY));
+        applicationEventPublisher.publishEvent(new TransportEvent(this, TransportActionType.PLAY));
         Thread.sleep(2000);
-        applicationEventPublisher.publishEvent(new TransportEvent(this, TransportAction.STOP));
+        applicationEventPublisher.publishEvent(new TransportEvent(this, TransportActionType.STOP));
         int numEvents = eventsHandler.getLog().size();
         eventsHandler.printLog();
         Thread.sleep(2000);

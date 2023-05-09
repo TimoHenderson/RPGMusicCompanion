@@ -1,15 +1,15 @@
 package com.timohenderson.RPGMusicServer.events;
 
-import com.timohenderson.RPGMusicServer.enums.TransportAction;
+import com.timohenderson.RPGMusicServer.enums.TransportActionType;
 
 public class TransportEvent extends Event {
 
-    public TransportEvent(Object source, TransportAction action) {
+    public TransportEvent(Object source, TransportActionType action) {
         super(source, action);
 
     }
 
-    public TransportAction getAction() {
-        return (TransportAction) super.getPayload();
+    public TransportActionType getAction() {
+        return (TransportActionType) super.getPayload();
     }
 }

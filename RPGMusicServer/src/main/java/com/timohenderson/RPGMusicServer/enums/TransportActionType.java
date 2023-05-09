@@ -1,5 +1,5 @@
 package com.timohenderson.RPGMusicServer.enums;
 
-public enum TransportAction {
+public enum TransportActionType {
     PLAY, PAUSE, STOP
 }

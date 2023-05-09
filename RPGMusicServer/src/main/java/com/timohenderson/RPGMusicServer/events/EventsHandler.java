@@ -56,20 +56,32 @@ public class EventsHandler {
     public void handleTransportEvent(TransportEvent event) throws InterruptedException, LineUnavailableException {
         switch (event.getAction()) {
             case PLAY:
-                timelineService.play();
+                System.out.println("PLAY");
+                //timelineService.play();
                 break;
             case STOP:
-                timelineService.stop();
+                System.out.println("STOP");
+                //timelineService.stop();
+                break;
+            case PAUSE:
+                System.out.println("PAUSE");
         }
     }
 
     @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
-        System.out.println("GameParamsEvent");
+        System.out.println("GameParamsEvent" + event.toString());
     }
 
+    @EventListener
     public void handleLoadTuneEvent(LoadTuneEvent event) {
+        System.out.println("LoadTuneEvent");
         tuneService.loadTune(event.getTuneName());
+    }
+
+    @EventListener
+    public void handleNavigationEvent(NavigationEvent event) {
+        System.out.println("NavigateEvent");
     }
 
 //    public void handleChangeMovementEvent(ChangeMovementEvent event) {
