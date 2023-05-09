@@ -6,5 +6,5 @@
   "bpm": 90,
   "preRendered": false,
   "loop": true,
-  "transitionType": "NOW"
+  "transitionType": "NEXT_BAR"
 }

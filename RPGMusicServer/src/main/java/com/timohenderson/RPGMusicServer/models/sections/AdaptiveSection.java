@@ -45,5 +45,12 @@ public class AdaptiveSection extends Section {
         return Collections.unmodifiableMap(partListsMap);
     }
 
+    public void reset() {
+        for (List<AdaptivePart> adaptiveParts : partListsMap.values()) {
+            for (AdaptivePart adaptivePart : adaptiveParts) {
+                adaptivePart.reset();
+            }
+        }
+    }
 
 }

@@ -4,7 +4,7 @@ import com.timohenderson.RPGMusicServer.enums.TransitionType;
 import com.timohenderson.RPGMusicServer.enums.TransportActionType;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
-import com.timohenderson.RPGMusicServer.services.TimelineService;
+import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

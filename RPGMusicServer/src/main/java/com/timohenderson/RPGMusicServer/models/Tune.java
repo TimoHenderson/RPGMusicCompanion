@@ -13,7 +13,7 @@ public class Tune {
     private String name;
     private List<Movement> movements = new ArrayList<>();
     private int currentMovement = 0;
-    
+
 
     public Tune(String name, List<Movement> movements) {
         this.name = name;

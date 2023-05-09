@@ -1,4 +1,6 @@
-package com.timohenderson.RPGMusicServer.services;
+package com.timohenderson.RPGMusicServer.services.timeline;
+
+import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.util.concurrent.Executors;
@@ -12,7 +14,7 @@ public class TimeLoop {
     ScheduledExecutorService executorService;
     TimelineService timeline;
     private volatile boolean runTimer;
-
+    private volatile boolean playCues = true;
     private long barLength = 0;
 
 
@@ -21,6 +23,9 @@ public class TimeLoop {
         this.audioPlayer = audioPlayer;
     }
 
+    public void setPlayCues(boolean playCues) {
+        this.playCues = playCues;
+    }
 
     public void play(long barLength) throws LineUnavailableException {
         if (!runTimer) {
@@ -36,8 +41,10 @@ public class TimeLoop {
         executorService.shutdown();
     }
 
-    public void stopLoop() {
+    public void stopLoop() throws LineUnavailableException {
         runTimer = false;
+        //audioPlayer.stop();
+        //audioPlayer.fadeCurrentCues();
         if (executorService != null)
             executorService.shutdownNow();
     }
@@ -58,30 +65,36 @@ public class TimeLoop {
         @Override
         public void run() {
             try {
-                audioPlayer.playNextCues();
-                System.out.println("playing next cues");
+                if (playCues) {
+                    audioPlayer.playNextCues();
+                    System.out.println("playing next cues");
+                }
             } catch (LineUnavailableException e) {
                 throw new RuntimeException(e);
             }
 
-            if (timeline.shouldTimeLineEnd()) {
-                try {
-                    timeline.loadNextSectionHandler();
-                } catch (InterruptedException e) {
+            try {
+                if (timeline.shouldTimeLineEnd()) {
+                    try {
+                        timeline.loadNextSectionHandler();
+                    } catch (InterruptedException e) {
 
-                    throw new RuntimeException(e);
-                } catch (LineUnavailableException e) {
-                    throw new RuntimeException(e);
-                }
+                        throw new RuntimeException(e);
+                    } catch (LineUnavailableException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                timeline.setEnd(false);
-            } else {
-                try {
-                    audioPlayer.setCurrentBar(timeline.getCurrentBar());
-                } catch (LineUnavailableException e) {
-                    throw new RuntimeException(e);
+                    timeline.setEnd(false);
+                } else {
+                    try {
+                        audioPlayer.setCurrentBar(timeline.getCurrentBar());
+                    } catch (LineUnavailableException e) {
+                        throw new RuntimeException(e);
+                    }
+                    timeline.nextBar();
                 }
-                timeline.nextBar();
+            } catch (LineUnavailableException e) {
+                throw new RuntimeException(e);
             }
         }
     }

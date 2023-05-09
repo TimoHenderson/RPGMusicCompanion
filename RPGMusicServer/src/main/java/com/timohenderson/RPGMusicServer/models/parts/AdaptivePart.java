@@ -43,5 +43,10 @@ public class AdaptivePart extends Part {
         return null;
     }
 
+    public void reset() {
+        currentMusemeLength = 0;
+        barsPassedSinceMusemeLoaded = 0;
+    }
+
 
 }

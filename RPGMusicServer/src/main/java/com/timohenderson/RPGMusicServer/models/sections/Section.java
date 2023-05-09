@@ -14,8 +14,7 @@ public abstract class Section {
     List<Pair<PartData, URL>> nextMusemeURLs;
     String name;
     SectionData sectionData;
-
-
+    
     public Section(String name, SectionData sectionData) {
         this.name = name;
         this.sectionData = sectionData;
@@ -40,5 +39,6 @@ public abstract class Section {
 
     public abstract List<Part> getNextParts(HashMap<String, Integer> partsNeeded);
 
-
+    public void reset() {
+    }
 }
