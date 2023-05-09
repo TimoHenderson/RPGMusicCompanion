@@ -63,7 +63,9 @@ public class EventsHandler {
         }
     }
 
+    @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
+        System.out.println("GameParamsEvent");
     }
 
     public void handleLoadTuneEvent(LoadTuneEvent event) {
