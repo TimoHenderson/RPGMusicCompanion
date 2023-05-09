@@ -1,6 +1,8 @@
 package com.timohenderson.RPGMusicServer.models.sections;
 
 import com.timohenderson.RPGMusicServer.models.parts.Part;
+import com.timohenderson.RPGMusicServer.models.parts.PartData;
+import org.javatuples.Pair;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.List;
 
 public abstract class Section {
 
-    List<URL> nextMusemeURLs;
+    List<Pair<PartData, URL>> nextMusemeURLs;
     String name;
     SectionData sectionData;
 
@@ -28,7 +30,7 @@ public abstract class Section {
         return sectionData;
     }
 
-    public abstract List<URL> getNextMusemeURLs(int currentBar);
+    public abstract List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar);
 
     int nextBarNum(int currentBar) {
         int nextBarNum = currentBar + 1;

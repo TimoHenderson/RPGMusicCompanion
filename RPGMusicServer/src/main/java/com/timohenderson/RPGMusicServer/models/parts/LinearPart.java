@@ -1,6 +1,8 @@
 package com.timohenderson.RPGMusicServer.models.parts;
 
+
 import com.timohenderson.RPGMusicServer.models.musemes.Museme;
+import org.javatuples.Pair;
 
 import java.net.URL;
 
@@ -21,8 +23,10 @@ public class LinearPart extends Part {
     }
 
     @Override
-    public URL getURL(int bar) {
-        if (bar == 1) return museme.getURL();
-        else return null;
+    public Pair<PartData, URL> getURL(int bar) {
+        if (bar == 1) {
+            return new Pair<PartData, URL>(this.partData, museme.getURL());
+
+        } else return null;
     }
 }

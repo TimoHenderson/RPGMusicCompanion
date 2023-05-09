@@ -1,5 +1,7 @@
 package com.timohenderson.RPGMusicServer.models.parts;
 
+import org.javatuples.Pair;
+
 import java.net.URL;
 
 public abstract class Part {
@@ -13,5 +15,5 @@ public abstract class Part {
         return partData;
     }
 
-    public abstract URL getURL(int bar);
+    public abstract Pair<PartData, URL> getURL(int bar);
 }

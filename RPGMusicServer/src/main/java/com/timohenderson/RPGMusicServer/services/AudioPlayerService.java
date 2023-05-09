@@ -1,8 +1,10 @@
 package com.timohenderson.RPGMusicServer.services;
 
-import com.adonax.audiocue.AudioCue;
+import com.timohenderson.RPGMusicServer.audio.MusicCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
+import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
+import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class AudioPlayerService {
@@ -20,10 +24,10 @@ public class AudioPlayerService {
     Section section;
     int currentBar = 0;
 
-    ArrayList<AudioCue> nextCues = new ArrayList<AudioCue>();
-    HashMap<AudioCue, Integer> currentCues = new HashMap<>();
+    ArrayList<MusicCue> nextCues = new ArrayList<MusicCue>();
+    ArrayList<MusicCue> currentCues = new ArrayList<MusicCue>();
 
-    AudioCue[] nextCuesArray;
+    MusicCue[] nextCuesArray;
     int[] ids;
 
     public void loadSection(Section section) throws LineUnavailableException {
@@ -47,29 +51,29 @@ public class AudioPlayerService {
 
     public void queueNextMusemes() throws LineUnavailableException {
         nextCues.clear();
-        List<URL> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
+        List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {
-                    AudioCue audioCue = AudioCue.makeStereoCue(url, 1);
-                    audioCue.open(mixer);
-                    nextCues.add(audioCue);
+                    MusicCue musicCue = new MusicCue(url);
+                    musicCue.open(mixer);
+                    nextCues.add(musicCue);
                 } catch (UnsupportedAudioFileException | IOException e) {
                     e.printStackTrace();
                 }
             });
 
-            nextCuesArray = (nextCues.toArray(new AudioCue[nextCues.size()]));
+            nextCuesArray = (nextCues.toArray(new MusicCue[nextCues.size()]));
             ids = new int[nextCuesArray.length];
         }
     }
 
     private void cleanCurrentCues() {
 
-        Iterator<Map.Entry<AudioCue, Integer>> cueItr = currentCues.entrySet().iterator();
+        Iterator<MusicCue> cueItr = currentCues.iterator();
         while (cueItr.hasNext()) {
-            Map.Entry<AudioCue, Integer> entry = cueItr.next();
-            if (!entry.getKey().isTrackRunning()) {
+            MusicCue entry = cueItr.next();
+            if (!entry.isTrackRunning()) {
                 cueItr.remove();
             }
         }
@@ -85,15 +89,15 @@ public class AudioPlayerService {
     }
 
     public void stopCurrentCues() throws LineUnavailableException {
-        for (Map.Entry<AudioCue, Integer> entry : currentCues.entrySet()) {
-            entry.getKey().stop(entry.getValue());
+        for (MusicCue cue : currentCues) {
+            cue.stop();
         }
         currentCues.clear();
     }
 
     public void fadeCurrentCues() throws LineUnavailableException {
-        for (Map.Entry<AudioCue, Integer> entry : currentCues.entrySet()) {
-            entry.getKey().setVolume(entry.getValue(), 0);
+        for (MusicCue cue : currentCues) {
+            cue.setVolume(0);
         }
         currentCues.clear();
     }
@@ -109,16 +113,14 @@ public class AudioPlayerService {
             for (int i = 0; i < nextCuesArray.length; i++) {
                 // print current system time
 //                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
-                ids[i] = nextCuesArray[i].play();
+                nextCuesArray[i].play();
 //                System.out.println(i + ": Current time in milliseconds = " + System.currentTimeMillis());
             }
-            for (int i = 0; i < nextCuesArray.length; i++) {
-                currentCues.put(nextCuesArray[i], ids[i]);
-            }
         }
-
+        for (int i = 0; i < nextCuesArray.length; i++) {
+            currentCues.add(nextCuesArray[i]);
+        }
         nextCuesArray = null;
         cleanCurrentCues();
-
     }
 }

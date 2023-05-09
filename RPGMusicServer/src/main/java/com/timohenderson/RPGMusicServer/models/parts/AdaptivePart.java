@@ -1,6 +1,7 @@
 package com.timohenderson.RPGMusicServer.models.parts;
 
 import com.timohenderson.RPGMusicServer.models.musemes.Museme;
+import org.javatuples.Pair;
 import org.springframework.data.annotation.Transient;
 
 import java.net.URL;
@@ -32,12 +33,12 @@ public class AdaptivePart extends Part {
     }
 
     @Override
-    public URL getURL(int bar) {
+    public Pair<PartData, URL> getURL(int bar) {
         Museme museme = chooseNextMuseme(bar);
         if (museme != null) {
             currentMusemeLength = museme.getMusemeData().length();
             barsPassedSinceMusemeLoaded = 0;
-            return museme.getURL();
+            return new Pair<>(partData, museme.getURL());
         }
         return null;
     }

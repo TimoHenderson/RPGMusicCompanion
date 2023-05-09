@@ -3,6 +3,8 @@ package com.timohenderson.RPGMusicServer.models.sections;
 import com.timohenderson.RPGMusicServer.enums.MusicalType;
 import com.timohenderson.RPGMusicServer.models.parts.AdaptivePart;
 import com.timohenderson.RPGMusicServer.models.parts.Part;
+import com.timohenderson.RPGMusicServer.models.parts.PartData;
+import org.javatuples.Pair;
 
 import java.net.URL;
 import java.util.Collections;
@@ -20,11 +22,11 @@ public class AdaptiveSection extends Section {
     }
 
     @Override
-    public List<URL> getNextMusemeURLs(int currentBar) {
+    public List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar) {
         nextMusemeURLs.clear();
         for (MusicalType musicalType : partListsMap.keySet()) {
             for (AdaptivePart adaptivePart : partListsMap.get(musicalType)) {
-                URL nextURL = adaptivePart.getURL(nextBarNum(currentBar));
+                Pair<PartData, URL> nextURL = adaptivePart.getURL(nextBarNum(currentBar));
                 if (nextURL != null) {
                     nextMusemeURLs.add(nextURL);
                 }

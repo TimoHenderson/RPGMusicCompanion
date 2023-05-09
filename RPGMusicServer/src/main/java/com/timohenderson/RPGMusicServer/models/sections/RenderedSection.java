@@ -1,6 +1,8 @@
 package com.timohenderson.RPGMusicServer.models.sections;
 
 import com.timohenderson.RPGMusicServer.models.parts.Part;
+import com.timohenderson.RPGMusicServer.models.parts.PartData;
+import org.javatuples.Pair;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -18,9 +20,9 @@ public class RenderedSection extends Section {
 
 
     @Override
-    public List<URL> getNextMusemeURLs(int currentBar) {
+    public List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar) {
         nextMusemeURLs.clear();
-        URL url = part.getURL(nextBarNum(currentBar));
+        Pair<PartData, URL> url = part.getURL(nextBarNum(currentBar));
         if (url != null) nextMusemeURLs.add(url);
         return nextMusemeURLs;
     }
