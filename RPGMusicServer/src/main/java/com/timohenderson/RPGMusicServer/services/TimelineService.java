@@ -90,6 +90,22 @@ public class TimelineService {
         }
     }
 
+    public void loadMovementNow(Movement movement) throws LineUnavailableException, InterruptedException {
+        System.out.println("Loading movement now");
+        end = true;
+        nextSectionIndex = 0;
+        int size = movement.getSections().size();
+        for (int i = 0; i < size; i++) {
+            System.out.println("Loading movement: " + i);
+            nextMovementSectionQueue.add(movement.getSections().get(i));
+            System.out.println("Movement queue size: " + sectionQueue.size());
+        }
+        loadNextMovement();
+        timeLoop.stopLoop();
+        loadNextSection();
+        audioPlayer.fadeCurrentCues();
+        timeLoop.play(barLength);
+    }
 
     public void loadMovement(Movement movement) throws LineUnavailableException, InterruptedException {
         System.out.println(movement.getSections());
@@ -97,6 +113,7 @@ public class TimelineService {
         if (sectionQueue.isEmpty()) {
             loadNextMovement();
         }
+
     }
 
     public void loadNextMovement() throws LineUnavailableException, InterruptedException {
@@ -172,8 +189,6 @@ public class TimelineService {
         currentBar = 1;
         end = false;
         runTimer = false;
-
-
     }
 
     public Section getCurrentSection() {
