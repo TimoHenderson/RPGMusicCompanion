@@ -7,10 +7,8 @@ import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import org.javatuples.Pair;
 
 import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AdaptiveSection extends Section {
     HashMap<MusicalType, List<AdaptivePart>> partListsMap;
@@ -22,19 +20,30 @@ public class AdaptiveSection extends Section {
     }
 
     @Override
-    public List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar) {
+    public List<Pair<PartData, URL>> getNextMusemeURLs(int currentBar, double darkness, double intensity) {
         nextMusemeURLs.clear();
         for (MusicalType musicalType : partListsMap.keySet()) {
-            for (AdaptivePart adaptivePart : partListsMap.get(musicalType)) {
-                Pair<PartData, URL> nextURL = adaptivePart.getURL(nextBarNum(currentBar));
-                if (nextURL != null) {
-                    nextMusemeURLs.add(nextURL);
-                }
-            }
+            List<AdaptivePart> potentialParts = getPotentialParts(partListsMap.get(musicalType), darkness, intensity);
+            nextMusemeURLs.addAll(getUrls(potentialParts, currentBar));
         }
         return nextMusemeURLs;
     }
 
+    List<Pair<PartData, URL>> getUrls(List<AdaptivePart> potentialParts, int currentBar) {
+        return potentialParts.stream()
+                .map(adaptivePart -> adaptivePart.getURL(nextBarNum(currentBar)))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private List<AdaptivePart> getPotentialParts(List<AdaptivePart> allTypeParts, double darkness, double intensity) {
+        return allTypeParts.stream()
+                .filter(adaptivePart -> {
+                    PartData partData = adaptivePart.getPartData();
+                    return partData.darkness() <= darkness && partData.intensity() <= intensity;
+                })
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<Part> getNextParts(HashMap<String, Integer> partsNeeded) {

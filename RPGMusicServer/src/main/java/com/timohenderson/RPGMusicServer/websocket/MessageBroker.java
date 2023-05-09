@@ -38,7 +38,6 @@ public class MessageBroker {
         EventType eventType = EventType.valueOf((String) value.get("event"));
         switch (eventType) {
             case PARAMS:
-
                 HashMap<ParamType, Double> params = new HashMap<>();
                 params.put(ParamType.DARKNESS, (Double) value.get("darkness"));
                 params.put(ParamType.INTENSITY, (Double) value.get("intensity"));

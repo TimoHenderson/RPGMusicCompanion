@@ -2,6 +2,7 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.audio.MusicCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
+import com.timohenderson.RPGMusicServer.enums.ParamType;
 import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.javatuples.Pair;
@@ -26,9 +27,19 @@ public class AudioPlayerService {
     ArrayList<MusicCue> nextCues = new ArrayList<MusicCue>();
     ArrayList<MusicCue> currentCues = new ArrayList<MusicCue>();
     ArrayList<MusicCue> fadingCues = new ArrayList<>();
-
     MusicCue[] nextCuesArray;
     int[] ids;
+    private double darkness = 0.0;
+    private double intensity = 0.0;
+
+    public void setGameParams(HashMap<ParamType, Double> params) {
+        if (params.containsKey(ParamType.DARKNESS)) {
+            this.darkness = params.get(ParamType.DARKNESS);
+        }
+        if (params.containsKey(ParamType.INTENSITY)) {
+            this.intensity = params.get(ParamType.INTENSITY);
+        }
+    }
 
     public void loadSection(Section section) throws LineUnavailableException {
         section.reset();
@@ -44,8 +55,7 @@ public class AudioPlayerService {
 
     public void queueNextMusemes() throws LineUnavailableException {
         nextCues.clear();
-        List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar);
-        nextMusemeURLs.stream().forEach(m -> System.out.println(m.getValue1()));
+        List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar, darkness, intensity);
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {
