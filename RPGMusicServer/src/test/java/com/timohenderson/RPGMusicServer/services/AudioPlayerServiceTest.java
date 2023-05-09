@@ -30,6 +30,7 @@ class AudioPlayerServiceTest {
     Section combatRenderedSection2;
     Tune forestTune;
     Tune combatTune;
+    Tune mineTune;
 
     @BeforeEach
     void setUp() {
@@ -44,8 +45,8 @@ class AudioPlayerServiceTest {
         combatAdaptiveSection = mainCombat.getSections().get(1);
         combatRenderedSection2 = mainCombat.getSections().get(2);
 
-        Tune mine = tuneRepository.findByName("Abandoned_Mine");
-        Movement mainMine = mine.getMovements().get(1);
+        mineTune = tuneRepository.findByName("Abandoned_Mine");
+        Movement mainMine = mineTune.getMovements().get(1);
         mineAdaptiveSection = mainMine.getSections().get(0);
 
     }
@@ -182,6 +183,30 @@ class AudioPlayerServiceTest {
         timelineService.play();
         Thread.sleep(5000);
         timelineService.loadMovementNow(combatTune.getMovements().get(0));
+        Thread.sleep(10000);
+    }
+
+    @Test
+    void canLoadTune() throws LineUnavailableException, InterruptedException {
+        timelineService.loadTune(forestTune);
+        timelineService.play();
+        Thread.sleep(5000);
+    }
+
+    @Test
+    void canLoadCombatTune() throws LineUnavailableException, InterruptedException {
+        timelineService.loadTune(combatTune);
+        timelineService.play();
+        Thread.sleep(5000);
+    }
+
+    @Test
+    void canLoadForestTuneThenChangeToCombat() throws LineUnavailableException, InterruptedException {
+        timelineService.loadTune(forestTune);
+        timelineService.play();
+        Thread.sleep(20000);
+        timelineService.loadTune(combatTune);
+
         Thread.sleep(10000);
     }
 }

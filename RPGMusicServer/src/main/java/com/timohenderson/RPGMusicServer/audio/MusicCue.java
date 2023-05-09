@@ -29,6 +29,7 @@ public class MusicCue {
 
     public void play() {
         id = audioCue.play();
+        audioCue.setRecycleWhenDone(id, true);
     }
 
     public void play(double volume) {
@@ -48,8 +49,19 @@ public class MusicCue {
     }
 
     public void setVolume(double volume) {
-        audioCue.setVolume(id, volume);
+        try {
+            audioCue.setVolume(id, volume);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
+    public boolean getIsPlaying() {
+        return audioCue.getIsPlaying(id);
+    }
+
+    public boolean getIsActive() {
+        return audioCue.getIsActive(id);
+    }
 }

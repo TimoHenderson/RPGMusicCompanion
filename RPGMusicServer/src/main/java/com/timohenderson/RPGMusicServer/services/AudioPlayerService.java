@@ -65,6 +65,7 @@ public class AudioPlayerService {
 
             nextCuesArray = (nextCues.toArray(new MusicCue[nextCues.size()]));
             ids = new int[nextCuesArray.length];
+            cleanCurrentCues();
         }
     }
 
@@ -72,8 +73,10 @@ public class AudioPlayerService {
 
         Iterator<MusicCue> cueItr = currentCues.iterator();
         while (cueItr.hasNext()) {
-            MusicCue entry = cueItr.next();
-            if (!entry.isTrackRunning()) {
+            MusicCue musicCue = cueItr.next();
+            System.out.println("Checking " + musicCue + " for running");
+            if (!musicCue.getIsActive()) {
+                System.out.println("Removing " + musicCue + " from currentCues");
                 cueItr.remove();
             }
         }
@@ -96,6 +99,7 @@ public class AudioPlayerService {
     }
 
     public void fadeCurrentCues() throws LineUnavailableException {
+        cleanCurrentCues();
         for (MusicCue cue : currentCues) {
             cue.setVolume(0);
         }
@@ -121,6 +125,6 @@ public class AudioPlayerService {
             currentCues.add(nextCuesArray[i]);
         }
         nextCuesArray = null;
-        cleanCurrentCues();
+
     }
 }

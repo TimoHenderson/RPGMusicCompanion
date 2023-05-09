@@ -3,6 +3,7 @@ package com.timohenderson.RPGMusicServer.services;
 import com.timohenderson.RPGMusicServer.events.BarEvent;
 import com.timohenderson.RPGMusicServer.events.SectionLoadedEvent;
 import com.timohenderson.RPGMusicServer.models.Movement;
+import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 public class TimelineService {
     private final ArrayList<Section> sectionQueue = new ArrayList();
     private final ArrayList<Section> nextMovementSectionQueue = new ArrayList();
+
+    private final ArrayList<Movement> nextMovementQueue = new ArrayList();
     private final BarEvent[] barEvents = new BarEvent[17];
     // Clock clock = Clock.systemUTC();
     //  Timer timer = new Timer();
@@ -28,6 +31,7 @@ public class TimelineService {
     private volatile boolean runTimer;
     private int currentBar = 1;
     private int nextSectionIndex = 0;
+    private int nextMovementIndex = 0;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -90,6 +94,24 @@ public class TimelineService {
         }
     }
 
+    public void loadTune(Tune tune) throws LineUnavailableException, InterruptedException {
+        nextMovementQueue.addAll(tune.getMovements());
+        nextMovementIndex = 0;
+        loadMovement(nextMovementQueue.get(0));
+        if (tune.getName().equals("Combat")) {
+            loadMovementNow(nextMovementQueue.get(0));
+            //loadNextMovementNow();
+        }
+    }
+
+    public void goToNextMovement() {
+
+    }
+
+    public void loadNextMovementNow() throws LineUnavailableException, InterruptedException {
+        loadMovementNow(nextMovementQueue.get(nextMovementIndex));
+    }
+
     public void loadMovementNow(Movement movement) throws LineUnavailableException, InterruptedException {
         System.out.println("Loading movement now");
         end = true;
@@ -112,8 +134,15 @@ public class TimelineService {
         nextMovementSectionQueue.addAll(movement.getSections());
         if (sectionQueue.isEmpty()) {
             loadNextMovement();
+            fillNextMovementSectionQueue();
         }
+    }
 
+    private void fillNextMovementSectionQueue() {
+        if (nextMovementIndex < nextMovementQueue.size()) {
+            nextMovementSectionQueue.addAll(nextMovementQueue.get(nextMovementIndex).getSections());
+            //nextMovementIndex++;
+        }
     }
 
     public void loadNextMovement() throws LineUnavailableException, InterruptedException {

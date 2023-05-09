@@ -38,7 +38,8 @@ public class TimeLoop {
 
     public void stopLoop() {
         runTimer = false;
-        executorService.shutdownNow();
+        if (executorService != null)
+            executorService.shutdownNow();
     }
 
     public void resume() throws LineUnavailableException {
