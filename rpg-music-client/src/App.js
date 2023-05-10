@@ -14,11 +14,16 @@ function App() {
     ws.addEventListener('message', (event) => {
       console.log(`Received message: ${event.data}`);
     });
-
     return () => {
       ws.close();
     };
   }, []);
+
+  const connectToSocket = () => {
+
+
+
+  }
 
   const handleButtonClick = (message) => {
     if (socket) {
@@ -34,6 +39,7 @@ function App() {
       {/* <XYpad socket={socket} /> */}
       <button onClick={() => handleButtonClick('hello')}>Send Hello</button>
       <button onClick={() => handleButtonClick('world')}>Send World</button>
+      <button onClick={() => connectToSocket()}>{socket ? "Connected" : "Connect"}</button>
     </div>
   );
 }
