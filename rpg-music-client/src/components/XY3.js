@@ -47,17 +47,20 @@ function XY3({ sendMessage }) {
 
     }, [position]);
 
-    const handleMouseDown = (event) => {
+    const handlePointerDown = (event) => {
         event.preventDefault();
         setIsDragging(true);
         //updatePosition(event);
     };
 
-    const handleMouseMove = (event) => {
+    const handlePointerMove = (event) => {
         if (isDragging) {
-            console.log("handleMouseMove")
+            console.log("handlePointerMove")
             sendPadMessage(updatePosition(event));
         }
+    };
+    const handlePointerUp = () => {
+        setIsDragging(false);
     };
 
     const sendPadMessage = (position) => {
@@ -75,26 +78,6 @@ function XY3({ sendMessage }) {
         sendMessage(message);
     };
 
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
-
-    const handleTouchStart = (event) => {
-        event.preventDefault();
-        setIsDragging(true);
-        updatePosition(event.touches[0]);
-    };
-
-    const handleTouchMove = (event) => {
-        if (isDragging) {
-            console.log("handleTouchMove")
-            updatePosition(event.touches[0]);
-        }
-    };
-
-    const handleTouchEnd = () => {
-        setIsDragging(false);
-    };
 
     const updatePosition = (event) => {
         const canvas = canvasRef.current;
@@ -112,12 +95,9 @@ function XY3({ sendMessage }) {
                 ref={canvasRef}
                 width={400}
                 height={400}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
             />
             {/* <button onClick={() => sendMessage("PARAMS", 3, 4)}>Send Message</button> */}
         </div>
