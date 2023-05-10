@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.services.timeline;
+package com.timohenderson.RPGMusicServer.gameState;
 
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 
@@ -9,16 +9,16 @@ public class SectionQueue {
     private ArrayList<Section> sectionQueue = new ArrayList();
     private int sectionIndex = 0;
 
-    boolean isOnLastSection() {
+    public boolean isOnLastSection() {
         return sectionIndex == sectionQueue.size();
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return sectionQueue.isEmpty();
     }
 
 
-    Section getSection() {
+    public Section getSection() {
         if (sectionIndex < sectionQueue.size()) {
             Section section = sectionQueue.get(sectionIndex);
             sectionIndex++;
@@ -27,7 +27,7 @@ public class SectionQueue {
         return null;
     }
 
-    void clear() {
+    public void clear() {
         sectionQueue.clear();
         sectionIndex = 0;
     }
@@ -36,11 +36,11 @@ public class SectionQueue {
         sectionQueue.addAll(sections);
     }
 
-    void addSection(Section section) {
+    public void addSection(Section section) {
         sectionQueue.add(section);
     }
 
-    List<Section> replaceQueueAndGetOld(List<Section> sections) {
+    public List<Section> replaceQueueAndGetOld(List<Section> sections) {
         List<Section> oldSections = new ArrayList<>(sectionQueue);
         sectionQueue.clear();
         sectionQueue.addAll(sections);
@@ -48,7 +48,7 @@ public class SectionQueue {
         return oldSections;
     }
 
-    void replaceQueue(List<Section> sections) {
+    public void replaceQueue(List<Section> sections) {
         sectionQueue.clear();
         sectionQueue.addAll(sections);
         sectionIndex = 0;

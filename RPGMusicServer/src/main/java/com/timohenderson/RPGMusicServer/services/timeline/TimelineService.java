@@ -1,6 +1,7 @@
 package com.timohenderson.RPGMusicServer.services.timeline;
 
 import com.timohenderson.RPGMusicServer.events.SectionLoadedEvent;
+import com.timohenderson.RPGMusicServer.gameState.GameState;
 import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
@@ -26,10 +27,10 @@ public class TimelineService {
     private int nextBarTransitionTriggered = 0;
     private volatile boolean runTimer;
     private int currentBar = 1;
-    private MovementQueue movements = new MovementQueue();
-    private NextMovementSectionsQueue movementSections = new NextMovementSectionsQueue();
-    private SectionQueue sectionQueue = new SectionQueue();
 
+
+    @Autowired
+    private GameState gs;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -43,28 +44,28 @@ public class TimelineService {
 
     public void loadTune(Tune tune, boolean loadNow) throws LineUnavailableException, InterruptedException {
         if (loadNow) {
-            movements.replace(tune.getMovements());
-            loadMovementNow(movements.getMovement());
+            gs.getMovements().replace(tune.getMovements());
+            loadMovementNow(gs.getMovements().getMovement());
             return;
         }
-        movements.replace(tune.getMovements());
-        loadMovement(movements.getMovement());
+        gs.getMovements().replace(tune.getMovements());
+        loadMovement(gs.getMovements().getMovement());
     }
 
     private void fillNextMovementSectionQueue() {
-        Movement movement = movements.getMovement();
-        if (movement != null) movementSections.add(movement);
+        Movement movement = gs.getMovements().getMovement();
+        if (movement != null) gs.getMovementSections().add(movement);
     }
 
     public void loadNextMovementNow() throws LineUnavailableException, InterruptedException {
-        loadMovementNow(movements.getMovement());
+        loadMovementNow(gs.getMovements().getMovement());
     }
 
     public void loadMovementNow(Movement movement) throws LineUnavailableException, InterruptedException {
         System.out.println("Loading movement now");
         end = true;
-        List<Section> oldSections = sectionQueue.replaceQueueAndGetOld(movement.getSections());
-        movementSections.addToStart(oldSections);
+        List<Section> oldSections = gs.getSectionQueue().replaceQueueAndGetOld(movement.getSections());
+        gs.getMovementSections().addToStart(oldSections);
         timeLoop.stopLoop();
         loadNextSection();
         audioPlayer.fadeCurrentCues();
@@ -72,15 +73,15 @@ public class TimelineService {
     }
 
     public void loadMovement(Movement movement) throws LineUnavailableException, InterruptedException {
-        movementSections.add(movement.getSections());
-        if (sectionQueue.isEmpty()) {
+        gs.getMovementSections().add(movement.getSections());
+        if (gs.getSectionQueue().isEmpty()) {
             loadNextMovement();
             fillNextMovementSectionQueue();
         }
     }
 
     public void addToSectionQueue(Section section) throws InterruptedException, LineUnavailableException {
-        sectionQueue.addSection(section);
+        gs.getSectionQueue().addSection(section);
         updateCurrentSection();
     }
 
@@ -94,14 +95,14 @@ public class TimelineService {
 
     public void loadNextMovement() throws LineUnavailableException, InterruptedException {
         System.out.println("Loading next movement");
-        if (movementSections.isEmpty()) {
-            System.out.println("No more movements to play");
+        if (gs.getMovementSections().isEmpty()) {
+            System.out.println("No more gs.movements to play");
             stopAndCleanUp();
             return;
         }
         runTimer = false;
-        ArrayList<Section> sections = movementSections.popAllSections();
-        sectionQueue.replaceQueue(sections);
+        ArrayList<Section> sections = gs.getMovementSections().popAllSections();
+        gs.getSectionQueue().replaceQueue(sections);
         updateCurrentSection();
         play();
     }
@@ -112,7 +113,7 @@ public class TimelineService {
     }
 
     public void loadNextSection() throws InterruptedException, LineUnavailableException {
-        if (sectionQueue.isOnLastSection()) {
+        if (gs.getSectionQueue().isOnLastSection()) {
             stopAndCleanUp();
             System.out.println("No more sections to play1");
             currentSection = null;
@@ -122,7 +123,7 @@ public class TimelineService {
             return;
         }
 
-        currentSection = sectionQueue.getSection();
+        currentSection = gs.getSectionQueue().getSection();
 
         if (currentSection == null) {
             System.out.println("No more sections to play");
@@ -142,7 +143,7 @@ public class TimelineService {
 
     public void stopAndCleanUp() throws LineUnavailableException {
         timeLoop.stopLoop();
-        sectionQueue.clear();
+        gs.getSectionQueue().clear();
         currentSection = null;
         currentBar = 1;
         end = false;

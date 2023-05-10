@@ -1,5 +1,6 @@
 package com.timohenderson.RPGMusicServer.events;
 
+import com.timohenderson.RPGMusicServer.gameState.GameState;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.services.TuneService;
@@ -20,6 +21,8 @@ public class EventHandler {
     TimelineService timelineService;
     @Autowired
     AudioPlayerService audioPlayerService;
+    @Autowired
+    GameState gs;
     private ArrayList<String> log = new ArrayList<>();
 
     @EventListener
@@ -69,8 +72,7 @@ public class EventHandler {
     @Async
     @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
-        // System.out.println("GameParamsEvent" + event.toString());
-        audioPlayerService.setGameParams(event.getParams());
+        gs.setGameParams(event.getParams());
     }
 
     @EventListener
