@@ -4,6 +4,8 @@ package com.timohenderson.RPGMusicServer.DirectoryScanner;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,11 @@ public class FileWalker {
         Path startPath = getResourcePath("");
         List<Tune> tunes = TunesFactory.buildTunes(startPath);
         return tunes;
+    }
+
+    @EventListener
+    public void onContextRefreshedEvent(ContextRefreshedEvent event) throws IOException {
+        walkFiles();
     }
 
 

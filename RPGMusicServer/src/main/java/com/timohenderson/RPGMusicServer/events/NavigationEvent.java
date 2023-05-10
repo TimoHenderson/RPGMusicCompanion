@@ -8,7 +8,7 @@ public class NavigationEvent extends Event {
         super(source, payload);
     }
 
-    public NavigationType getNavigationType() {
+    public NavigationType getAction() {
         return (NavigationType) super.getPayload();
     }
 }

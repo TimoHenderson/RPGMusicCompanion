@@ -68,4 +68,8 @@ public class MusicCue {
             e.printStackTrace();
         }
     }
+
+    public void close() {
+        audioCue.close();
+    }
 }

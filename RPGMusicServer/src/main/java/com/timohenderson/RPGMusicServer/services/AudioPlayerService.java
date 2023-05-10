@@ -29,8 +29,8 @@ public class AudioPlayerService {
     ArrayList<MusicCue> fadingCues = new ArrayList<>();
     MusicCue[] nextCuesArray;
     int[] ids;
-    private double darkness = 0.0;
-    private double intensity = 0.0;
+    private double darkness = 2.5;
+    private double intensity = 2.5;
 
     public void setGameParams(HashMap<ParamType, Double> params) {
         if (params.containsKey(ParamType.DARKNESS)) {
@@ -53,7 +53,7 @@ public class AudioPlayerService {
         queueNextMusemes();
     }
 
-    public void queueNextMusemes() throws LineUnavailableException {
+    public void queueNextMusemes() {
         nextCues.clear();
         List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar, darkness, intensity);
         if (nextMusemeURLs != null) {
@@ -73,10 +73,13 @@ public class AudioPlayerService {
     }
 
     private void cleanCurrentCues() {
+        System.out.println("Cleaning current cues");
         Iterator<MusicCue> cueItr = currentCues.iterator();
         while (cueItr.hasNext()) {
             MusicCue musicCue = cueItr.next();
+            System.out.println(musicCue);
             if (!musicCue.getIsActive()) {
+                musicCue.close();
                 cueItr.remove();
             }
         }

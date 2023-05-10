@@ -206,7 +206,7 @@ public class TimelineService {
         if (lastBarPlayed) {
             currentBar = 1;
         }
-        System.out.println(currentBar);
+//        System.out.println(currentBar);
     }
 
     public int getCurrentBar() {

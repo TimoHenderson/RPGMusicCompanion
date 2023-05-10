@@ -69,7 +69,7 @@ public class EventHandler {
     @Async
     @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
-        System.out.println("GameParamsEvent" + event.toString());
+        // System.out.println("GameParamsEvent" + event.toString());
         audioPlayerService.setGameParams(event.getParams());
     }
 
@@ -85,7 +85,16 @@ public class EventHandler {
     @EventListener
     public void handleNavigationEvent(NavigationEvent event) {
         System.out.println("NavigateEvent");
+        switch (event.getAction()) {
+            case NEXT_SECTION:
+                timelineService.triggerNextSection();
+                break;
+//            case NEXT_MOVEMENT:
+//                timelineService.previous();
+//                break;
+        }
     }
+
 
 //    public void handleChangeMovementEvent(ChangeMovementEvent event) {
 //    }

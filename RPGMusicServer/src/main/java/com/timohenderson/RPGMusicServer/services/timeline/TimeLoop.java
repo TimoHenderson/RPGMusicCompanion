@@ -63,37 +63,23 @@ public class TimeLoop {
 
     private class TimeLineLoop implements Runnable {
         @Override
-        public void run() {
-            try {
-                if (playCues) {
+        public void run() throws RuntimeException {
+            if (playCues) {
+                try {
                     audioPlayer.playNextCues();
-                    System.out.println("playing next cues");
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (LineUnavailableException e) {
-                throw new RuntimeException(e);
             }
-
             try {
                 if (timeline.shouldTimeLineEnd()) {
-                    try {
-                        timeline.loadNextSectionHandler();
-                    } catch (InterruptedException e) {
-
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
-                        throw new RuntimeException(e);
-                    }
-
+                    timeline.loadNextSectionHandler();
                     timeline.setEnd(false);
                 } else {
-                    try {
-                        audioPlayer.setCurrentBar(timeline.getCurrentBar());
-                    } catch (LineUnavailableException e) {
-                        throw new RuntimeException(e);
-                    }
+                    audioPlayer.setCurrentBar(timeline.getCurrentBar());
                     timeline.nextBar();
                 }
-            } catch (LineUnavailableException e) {
+            } catch (LineUnavailableException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
