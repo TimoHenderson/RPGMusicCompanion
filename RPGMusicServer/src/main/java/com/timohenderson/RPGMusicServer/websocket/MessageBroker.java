@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,11 +22,11 @@ public class MessageBroker {
     @Autowired
     ApplicationEventPublisher publisher;
 
-    public void handleMessage(WebSocketSession session, TextMessage message) {
+    public void handleMessage(WebSocketSession session, TextMessage message) throws IOException {
         Map value = new Gson().fromJson(message.getPayload(), Map.class);
         if (value.get("event") == null) {
             System.out.println("No action");
-            System.out.println(value.toString());
+            session.sendMessage(new TextMessage("Invalid command: " + message.getPayload().toString()));
         } else {
             Event event = buildEvent(session, value);
             if (event != null) {

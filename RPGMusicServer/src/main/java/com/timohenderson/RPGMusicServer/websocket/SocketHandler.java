@@ -57,6 +57,12 @@ public class SocketHandler extends TextWebSocketHandler {
 
     }
 
+    public void sendTextMessage(String message) throws IOException {
+        for (WebSocketSession s : sessions) {
+            s.sendMessage(new TextMessage(message));
+        }
+    }
+
     public void sendBinaryMessage(byte[] buffer) throws IOException {
         for (WebSocketSession s : sessions) {
             s.sendMessage(new BinaryMessage(buffer));
