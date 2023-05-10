@@ -1,8 +1,7 @@
-
 import './App.css';
 
 import { useState, useEffect } from 'react';
-// import XYpad from './XYpad';
+import Controls from './containers/Controls';
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -19,30 +18,40 @@ function App() {
     };
   }, []);
 
-  const connectToSocket = () => {
+  const sendMessage = (message) => {
+    if (socket) {
+      socket.send(message);
+    }
+  };
 
 
-
-  }
 
   const handleButtonClick = (message) => {
     if (socket) {
       const messageJSON = JSON.stringify({
         message
       });
-      socket.send(messageJSON);
+      sendMessage(messageJSON);
     }
   };
 
   return (
-    <div>
-      {/* <XYpad socket={socket} /> */}
-      <button onClick={() => handleButtonClick('hello')}>Send Hello</button>
-      <button onClick={() => handleButtonClick('world')}>Send World</button>
-      <button onClick={() => connectToSocket()}>{socket ? "Connected" : "Connect"}</button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "2rem",
+      }}>
+      <h1>RPG Music Companion</h1>
+      <Controls sendMessage={sendMessage} />
     </div>
   );
 }
 
+{/* <button onClick={() => handleButtonClick('hello')}>Send Hello</button>
+<button onClick={() => handleButtonClick('world')}>Send World</button>
+<button>{socket ? "Connected" : "Connect"}</button> */}
 export default App;
 

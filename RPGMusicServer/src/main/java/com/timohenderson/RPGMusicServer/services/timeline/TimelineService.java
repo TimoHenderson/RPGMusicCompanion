@@ -154,6 +154,7 @@ public class TimelineService {
     }
 
     public void play() throws LineUnavailableException {
+        if (currentSection == null) return;
         timeLoop.play(barLength);
     }
 
