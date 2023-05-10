@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 
-function XYPad({ sendMessage }) {
+function XYPad({ forwardMessage }) {
     const canvasRef = useRef(null);
     const [position, setPosition] = useState({ x: 0.5, y: 0.5 });
     const [isDragging, setIsDragging] = useState(false);
@@ -113,15 +113,15 @@ function XYPad({ sendMessage }) {
 
     const sendPadMessage = (position) => {
 
-        const convertedX = parseFloat((position.x * 4 + 1).toFixed(2));
-        const convertedY = 5.0 - parseFloat((position.y * 4 + 1).toFixed(2));
+        const convertedX = 6.0 - parseFloat((position.x * 4 + 1).toFixed(2));
+        const convertedY = 6.0 - parseFloat((position.y * 4 + 1).toFixed(2));
 
         const message = JSON.stringify({
             event: "PARAMS",
             darkness: convertedX,
             intensity: convertedY,
         });
-        sendMessage(message);
+        forwardMessage(message);
     };
 
 
@@ -145,7 +145,7 @@ function XYPad({ sendMessage }) {
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
             />
-            {/* <button onClick={() => sendMessage("PARAMS", 3, 4)}>Send Message</button> */}
+            {/* <button onClick={() => forwardMessage("PARAMS", 3, 4)}>Send Message</button> */}
         </div>
     );
 }
