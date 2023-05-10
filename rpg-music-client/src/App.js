@@ -2,7 +2,9 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
-// import XYpad from './XYpad';
+import XYPad from './components/XYPad';
+import XY2 from './components/XY2';
+import XY3 from './components/XY3';
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -19,18 +21,20 @@ function App() {
     };
   }, []);
 
-  const connectToSocket = () => {
+  const sendMessage = (message) => {
+    if (socket) {
+      socket.send(message);
+    }
+  };
 
 
-
-  }
 
   const handleButtonClick = (message) => {
     if (socket) {
       const messageJSON = JSON.stringify({
         message
       });
-      socket.send(messageJSON);
+      sendMessage(messageJSON);
     }
   };
 
@@ -39,7 +43,10 @@ function App() {
       {/* <XYpad socket={socket} /> */}
       <button onClick={() => handleButtonClick('hello')}>Send Hello</button>
       <button onClick={() => handleButtonClick('world')}>Send World</button>
-      <button onClick={() => connectToSocket()}>{socket ? "Connected" : "Connect"}</button>
+      <button>{socket ? "Connected" : "Connect"}</button>
+      {/* <XYPad sendMessage={sendMessage} /> */}
+      {/* <XY2 /> */}
+      <XY3 sendMessage={sendMessage} />
     </div>
   );
 }
