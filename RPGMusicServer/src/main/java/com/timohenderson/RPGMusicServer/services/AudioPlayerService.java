@@ -2,9 +2,9 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.audio.MusicCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
-import com.timohenderson.RPGMusicServer.gameState.GameState;
 import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
+import lombok.Setter;
 import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -23,14 +23,16 @@ public class AudioPlayerService {
     RPGMixer mixer;
     Section section;
     int currentBar = 0;
+    @Setter
+    double darkness = 2.5;
+    @Setter
+    double intensity = 2.5;
     Timer timer;
     ArrayList<MusicCue> nextCues = new ArrayList<MusicCue>();
     ArrayList<MusicCue> currentCues = new ArrayList<MusicCue>();
     ArrayList<MusicCue> fadingCues = new ArrayList<>();
     MusicCue[] nextCuesArray;
     int[] ids;
-    @Autowired
-    GameState gs;
 
     public void loadSection(Section section) throws LineUnavailableException {
         section.reset();
@@ -44,9 +46,10 @@ public class AudioPlayerService {
         queueNextMusemes();
     }
 
+
     public void queueNextMusemes() {
         nextCues.clear();
-        List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar, gs.getDarkness(), gs.getIntensity());
+        List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar, darkness, intensity);
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {
@@ -65,13 +68,15 @@ public class AudioPlayerService {
 
     private void cleanCurrentCues() {
         System.out.println("Cleaning current cues");
-        Iterator<MusicCue> cueItr = currentCues.iterator();
-        while (cueItr.hasNext()) {
-            MusicCue musicCue = cueItr.next();
-            System.out.println(musicCue);
-            if (!musicCue.getIsActive()) {
-                musicCue.close();
-                cueItr.remove();
+        if (currentCues != null) {
+            Iterator<MusicCue> cueItr = currentCues.iterator();
+            while (cueItr.hasNext()) {
+                MusicCue musicCue = cueItr.next();
+                System.out.println(musicCue);
+                if (!musicCue.getIsActive()) {
+                    musicCue.close();
+                    cueItr.remove();
+                }
             }
         }
     }
@@ -93,7 +98,7 @@ public class AudioPlayerService {
 
     @Async
     public void fadeCurrentCues() throws LineUnavailableException {
-        cleanCurrentCues();
+        //
         fadingCues.addAll(currentCues);
         currentCues.clear();
         timer = new Timer();

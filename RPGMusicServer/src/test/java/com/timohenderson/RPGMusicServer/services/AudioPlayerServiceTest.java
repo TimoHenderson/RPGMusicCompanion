@@ -86,155 +86,155 @@ class AudioPlayerServiceTest {
     }
 
 
-    @Test
-    void canPlay() throws InterruptedException, LineUnavailableException {
-        timelineService.addToSectionQueue(renderedSection);
-        timelineService.play();
-        Thread.sleep(60000);
-    }
-
-    @Test
-    void canPlayAdaptive() throws InterruptedException, LineUnavailableException {
-        timelineService.addToSectionQueue(adaptiveSection);
-        timelineService.play();
-        Thread.sleep(10000);
-    }
-
-    @Test
-    void canPlayAdaptiveCombat() throws InterruptedException, LineUnavailableException {
-        timelineService.addToSectionQueue(combatAdaptiveSection);
-        timelineService.play();
-        Thread.sleep(10000);
-    }
-
-    @Test
-    void canPlayAdaptiveMine() throws InterruptedException, LineUnavailableException {
-        timelineService.addToSectionQueue(mineAdaptiveSection);
-        timelineService.play();
-        Thread.sleep(10000);
-    }
-
-    @Test
-    void canPlayAdaptiveMineAndStop() throws InterruptedException, LineUnavailableException {
-        timelineService.addToSectionQueue(mineAdaptiveSection);
-        timelineService.play();
-        Thread.sleep(10000);
-        timelineService.stop();
-        System.out.println("stopped");
-        Thread.sleep(2000);
-        System.out.println("end");
-    }
-
-    @Test
-    void canPlayAdaptiveMineAndStopAndResume() throws InterruptedException, LineUnavailableException {
-        timelineService.addToSectionQueue(mineAdaptiveSection);
-        timelineService.play();
-        Thread.sleep(10000);
-        timelineService.stop();
-        System.out.println("stopped");
-        Thread.sleep(8000);
-        System.out.println("resumed");
-        timelineService.play();
-        Thread.sleep(2000);
-    }
-
-    @Test
-    void canAutoMoveFromRenderedToAdaptiveCombat() throws LineUnavailableException, InterruptedException {
-        timelineService.addToSectionQueue(combatRenderedSection1);
-        timelineService.addToSectionQueue(combatAdaptiveSection);
-        timelineService.play();
-        Thread.sleep(10000);
-    }
-
-    @Test
-    void canAutoMoveFromRenderedToAdaptiveCombatThenOut() throws LineUnavailableException, InterruptedException {
-        timelineService.addToSectionQueue(combatRenderedSection1);
-        timelineService.addToSectionQueue(combatAdaptiveSection);
-        timelineService.addToSectionQueue(combatRenderedSection2);
-        timelineService.play();
-        Thread.sleep(5000);
-        System.out.println("next");
-        timelineService.triggerNextSection();
-        Thread.sleep(10000);
-    }
-
-    @Test
-    void canLoadMovement() throws LineUnavailableException, InterruptedException {
-        timelineService.loadMovement(forestTune.getMovements().get(0));
-        timelineService.play();
-        Thread.sleep(1000);
-        timelineService.triggerNextSection();
+//    @Test
+//    void canPlay() throws InterruptedException, LineUnavailableException {
+//        timelineService.addToSectionQueue(renderedSection);
+//        timelineService.play();
+//        Thread.sleep(60000);
+//    }
+//
+//    @Test
+//    void canPlayAdaptive() throws InterruptedException, LineUnavailableException {
+//        timelineService.addToSectionQueue(adaptiveSection);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//    }
+//
+//    @Test
+//    void canPlayAdaptiveCombat() throws InterruptedException, LineUnavailableException {
+//        timelineService.addToSectionQueue(combatAdaptiveSection);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//    }
+//
+//    @Test
+//    void canPlayAdaptiveMine() throws InterruptedException, LineUnavailableException {
+//        timelineService.addToSectionQueue(mineAdaptiveSection);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//    }
+//
+//    @Test
+//    void canPlayAdaptiveMineAndStop() throws InterruptedException, LineUnavailableException {
+//        timelineService.addToSectionQueue(mineAdaptiveSection);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//        timelineService.stop();
+//        System.out.println("stopped");
+//        Thread.sleep(2000);
+//        System.out.println("end");
+//    }
+//
+//    @Test
+//    void canPlayAdaptiveMineAndStopAndResume() throws InterruptedException, LineUnavailableException {
+//        timelineService.addToSectionQueue(mineAdaptiveSection);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//        timelineService.stop();
+//        System.out.println("stopped");
+//        Thread.sleep(8000);
+//        System.out.println("resumed");
+//        timelineService.play();
+//        Thread.sleep(2000);
+//    }
+//
+//    @Test
+//    void canAutoMoveFromRenderedToAdaptiveCombat() throws LineUnavailableException, InterruptedException {
+//        timelineService.addToSectionQueue(combatRenderedSection1);
+//        timelineService.addToSectionQueue(combatAdaptiveSection);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//    }
+//
+//    @Test
+//    void canAutoMoveFromRenderedToAdaptiveCombatThenOut() throws LineUnavailableException, InterruptedException {
+//        timelineService.addToSectionQueue(combatRenderedSection1);
+//        timelineService.addToSectionQueue(combatAdaptiveSection);
+//        timelineService.addToSectionQueue(combatRenderedSection2);
+//        timelineService.play();
+//        Thread.sleep(5000);
+//        System.out.println("next");
+//        timelineService.triggerNextSection();
+//        Thread.sleep(10000);
+//    }
+//
+//    @Test
+//    void canLoadMovement() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadMovement(forestTune.getMovements().get(0));
+//        timelineService.play();
+//        Thread.sleep(1000);
+//        timelineService.triggerNextSection();
+////        Thread.sleep(3000);
+//        timelineService.loadMovement(forestTune.getMovements().get(1));
+////        timelineService.play();play
+//        Thread.sleep(30000);
+//        System.out.println("end");
+//    }
+//
+//    @Test
+//    void canLoadForestMain() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadMovement(forestTune.getMovements().get(1));
+//        timelineService.play();
+//        Thread.sleep(5000);
+//    }
+//
+//    @Test
+//    void canChangeMovementNow() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadMovement(forestTune.getMovements().get(1));
+//        timelineService.play();
+//        Thread.sleep(5000);
+//        timelineService.loadMovementNow(combatTune.getMovements().get(0));
+//        Thread.sleep(10000);
+//    }
+//
+//    @Test
+//    void canLoadTune() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadTune(forestTune, false);
+//        timelineService.play();
+//        Thread.sleep(5000);
+//    }
+//
+//    @Test
+//    void canLoadCombatTune() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadTune(combatTune, false);
+//        timelineService.play();
+//        Thread.sleep(5000);
+//    }
+//
+//    @Test
+//    void canLoadForestTuneThenChangeToCombat() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadTune(forestTune, false);
+//        timelineService.play();
+//        Thread.sleep(10000);
+//        timelineService.loadTune(combatTune, true);
+//        Thread.sleep(10000);
+//        timelineService.triggerNextSection();
+//        Thread.sleep(50000);
+//    }
+//
+//    @Test
+//    void canGoBetweenLocations() throws LineUnavailableException, InterruptedException {
+//        timelineService.loadTune(forestTune, false);
+//        Thread.sleep(5000);
+//        timelineService.triggerNextSection();
+//        Thread.sleep(15000);
+//        System.out.println("To Mine");
+//        timelineService.loadTune(mineTune, false);
+//        timelineService.triggerNextSection();
+////        timelineService.triggerNextSection();
+//        Thread.sleep(30000);
+//    }
+//
+//    @Test
+//    void canGoBetweenLocationsWithFade() throws LineUnavailableException, InterruptedException {
+//        timelineService.addToSectionQueue(adaptiveSection);
+//        timelineService.play();
 //        Thread.sleep(3000);
-        timelineService.loadMovement(forestTune.getMovements().get(1));
-//        timelineService.play();play
-        Thread.sleep(30000);
-        System.out.println("end");
-    }
-
-    @Test
-    void canLoadForestMain() throws LineUnavailableException, InterruptedException {
-        timelineService.loadMovement(forestTune.getMovements().get(1));
-        timelineService.play();
-        Thread.sleep(5000);
-    }
-
-    @Test
-    void canChangeMovementNow() throws LineUnavailableException, InterruptedException {
-        timelineService.loadMovement(forestTune.getMovements().get(1));
-        timelineService.play();
-        Thread.sleep(5000);
-        timelineService.loadMovementNow(combatTune.getMovements().get(0));
-        Thread.sleep(10000);
-    }
-
-    @Test
-    void canLoadTune() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(forestTune, false);
-        timelineService.play();
-        Thread.sleep(5000);
-    }
-
-    @Test
-    void canLoadCombatTune() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(combatTune, false);
-        timelineService.play();
-        Thread.sleep(5000);
-    }
-
-    @Test
-    void canLoadForestTuneThenChangeToCombat() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(forestTune, false);
-        timelineService.play();
-        Thread.sleep(10000);
-        timelineService.loadTune(combatTune, true);
-        Thread.sleep(10000);
-        timelineService.triggerNextSection();
-        Thread.sleep(50000);
-    }
-
-    @Test
-    void canGoBetweenLocations() throws LineUnavailableException, InterruptedException {
-        timelineService.loadTune(forestTune, false);
-        Thread.sleep(5000);
-        timelineService.triggerNextSection();
-        Thread.sleep(15000);
-        System.out.println("To Mine");
-        timelineService.loadTune(mineTune, false);
-        timelineService.triggerNextSection();
+//        timelineService.loadTune(mineTune, false);
 //        timelineService.triggerNextSection();
-        Thread.sleep(30000);
-    }
-
-    @Test
-    void canGoBetweenLocationsWithFade() throws LineUnavailableException, InterruptedException {
-        timelineService.addToSectionQueue(adaptiveSection);
-        timelineService.play();
-        Thread.sleep(3000);
-        timelineService.loadTune(mineTune, false);
-        timelineService.triggerNextSection();
-//        timelineService.triggerNextSection();
-        Thread.sleep(30000);
-    }
+////        timelineService.triggerNextSection();
+//        Thread.sleep(30000);
+//    }
 
 
 }

@@ -27,12 +27,13 @@ public class TimeLoop {
         this.playCues = playCues;
     }
 
-    public void play(long barLength) throws LineUnavailableException {
+    public boolean play(long barLength) {
         if (!runTimer) {
             runTimer = true;
             this.barLength = barLength;
             runExecutor();
         }
+        return true;
     }
 
     public void stop() {

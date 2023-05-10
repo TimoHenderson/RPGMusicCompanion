@@ -58,11 +58,11 @@ public class EventHandler {
         switch (event.getAction()) {
             case PLAY:
                 System.out.println("PLAY");
-                timelineService.play();
+                gs.setIsPlaying(true);
                 break;
             case STOP:
                 System.out.println("STOP");
-                timelineService.stop();
+                gs.setIsPlaying(false);
                 break;
             case PAUSE:
                 System.out.println("PAUSE");
@@ -80,20 +80,22 @@ public class EventHandler {
         System.out.println("LoadTuneEvent");
         String tuneName = event.getTuneName();
         Tune tune = tuneService.loadTune(tuneName);
-        timelineService.loadTune(tune, tuneName.equals("Combat"));
+        gs.loadTune(tune, tuneName.equals("Combat"));
 
     }
 
     @EventListener
-    public void handleNavigationEvent(NavigationEvent event) {
+    public void handleNavigationEvent(NavigationEvent event) throws LineUnavailableException, InterruptedException {
         System.out.println("NavigateEvent");
+        if (event.getSource() instanceof TimelineService) {
+            gs.loadNextSection();
+            return;
+        }
+
         switch (event.getAction()) {
             case NEXT_SECTION:
                 timelineService.triggerNextSection();
                 break;
-//            case NEXT_MOVEMENT:
-//                timelineService.previous();
-//                break;
         }
     }
 
