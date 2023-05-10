@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.services.timeline;
+package com.timohenderson.RPGMusicServer.gameState;
 
 import com.timohenderson.RPGMusicServer.models.Movement;
 

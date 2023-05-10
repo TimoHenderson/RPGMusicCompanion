@@ -1,5 +1,6 @@
 package com.timohenderson.RPGMusicServer.events;
 
+import com.timohenderson.RPGMusicServer.gameState.GameState;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.services.TuneService;
@@ -20,6 +21,8 @@ public class EventHandler {
     TimelineService timelineService;
     @Autowired
     AudioPlayerService audioPlayerService;
+    @Autowired
+    GameState gs;
     private ArrayList<String> log = new ArrayList<>();
 
     @EventListener
@@ -55,11 +58,11 @@ public class EventHandler {
         switch (event.getAction()) {
             case PLAY:
                 System.out.println("PLAY");
-                timelineService.play();
+                gs.setIsPlaying(true);
                 break;
             case STOP:
                 System.out.println("STOP");
-                timelineService.stop();
+                gs.setIsPlaying(false);
                 break;
             case PAUSE:
                 System.out.println("PAUSE");
@@ -69,8 +72,7 @@ public class EventHandler {
     @Async
     @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
-        // System.out.println("GameParamsEvent" + event.toString());
-        audioPlayerService.setGameParams(event.getParams());
+        gs.setGameParams(event.getParams());
     }
 
     @EventListener
@@ -78,20 +80,22 @@ public class EventHandler {
         System.out.println("LoadTuneEvent");
         String tuneName = event.getTuneName();
         Tune tune = tuneService.loadTune(tuneName);
-        timelineService.loadTune(tune, tuneName.equals("Combat"));
+        gs.loadTune(tune, tuneName.equals("Combat"));
 
     }
 
     @EventListener
-    public void handleNavigationEvent(NavigationEvent event) {
+    public void handleNavigationEvent(NavigationEvent event) throws LineUnavailableException, InterruptedException {
         System.out.println("NavigateEvent");
+        if (event.getSource() instanceof TimelineService) {
+            gs.loadNextSection();
+            return;
+        }
+
         switch (event.getAction()) {
             case NEXT_SECTION:
                 timelineService.triggerNextSection();
                 break;
-//            case NEXT_MOVEMENT:
-//                timelineService.previous();
-//                break;
         }
     }
 
