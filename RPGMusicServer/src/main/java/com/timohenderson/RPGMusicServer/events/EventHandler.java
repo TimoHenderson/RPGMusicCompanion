@@ -76,8 +76,10 @@ public class EventHandler {
     @EventListener
     public void handleLoadTuneEvent(LoadTuneEvent event) throws LineUnavailableException, InterruptedException {
         System.out.println("LoadTuneEvent");
-        Tune tune = tuneService.loadTune(event.getTuneName());
-        timelineService.loadTune(tune, true);
+        String tuneName = event.getTuneName();
+        Tune tune = tuneService.loadTune(tuneName);
+        timelineService.loadTune(tune, tuneName.equals("Combat"));
+
     }
 
     @EventListener

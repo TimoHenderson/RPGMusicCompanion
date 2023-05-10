@@ -5,6 +5,8 @@ function XYPad({ forwardMessage }) {
     const canvasRef = useRef(null);
     const [position, setPosition] = useState({ x: 0.5, y: 0.5 });
     const [isDragging, setIsDragging] = useState(false);
+    const [padDimensions, setPadDimensions] = useState({ width: 0, height: 0, left: 0, top: 0 });
+
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -14,10 +16,11 @@ function XYPad({ forwardMessage }) {
             context.fillStyle = "#f0f0f0";
             context.fillRect(0, 0, canvas.width, canvas.height);
 
-            const padSize = Math.min(canvas.width, canvas.height) * 0.8;
+            const padSize = Math.min(canvas.width, canvas.height) * 0.6;
             const padX = (canvas.width - padSize) / 2;
             const padY = (canvas.height - padSize) / 2;
             const padRadius = padSize / 2;
+            setPadDimensions({ width: padSize, height: padSize, left: padX, top: padY });
 
             context.lineWidth = 4;
 
@@ -46,6 +49,7 @@ function XYPad({ forwardMessage }) {
             context.stroke();
 
             const padHandleSize = Math.min(padSize * 0.2, 20);
+            setPadDimensions((padDimensions) => ({ ...padDimensions, handleSize: padHandleSize }));
             const handleX = padX + position.x * padSize - padHandleSize / 2;
             const handleY = padY + position.y * padSize - padHandleSize / 2;
             const handleRadius = padHandleSize / 2;
@@ -97,13 +101,22 @@ function XYPad({ forwardMessage }) {
 
     const handlePointerDown = (event) => {
         event.preventDefault();
-        setIsDragging(true);
-        //updatePosition(event);
+        const clickPosition = { x: event.clientX, y: event.clientY };
+        setIsDragging(checkCollision(clickPosition));
     };
 
+    const checkCollision = (clickPosition) => {
+        const { left, top, width, height, handleSize } = padDimensions;
+        const canvas = canvasRef.current;
+        const rect = canvas.getBoundingClientRect();
+        const handleX = rect.left + left + position.x * width - handleSize / 2;
+        const handleY = rect.top + top + position.y * height - handleSize / 2;
+
+        return (clickPosition.x >= handleX - handleSize && clickPosition.x <= handleX + handleSize &&
+            clickPosition.y >= handleY && clickPosition.y - handleSize <= handleY + handleSize)
+    }
     const handlePointerMove = (event) => {
         if (isDragging) {
-            console.log("handlePointerMove")
             sendPadMessage(updatePosition(event));
         }
     };
@@ -128,8 +141,12 @@ function XYPad({ forwardMessage }) {
     const updatePosition = (event) => {
         const canvas = canvasRef.current;
         const rect = canvas.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / canvas.width;
-        const y = (event.clientY - rect.top) / canvas.height;
+        let x = (event.clientX - rect.left - padDimensions.left) / padDimensions.width;
+        let y = (event.clientY - rect.top - padDimensions.top) / padDimensions.height;
+
+        x = Math.min(1, Math.max(0, x));
+        y = Math.min(1, Math.max(0, y));
+
         const newPosition = { x: x, y: y };
         setPosition(newPosition);
         return newPosition;
@@ -145,7 +162,6 @@ function XYPad({ forwardMessage }) {
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
             />
-            {/* <button onClick={() => forwardMessage("PARAMS", 3, 4)}>Send Message</button> */}
         </div>
     );
 }
