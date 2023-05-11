@@ -29,6 +29,7 @@ public class TimeLoop {
 
     public boolean play(long barLength) {
         if (!runTimer) {
+            System.out.println("play");
             runTimer = true;
             this.barLength = barLength;
             runExecutor();

@@ -10,7 +10,7 @@ public class MovementQueue {
     private int movementIndex = 0;
 
 
-    public Movement getMovement() {
+    public Movement getNextMovement() {
         if (movementIndex < nextMovementQueue.size()) {
             Movement movement = nextMovementQueue.get(movementIndex);
             movementIndex++;
@@ -33,5 +33,19 @@ public class MovementQueue {
         nextMovementQueue.addAll(0, movements);
         nextMovementQueue.stream().forEach(m -> System.out.println(m.getName()));
         movementIndex = 0;
+    }
+
+    public String getCurrentMovementName() {
+        if (movementIndex < nextMovementQueue.size()) {
+            return nextMovementQueue.get(movementIndex - 1).getName();
+        }
+        return null;
+    }
+
+    public String getNextMovementName() {
+        if (movementIndex < nextMovementQueue.size()) {
+            return nextMovementQueue.get(movementIndex).getName();
+        }
+        return null;
     }
 }

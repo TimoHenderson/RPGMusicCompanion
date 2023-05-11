@@ -1,6 +1,8 @@
 package com.timohenderson.RPGMusicServer.websocket;
 
+import com.timohenderson.RPGMusicServer.events.SendGameStateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
@@ -18,6 +20,8 @@ public class SocketHandler extends TextWebSocketHandler {
 
 
     List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
+    @Autowired
+    ApplicationEventPublisher publisher;
 
     @Autowired
     MessageBroker messageBroker;
@@ -39,8 +43,9 @@ public class SocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         //the messages will be broadcasted to all users.
-        session.sendMessage(new TextMessage("Hello"));
+        // session.sendMessage(new TextMessage("Hello"));
         addSession(session);
+        publisher.publishEvent(new SendGameStateEvent(this, "State Please!"));
 
     }
 

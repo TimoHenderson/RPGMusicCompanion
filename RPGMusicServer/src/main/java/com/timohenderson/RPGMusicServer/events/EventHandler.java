@@ -5,12 +5,14 @@ import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.services.TuneService;
 import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
+import com.timohenderson.RPGMusicServer.websocket.SocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
@@ -21,6 +23,8 @@ public class EventHandler {
     TimelineService timelineService;
     @Autowired
     AudioPlayerService audioPlayerService;
+    @Autowired
+    SocketHandler socketHandler;
     @Autowired
     GameState gs;
     private ArrayList<String> log = new ArrayList<>();
@@ -66,6 +70,7 @@ public class EventHandler {
                 break;
             case PAUSE:
                 System.out.println("PAUSE");
+
         }
     }
 
@@ -99,19 +104,20 @@ public class EventHandler {
         }
     }
 
+    @Async
+    @EventListener
+    public void handleSendGameStateEvent(SendGameStateEvent event) throws IOException {
 
-//    public void handleChangeMovementEvent(ChangeMovementEvent event) {
-//    }
+        System.out.println("SendGameStateEvent");
+        if (event.getSource() instanceof SocketHandler) {
+            gs.sendGameState();
+            System.out.println("State Please");
+            return;
+        }
+        socketHandler.sendTextMessage(event.getState());
+    }
+
 //
-//
-//
-//    public void handleLoadTuneEvent(ChangeTuneEvent event) {
-//    }
-//
-//
-//
-//    public void changeSectionEvent(ChangeSectionEvent event) {
-//    }
 //
 //
 

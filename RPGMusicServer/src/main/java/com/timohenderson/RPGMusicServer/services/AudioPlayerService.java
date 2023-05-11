@@ -67,12 +67,12 @@ public class AudioPlayerService {
     }
 
     private void cleanCurrentCues() {
-        System.out.println("Cleaning current cues");
+        //System.out.println("Cleaning current cues");
         if (currentCues != null) {
             Iterator<MusicCue> cueItr = currentCues.iterator();
             while (cueItr.hasNext()) {
                 MusicCue musicCue = cueItr.next();
-                System.out.println(musicCue);
+                //          System.out.println(musicCue);
                 if (!musicCue.getIsActive()) {
                     musicCue.close();
                     cueItr.remove();
@@ -139,7 +139,7 @@ public class AudioPlayerService {
                 } else cueItr.remove();
             }
             if (fadingCues.size() == 0) {
-                System.out.println("Fading complete");
+                // System.out.println("Fading complete");
                 timer.cancel();
             }
 

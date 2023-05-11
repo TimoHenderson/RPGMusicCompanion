@@ -3,7 +3,7 @@ import Navigation from '../components/navigation/Navigation';
 import Transport from '../components/transport/Transport';
 import Location from '../components/location/Location';
 
-const Controls = ({ sendMessage }) => {
+const Controls = ({ sendMessage, gameState }) => {
 
     const forwardMessage = (JSONString) => {
         sendMessage(JSONString);
@@ -29,7 +29,7 @@ const Controls = ({ sendMessage }) => {
                 }}>
                 <Location forwardMessage={forwardMessage} />
                 <Navigation forwardMessage={forwardMessage} />
-                <Transport forwardMessage={forwardMessage} />
+                <Transport forwardMessage={forwardMessage} gameState={gameState} />
             </div>
         </div>
     );

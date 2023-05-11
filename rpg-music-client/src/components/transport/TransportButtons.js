@@ -1,4 +1,5 @@
-const TransportButtons = ({ sendTransportMessage, sendNavMessage }) => {
+const TransportButtons = ({ sendTransportMessage, isPlaying }) => {
+
     return (
         <div
             style={{
@@ -7,9 +8,10 @@ const TransportButtons = ({ sendTransportMessage, sendNavMessage }) => {
                 gap: "1rem",
                 justifyContent: "center",
             }}>
-            <button onClick={() => sendTransportMessage("PLAY")}>Play</button>
-            <button onClick={() => sendTransportMessage("PAUSE")}>Pause</button>
-            <button onClick={() => sendTransportMessage("STOP")}>Stop</button>
+            {isPlaying ?
+                <button onClick={() => sendTransportMessage("STOP")}>Stop</button> :
+                <button onClick={() => sendTransportMessage("PLAY")}>Play</button>
+            }
         </div>
     );
 }
