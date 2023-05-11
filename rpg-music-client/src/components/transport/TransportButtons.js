@@ -8,10 +8,10 @@ const TransportButtons = ({ sendTransportMessage, isPlaying }) => {
                 gap: "1rem",
                 justifyContent: "center",
             }}>
-            {isPlaying ?
-                <button onClick={() => sendTransportMessage("STOP")}>Stop</button> :
-                <button onClick={() => sendTransportMessage("PLAY")}>Play</button>
-            }
+
+            <button onClick={() => sendTransportMessage("PLAY")}>Play</button>
+            <button onClick={() => sendTransportMessage("STOP")}>Stop</button>
+
         </div>
     );
 }

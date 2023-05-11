@@ -25,8 +25,6 @@ class TunesFactory {
                     return new Tune(name, movements);
                 })
                 .collect(Collectors.toList());
-
-
         return tunes;
     }
 }

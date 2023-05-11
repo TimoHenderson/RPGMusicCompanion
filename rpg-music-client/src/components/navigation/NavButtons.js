@@ -8,7 +8,7 @@ const NavButtons = ({ sendNavMessage }) => {
                 justifyContent: "center",
             }}>
             <button onClick={() => sendNavMessage("NEXT_SECTION")}>Next Section</button>
-            <button onClick={() => sendNavMessage("NEXT_MOVEMENT")}>Next Movement</button>
+            {/* <button onClick={() => sendNavMessage("NEXT_MOVEMENT")}>Next Movement</button> */}
         </div>
     );
 }
