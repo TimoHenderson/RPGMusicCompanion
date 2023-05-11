@@ -58,4 +58,11 @@ public class SectionQueue {
         sectionQueue.addAll(0, sections);
         sectionIndex = 0;
     }
+
+    public String getNextSectionName() {
+        if (sectionIndex < sectionQueue.size()) {
+            return sectionQueue.get(sectionIndex).getName();
+        }
+        return null;
+    }
 }

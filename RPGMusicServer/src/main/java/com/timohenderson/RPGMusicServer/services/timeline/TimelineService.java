@@ -117,6 +117,7 @@ public class TimelineService {
 
     public void setCurrentSection(Section currentSection) throws LineUnavailableException {
         this.currentSection = currentSection;
+
         if (currentSection == null) {
             stopAndCleanUp();
             return;
@@ -126,6 +127,7 @@ public class TimelineService {
                 (60000.0 / currentSection.getSectionData().bpm())
                 * currentSection.getSectionData().numBeats());
         audioPlayer.loadSection(currentSection);
+        //play();
     }
 }
 

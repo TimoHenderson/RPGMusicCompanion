@@ -7,14 +7,22 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [connected, setConnected] = useState(false);
   const [connectClicked, setConnectClicked] = useState(false);
+  const [gameState, setGameState] = useState({
+    isPlaying: false,
+    currentTune: null,
+    prevTune: null,
+    currentMovement: null,
+    nextMovement: null,
+    currentSection: null,
+    nextSection: null
+  });
+
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080');
     setSocket(ws);
 
-    ws.addEventListener('message', (event) => {
-      console.log(`Received message: ${event.data}`);
-    });
+
 
     ws.addEventListener('open', () => {
       console.log('Connected to server');
@@ -43,6 +51,21 @@ function App() {
       socket.send(message);
     }
   };
+  if (socket) {
+    socket.addEventListener('message', (event) => {
+      console.log(`Received message: ${event.data}`);
+      const message = JSON.parse(event.data);
+      receiveMessage(message)
+
+    });
+  }
+  const receiveMessage = (message) => {
+    if (message["event"] === 'gameState') {
+      console.log("received game state")
+      setGameState({ ...gameState, ...message });
+    }
+  };
+
 
   return (
     <div
@@ -57,7 +80,7 @@ function App() {
       {connected ?
         <p style={{ margin: 0 }}>{connected ? 'Connected' : 'Disconnected'}</p> :
         <button onClick={reconnect}>Reconnect</button>}
-      <Controls sendMessage={sendMessage} />
+      <Controls sendMessage={sendMessage} gameState={gameState} />
     </div>
   );
 }

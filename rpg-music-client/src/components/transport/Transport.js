@@ -1,6 +1,6 @@
 import TransportButtons from "./TransportButtons";
 
-const Transport = ({ forwardMessage }) => {
+const Transport = ({ forwardMessage, gameState }) => {
 
     const sendTransportMessage = (action) => {
         const messageJSON = JSON.stringify({
@@ -9,7 +9,9 @@ const Transport = ({ forwardMessage }) => {
         });
         forwardMessage(messageJSON);
     }
-
+    if (!gameState) {
+        return null;
+    }
     return (
         <div
             style={{
@@ -20,6 +22,8 @@ const Transport = ({ forwardMessage }) => {
             }}>
             <TransportButtons
                 sendTransportMessage={sendTransportMessage}
+                isPlaying={gameState.isPlaying}
+
             />
         </div>
     );

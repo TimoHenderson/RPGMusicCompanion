@@ -28,9 +28,12 @@ public class QueueManager {
 
 
     public void loadTuneNow(Tune tune) {
+
         movements.replace(tune.getMovements());
-        replaceSectionQueueStoreOld(movements.getMovement());
+        replaceSectionQueueStoreOld(movements.getNextMovement());
+        //sectionQueue.clear();
         // replaceSectionQueue();
+
         prevTune = currentTune;
         currentTune = tune;
     }
@@ -39,7 +42,7 @@ public class QueueManager {
         currentTune = tune;
         prevTune = null;
         movements.replace(tune.getMovements());
-        movementSections.add(movements.getMovement().getSections());
+        movementSections.add(movements.getNextMovement().getSections());
     }
 
     public boolean isSectionQueueEmpty() {
@@ -47,7 +50,7 @@ public class QueueManager {
     }
 
     public void fillNextMovementSectionQueue() {
-        Movement movement = movements.getMovement();
+        Movement movement = movements.getNextMovement();
         if (movement != null) movementSections.add(movement);
     }
 
@@ -76,4 +79,30 @@ public class QueueManager {
     }
 
 
+    public String getCurrentTuneName() {
+        if (currentTune != null) return currentTune.getName();
+        return null;
+    }
+
+    public String getPrevTuneName() {
+        if (prevTune != null) return prevTune.getName();
+        return null;
+    }
+
+    public String getCurrentMovementName() {
+        return movements.getCurrentMovementName();
+    }
+
+    public String getNextMovementName() {
+        return movements.getNextMovementName();
+    }
+
+    public String getCurrentSectionName() {
+        if (currentSection != null) return currentSection.getName();
+        return null;
+    }
+
+    public String getNextSectionName() {
+        return sectionQueue.getNextSectionName();
+    }
 }

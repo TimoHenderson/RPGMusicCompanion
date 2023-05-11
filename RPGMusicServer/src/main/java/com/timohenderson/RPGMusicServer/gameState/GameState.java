@@ -1,13 +1,15 @@
 package com.timohenderson.RPGMusicServer.gameState;
 
+import com.google.gson.Gson;
 import com.timohenderson.RPGMusicServer.enums.ParamType;
-import com.timohenderson.RPGMusicServer.models.Movement;
+import com.timohenderson.RPGMusicServer.events.SendGameStateEvent;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
 import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -15,6 +17,8 @@ import java.util.HashMap;
 
 @Service
 public class GameState {
+    @Autowired
+    ApplicationEventPublisher publisher;
     @Autowired
     AudioPlayerService audioPlayer;
     @Autowired
@@ -25,10 +29,7 @@ public class GameState {
     private double intensity = 2.5;
     @Getter
     private boolean isPlaying = false;
-    private Tune currentTune = null;
-    private Tune nextTune = null;
-    private Movement currentMovement = null;
-    private Movement nextMovement = null;
+
     private QueueManager qm = new QueueManager();
 
 
@@ -46,16 +47,21 @@ public class GameState {
     public void setCurrentSection(Section section) throws LineUnavailableException, InterruptedException {
         qm.setCurrentSection(section);
         timeline.setCurrentSection(section);
+        setIsPlaying(true);
+        sendGameState();
         //if (section != null) audioPlayer.loadSection(section);
     }
 
     public boolean setIsPlaying(boolean isPlaying) throws LineUnavailableException {
-        if (isPlaying == true && qm.getCurrentSection() != null) {
-            this.isPlaying = timeline.play();
+//
+        if (isPlaying && qm.getCurrentSection() != null) {
+            if (!this.isPlaying) timeline.play();
+            this.isPlaying = true;
         } else {
             timeline.stop();
             this.isPlaying = false;
         }
+        sendGameStatePlay();
         return this.isPlaying;
     }
 
@@ -72,7 +78,8 @@ public class GameState {
             return;
         }
         setCurrentSection(newSection);
-        setIsPlaying(true);
+
+
     }
 
     public void loadPrevTune() throws LineUnavailableException, InterruptedException {
@@ -80,6 +87,7 @@ public class GameState {
         if (prevTune == null) {
             System.out.println("No more tunes to play");
             timeline.stopAndCleanUp();
+            setIsPlaying(false);
             return;
         }
         loadTune(prevTune, false);
@@ -95,7 +103,7 @@ public class GameState {
         }
         qm.replaceSectionQueue();
         updateCurrentSection();
-        //  setIsPlaying(true);
+        //setIsPlaying(true);
     }
 
     public void updateCurrentSection() throws LineUnavailableException, InterruptedException {
@@ -116,11 +124,48 @@ public class GameState {
             return;
         }
         qm.loadTune(tune);
+
         if (qm.isSectionQueueEmpty()) {
             loadNextMovement();
             qm.fillNextMovementSectionQueue();
-            timeline.triggerNextSection();
+
         }
+        if (!isPlaying) loadNextSection();
+
+        //sendGameState();
+    }
+
+    public void sendGameStatePlay() {
+
+        PlayStateForClient psfc = new PlayStateForClient(isPlaying);
+
+        publisher.publishEvent(new SendGameStateEvent(this, toJSONString(psfc)));
+    }
+
+    public void sendGameState() {
+        GameStateForClient gsfc = toGameStateForClient();
+        publisher.publishEvent(new SendGameStateEvent(this, toJSONString(gsfc)));
+    }
+
+    public String toJSONString(Object object) {
+        Gson gson = new Gson();
+        //GameStateForClient gsfc = toGameStateForClient();
+        System.out.println(object.toString());
+        String json = gson.toJson(object);
+        System.out.println(json);
+        return json;
+    }
+
+    public GameStateForClient toGameStateForClient() {
+        return new GameStateForClient(
+                qm.getCurrentTuneName(),
+                qm.getPrevTuneName(),
+                qm.getCurrentMovementName(),
+                qm.getNextMovementName(),
+                qm.getCurrentSectionName(),
+                qm.getNextSectionName(),
+                isPlaying
+        );
     }
 
 }
