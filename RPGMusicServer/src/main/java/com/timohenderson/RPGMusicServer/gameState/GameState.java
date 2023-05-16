@@ -24,9 +24,9 @@ public class GameState {
     @Autowired
     private TimelineService timeline;
     @Getter
-    private double darkness = 2.5;
+    private double darkness = 3.0;
     @Getter
-    private double intensity = 2.5;
+    private double intensity = 3.0;
     @Getter
     private boolean isPlaying = false;
 
