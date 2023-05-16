@@ -8,15 +8,14 @@ import javax.sound.sampled.LineUnavailableException;
 @Component
 public class RPGMixer extends AudioMixer {
 
+//    @Autowired
+//    public RPGMixer(VBMixer vbMixer) throws LineUnavailableException {
+//        super(vbMixer.getMixer(), 4096, 10);
+//        start();
+//    }
 
     public RPGMixer() throws LineUnavailableException {
         super();
         start();
     }
-
-//    public RPGMixer(Mixer mixer, int channels, int bufferSize) {
-//        super(mixer, channels, bufferSize);
-//    }
-
-
 }
