@@ -1,6 +1,6 @@
 import NavButtons from "./NavButtons";
 
-const Navigation = ({ forwardMessage }) => {
+const Navigation = ({ forwardMessage, gameState }) => {
 
     const sendNavMessage = (action) => {
         const messageJSON = JSON.stringify({
@@ -9,6 +9,7 @@ const Navigation = ({ forwardMessage }) => {
         });
         forwardMessage(messageJSON);
     }
+
 
     return (
         <NavButtons sendNavMessage={sendNavMessage} />

@@ -1,4 +1,5 @@
-const LocationButtons = ({ sendLocationMessage }) => {
+const LocationButtons = ({ sendLocationMessage}) => {
+
     return (
         <div
             style={{

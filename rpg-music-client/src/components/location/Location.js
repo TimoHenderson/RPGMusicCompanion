@@ -1,6 +1,6 @@
 import LocationButtons from "./LocationButtons";
 
-const Location = ({ forwardMessage }) => {
+const Location = ({ forwardMessage, gameState }) => {
     const sendLocationMessage = (location) => {
         const messageJSON = JSON.stringify({
             event: "SELECT_TUNE",

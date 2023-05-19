@@ -35,3 +35,5 @@ build/
 
 ### Audio Files ###
 *.wav
+/src/main/resources/static/tunes/
+/src/main/resources/static/tunes.zip

@@ -2,6 +2,7 @@ import './App.css';
 
 import { useState, useEffect } from 'react';
 import Controls from './containers/Controls';
+import Header from './components/header/Header';
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -16,6 +17,7 @@ function App() {
     currentSection: null,
     nextSection: null
   });
+  const [availableLocations,setAvailableLocations] =useState([]);
 
 
   useEffect(() => {
@@ -76,10 +78,7 @@ function App() {
         justifyContent: "center",
         gap: "2rem",
       }}>
-      <h1 style={{ margin: 0 }}>RPG Music Companion</h1>
-      {connected ?
-        <p style={{ margin: 0 }}>{connected ? 'Connected' : 'Disconnected'}</p> :
-        <button onClick={reconnect}>Reconnect</button>}
+      <Header connected={connected} reconnect={reconnect} />
       <Controls sendMessage={sendMessage} gameState={gameState} />
     </div>
   );

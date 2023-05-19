@@ -12,10 +12,10 @@ const Controls = ({ sendMessage, gameState }) => {
     return (
         <div
             style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr  ",
+                display: "flex",
+                flexWrap: "wrap",
                 alignItems: "center",
-                justifyContent: "start",
+                justifyContent: "center",
                 gap: "2rem",
             }}>
             <XYPad forwardMessage={forwardMessage} />
@@ -27,8 +27,8 @@ const Controls = ({ sendMessage, gameState }) => {
                     justifyContent: "center",
                     gap: "2rem",
                 }}>
-                <Location forwardMessage={forwardMessage} />
-                <Navigation forwardMessage={forwardMessage} />
+                <Location forwardMessage={forwardMessage} gameState={gameState} />
+                <Navigation forwardMessage={forwardMessage} gameState={gameState} />
                 <Transport forwardMessage={forwardMessage} gameState={gameState} />
             </div>
         </div>
