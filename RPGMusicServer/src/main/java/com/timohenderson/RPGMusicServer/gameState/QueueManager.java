@@ -27,7 +27,7 @@ public class QueueManager {
     @Setter
     private Section currentSection = null;
 
-    public void loadTune(Tune tune) throws LineUnavailableException, InterruptedException {
+    public Section loadTune(Tune tune) throws LineUnavailableException, InterruptedException {
         if (!tune.getName().equals("Combat")) {
             currentTune = tune;
             prevTune = null;
@@ -38,14 +38,17 @@ public class QueueManager {
                 fillNextMovementSectionQueue();
             }
         } else loadTuneNow(tune);
+
+        return currentSection;
     }
 
-    public void loadTuneNow(Tune tune) throws LineUnavailableException, InterruptedException {
+    public Section loadTuneNow(Tune tune) throws LineUnavailableException, InterruptedException {
         movements.replace(tune.getMovements());
         replaceSectionQueueStoreOld(movements.getNextMovement());
         prevTune = currentTune;
         currentTune = tune;
         loadNextSection();
+        return currentSection;
     }
 
     public void loadNextMovement() throws LineUnavailableException, InterruptedException {
@@ -77,6 +80,8 @@ public class QueueManager {
         if (sectionQueue.isOnLastSection()) {
             setCurrentSection(null);
             loadNextMovement();
+        } else {
+            setCurrentSection(sectionQueue.getSection());
         }
         return currentSection;
     }

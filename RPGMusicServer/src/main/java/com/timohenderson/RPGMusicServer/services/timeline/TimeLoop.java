@@ -45,8 +45,6 @@ public class TimeLoop {
 
     public void stopLoop() throws LineUnavailableException {
         runTimer = false;
-        //audioPlayer.stop();
-        //audioPlayer.fadeCurrentCues();
         if (executorService != null)
             executorService.shutdownNow();
     }
@@ -68,13 +66,16 @@ public class TimeLoop {
         public void run() throws RuntimeException {
             if (playCues) {
                 try {
+                    System.out.println("playCues");
                     audioPlayer.playNextCues();
+
                 } catch (LineUnavailableException e) {
                     throw new RuntimeException(e);
                 }
             }
             try {
                 if (timeline.shouldTimeLineEnd()) {
+                    System.out.println("shouldTimeLineEnd");
                     timeline.loadNextSectionHandler();
                     timeline.setEnd(false);
                 } else {

@@ -1,13 +1,10 @@
 package com.timohenderson.RPGMusicServer.services.timeline;
 
-import com.timohenderson.RPGMusicServer.enums.NavigationType;
-import com.timohenderson.RPGMusicServer.events.NavigationEvent;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.services.AudioPlayer;
+import com.timohenderson.RPGMusicServer.services.ConductorService;
+import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.scheduling.annotation.Async;
 
 import javax.sound.sampled.LineUnavailableException;
 
@@ -21,42 +18,18 @@ public class Timeline {
     private boolean end = false;
     private int nextBarTransitionTriggered = 0;
     private int currentBar = 1;
+    @Getter
     private Section currentSection;
-    @Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
+
     private AudioPlayer audioPlayer = new AudioPlayer();
+    private ConductorService conductor;
 
-
-    public Timeline(AudioPlayer audioPlayer) throws LineUnavailableException {
-        this.audioPlayer = audioPlayer;
+    public Timeline(ConductorService conductor) throws LineUnavailableException {
+        this.conductor = conductor;
         timeLoop = new TimeLoop(this, audioPlayer);
     }
 
     public Timeline() throws LineUnavailableException {
-    }
-
-    public void stopAndRestart() throws LineUnavailableException {
-        end = true;
-        timeLoop.stopLoop();
-        timeLoop.play(barLength);
-    }
-
-
-    @Async
-    public void loadNextSectionHandler() throws LineUnavailableException, InterruptedException {
-        applicationEventPublisher.publishEvent(new NavigationEvent(this, NavigationType.NEXT_SECTION));
-    }
-
-
-    private void reset() {
-        currentBar = 1;
-    }
-
-    public void stopAndCleanUp() throws LineUnavailableException {
-        timeLoop.stopLoop();
-        currentBar = 1;
-        end = false;
-
     }
 
     public boolean play() throws LineUnavailableException {
@@ -66,6 +39,28 @@ public class Timeline {
 
     public void stop() throws LineUnavailableException {
         timeLoop.stopLoop();
+    }
+
+    public void stopAndRestart() throws LineUnavailableException {
+        end = true;
+        timeLoop.stopLoop();
+        timeLoop.play(barLength);
+    }
+
+    public void stopAndCleanUp() throws LineUnavailableException {
+        timeLoop.stopLoop();
+        currentBar = 1;
+        end = false;
+    }
+
+    private void reset() {
+        currentBar = 1;
+    }
+
+    //    @Async
+    public void loadNextSectionHandler() throws LineUnavailableException, InterruptedException {
+        System.out.println("loadNextSectionHandler");
+        conductor.loadNextSection();
     }
 
     boolean shouldTimeLineEnd() throws LineUnavailableException {
@@ -117,7 +112,6 @@ public class Timeline {
 
     public void setCurrentSection(Section currentSection) throws LineUnavailableException {
         this.currentSection = currentSection;
-
         if (currentSection == null) {
             stopAndCleanUp();
             return;
