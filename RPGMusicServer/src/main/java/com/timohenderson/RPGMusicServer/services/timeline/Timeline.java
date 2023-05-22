@@ -18,6 +18,7 @@ public class Timeline {
     private boolean end = false;
     private int nextBarTransitionTriggered = 0;
     private int currentBar = 1;
+    private boolean immediateTransition = false;
     @Getter
     private Section currentSection;
 
@@ -42,7 +43,6 @@ public class Timeline {
     }
 
     public void stopAndRestart() throws LineUnavailableException {
-        end = true;
         timeLoop.stopLoop();
         timeLoop.play(barLength);
     }
@@ -60,11 +60,21 @@ public class Timeline {
     //    @Async
     public void loadNextSectionHandler() throws LineUnavailableException, InterruptedException {
         System.out.println("loadNextSectionHandler");
+        if (immediateTransition) {
+            immediateTransition = false;
+
+        }
         conductor.loadNextSection();
     }
 
     boolean shouldTimeLineEnd() throws LineUnavailableException {
         if (currentSection == null) return false;
+        if (end && immediateTransition) {
+            System.out.println("immediateTransition");
+            audioPlayer.fadeCurrentCues();
+//            timeLoop.setPlayCues(false);
+            return true;
+        }
         if (end || !currentSection.getSectionData().loop()) {
             switch (currentSection.getSectionData().transitionType()) {
                 case END -> {
@@ -72,13 +82,16 @@ public class Timeline {
                 }
                 case NEXT_BAR -> {
                     if (nextBarTransitionTriggered == 0) {
+                        System.out.println("nextBarTransitionTriggered");
                         audioPlayer.fadeCurrentCues();
                         timeLoop.setPlayCues(false);
                     }
                     if (nextBarTransitionTriggered < fadeBarsToWait) {
+                        System.out.println("nextBarTransitionTriggered<fadeBarsToWait");
                         nextBarTransitionTriggered++;
                         return false;
                     } else {
+                        System.out.println("nextBarTransitionTriggered>=fadeBarsToWait");
                         nextBarTransitionTriggered = 0;
                         currentBar = -1;
                         timeLoop.setPlayCues(true);
@@ -88,6 +101,11 @@ public class Timeline {
             }
         }
         return false;
+    }
+
+    public void changeSectionNow(Section section) throws LineUnavailableException {
+        end = true;
+        immediateTransition = true;
     }
 
     public void setEnd(boolean end) {
@@ -117,11 +135,17 @@ public class Timeline {
             return;
         }
         reset();
+        long previousBarLength = barLength;
         setBarLength((long)
                 (60000.0 / currentSection.getSectionData().bpm())
                 * currentSection.getSectionData().numBeats());
         audioPlayer.loadSection(currentSection);
-        //play();
+        if (previousBarLength != barLength) {
+            stopAndRestart();
+        }
+
+
+        // play();
     }
 }
 

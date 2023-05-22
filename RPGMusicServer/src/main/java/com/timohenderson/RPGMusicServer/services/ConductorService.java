@@ -2,7 +2,6 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.gameState.QueueManager;
 import com.timohenderson.RPGMusicServer.models.Tune;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +23,14 @@ public class ConductorService {
 
     public void loadTune(String tuneName) throws LineUnavailableException, InterruptedException {
         Tune tune = tuneService.loadTune(tuneName);
-        Section currentSection;
         if (tuneName.equals("Combat")) {
             qm.loadTuneNow(tune);
-            timeline.stopAndRestart();
-        } else qm.loadTune(tune);
+            changeSectionImmediately();
+
+        } else {
+            qm.loadTune(tune);
+
+        }
     }
 
 
@@ -38,12 +40,12 @@ public class ConductorService {
         timeline.play();
     }
 
-    public void fadeAndChangeSection() {
-//        audioPlayer.fadeCurrentCues();
-//        setIsPlaying(false);
+    public void changeSectionImmediately() throws LineUnavailableException, InterruptedException {
+        timeline.changeSectionNow(qm.getCurrentSection());
     }
 
-    public void stop() {
+    public void stop() throws LineUnavailableException {
+        timeline.stop();
     }
 
     public void triggerNextSection() {

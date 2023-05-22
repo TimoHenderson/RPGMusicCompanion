@@ -47,7 +47,7 @@ public class QueueManager {
         replaceSectionQueueStoreOld(movements.getNextMovement());
         prevTune = currentTune;
         currentTune = tune;
-        loadNextSection();
+        //loadNextSection();
         return currentSection;
     }
 
