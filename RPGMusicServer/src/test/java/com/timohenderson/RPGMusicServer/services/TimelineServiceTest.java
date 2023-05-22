@@ -6,7 +6,7 @@ import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
-import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
+import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import javax.sound.sampled.LineUnavailableException;
 @SpringBootTest
 class TimelineServiceTest {
     @Autowired
-    TimelineService timelineService;
+    Timeline timeline;
     @Autowired
     EventCatcher eventCatcher;
     Section section;
@@ -65,7 +65,7 @@ class TimelineServiceTest {
 
     @AfterEach
     void tearDown() throws LineUnavailableException {
-        timelineService.stopAndCleanUp();
+        timeline.stopAndCleanUp();
         eventCatcher.clearLog();
     }
 

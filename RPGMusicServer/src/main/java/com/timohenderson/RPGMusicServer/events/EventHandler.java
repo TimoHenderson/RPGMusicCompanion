@@ -2,9 +2,9 @@ package com.timohenderson.RPGMusicServer.events;
 
 import com.timohenderson.RPGMusicServer.gameState.GameState;
 import com.timohenderson.RPGMusicServer.models.Tune;
-import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
+import com.timohenderson.RPGMusicServer.services.AudioPlayer;
 import com.timohenderson.RPGMusicServer.services.TuneService;
-import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
+import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
 import com.timohenderson.RPGMusicServer.websocket.SocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -20,9 +20,9 @@ public class EventHandler {
     @Autowired
     TuneService tuneService;
     @Autowired
-    TimelineService timelineService;
+    Timeline timeline;
     @Autowired
-    AudioPlayerService audioPlayerService;
+    AudioPlayer audioPlayer;
     @Autowired
     SocketHandler socketHandler;
     @Autowired
@@ -85,21 +85,21 @@ public class EventHandler {
         System.out.println("LoadTuneEvent");
         String tuneName = event.getTuneName();
         Tune tune = tuneService.loadTune(tuneName);
-        gs.loadTune(tune, tuneName.equals("Combat"));
+        //gs.loadTune(tune, tuneName.equals("Combat"));
 
     }
 
     @EventListener
     public void handleNavigationEvent(NavigationEvent event) throws LineUnavailableException, InterruptedException {
         System.out.println("NavigateEvent");
-        if (event.getSource() instanceof TimelineService) {
-            gs.loadNextSection();
-            return;
-        }
+//        if (event.getSource() instanceof Timeline) {
+//            gs.loadNextSection();
+//            return;
+//        }
 
         switch (event.getAction()) {
             case NEXT_SECTION:
-                timelineService.triggerNextSection();
+                timeline.triggerNextSection();
                 break;
         }
     }

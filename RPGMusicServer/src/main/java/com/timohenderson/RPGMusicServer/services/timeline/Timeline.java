@@ -3,18 +3,16 @@ package com.timohenderson.RPGMusicServer.services.timeline;
 import com.timohenderson.RPGMusicServer.enums.NavigationType;
 import com.timohenderson.RPGMusicServer.events.NavigationEvent;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
-import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
+import com.timohenderson.RPGMusicServer.services.AudioPlayer;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
 
 
-@Service
-public class TimelineService {
+public class Timeline {
 
     private final int fadeBarsToWait = 3;
     TimeLoop timeLoop;
@@ -26,14 +24,16 @@ public class TimelineService {
     private Section currentSection;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
-    private AudioPlayerService audioPlayer;
+    private AudioPlayer audioPlayer = new AudioPlayer();
 
-    @Autowired
-    public TimelineService(AudioPlayerService audioPlayer) {
+
+    public Timeline(AudioPlayer audioPlayer) throws LineUnavailableException {
         this.audioPlayer = audioPlayer;
         timeLoop = new TimeLoop(this, audioPlayer);
     }
 
+    public Timeline() throws LineUnavailableException {
+    }
 
     public void stopAndRestart() throws LineUnavailableException {
         end = true;

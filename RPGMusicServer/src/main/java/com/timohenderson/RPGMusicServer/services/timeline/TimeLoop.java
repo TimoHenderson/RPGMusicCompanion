@@ -1,6 +1,6 @@
 package com.timohenderson.RPGMusicServer.services.timeline;
 
-import com.timohenderson.RPGMusicServer.services.AudioPlayerService;
+import com.timohenderson.RPGMusicServer.services.AudioPlayer;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.util.concurrent.Executors;
@@ -10,15 +10,15 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeLoop {
 
-    AudioPlayerService audioPlayer;
+    AudioPlayer audioPlayer;
     ScheduledExecutorService executorService;
-    TimelineService timeline;
+    Timeline timeline;
     private volatile boolean runTimer;
     private volatile boolean playCues = true;
     private long barLength = 0;
 
 
-    public TimeLoop(TimelineService timeline, AudioPlayerService audioPlayer) {
+    public TimeLoop(Timeline timeline, AudioPlayer audioPlayer) {
         this.timeline = timeline;
         this.audioPlayer = audioPlayer;
     }
