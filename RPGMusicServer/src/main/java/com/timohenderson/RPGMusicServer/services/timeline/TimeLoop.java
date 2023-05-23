@@ -66,7 +66,7 @@ public class TimeLoop {
         public void run() throws RuntimeException {
             if (playCues) {
                 try {
-                    System.out.println("playCues");
+//                    System.out.println("playCues");
                     audioPlayer.playNextCues();
 
                 } catch (LineUnavailableException e) {

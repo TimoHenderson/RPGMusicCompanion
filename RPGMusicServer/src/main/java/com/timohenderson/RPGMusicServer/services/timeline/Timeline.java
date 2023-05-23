@@ -34,6 +34,7 @@ public class Timeline {
     }
 
     public boolean play() throws LineUnavailableException {
+        if (currentSection == null) return false;
         timeLoop.play(barLength);
         return true;
     }
@@ -60,9 +61,9 @@ public class Timeline {
     //    @Async
     public void loadNextSectionHandler() throws LineUnavailableException, InterruptedException {
         System.out.println("loadNextSectionHandler");
+        System.out.println("immediateTransition" + immediateTransition);
         if (immediateTransition) {
             immediateTransition = false;
-
         }
         conductor.loadNextSection();
     }
@@ -70,14 +71,14 @@ public class Timeline {
     boolean shouldTimeLineEnd() throws LineUnavailableException {
         if (currentSection == null) return false;
         if (end && immediateTransition) {
-            System.out.println("immediateTransition");
+//            System.out.println("immediateTransition");
             audioPlayer.fadeCurrentCues();
-//            timeLoop.setPlayCues(false);
             return true;
         }
         if (end || !currentSection.getSectionData().loop()) {
             switch (currentSection.getSectionData().transitionType()) {
                 case END -> {
+                    System.out.println("END " + currentBar + " " + currentSection.getSectionData().numBars());
                     return currentBar == currentSection.getSectionData().numBars();
                 }
                 case NEXT_BAR -> {
@@ -117,11 +118,13 @@ public class Timeline {
     }
 
     void nextBar() {
+        System.out.println("currentBar: " + currentBar);
         currentBar++;
         boolean lastBarPlayed = currentSection != null && currentBar > currentSection.getSectionData().numBars();
         if (lastBarPlayed) {
             currentBar = 1;
         }
+
     }
 
     public int getCurrentBar() {
@@ -134,6 +137,7 @@ public class Timeline {
             stopAndCleanUp();
             return;
         }
+        System.out.println("setCurrentSection: " + currentSection.getName());
         reset();
         long previousBarLength = barLength;
         setBarLength((long)
@@ -141,10 +145,9 @@ public class Timeline {
                 * currentSection.getSectionData().numBeats());
         audioPlayer.loadSection(currentSection);
         if (previousBarLength != barLength) {
+            System.out.println("barLength changed:" + "barLength: " + barLength + " previousBarLength: " + previousBarLength);
             stopAndRestart();
         }
-
-
         // play();
     }
 }
