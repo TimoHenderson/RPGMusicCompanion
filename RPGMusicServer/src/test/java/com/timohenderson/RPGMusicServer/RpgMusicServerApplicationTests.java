@@ -2,8 +2,8 @@ package com.timohenderson.RPGMusicServer;
 
 import com.timohenderson.RPGMusicServer.DirectoryScanner.FileWalker;
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
-import com.timohenderson.RPGMusicServer.models.Tune;
-import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.models.tunes.Tune;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.SectionData;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

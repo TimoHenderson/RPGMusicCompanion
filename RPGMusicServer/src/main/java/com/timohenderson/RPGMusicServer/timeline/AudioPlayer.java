@@ -3,8 +3,8 @@ package com.timohenderson.RPGMusicServer.timeline;
 import com.timohenderson.RPGMusicServer.audio.MusicCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
 import com.timohenderson.RPGMusicServer.gameState.GameParameters;
-import com.timohenderson.RPGMusicServer.models.parts.PartData;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.PartData;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import org.javatuples.Pair;
 import org.springframework.scheduling.annotation.Async;
 

@@ -2,9 +2,9 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.enums.ParamType;
 import com.timohenderson.RPGMusicServer.gameState.GameParameters;
-import com.timohenderson.RPGMusicServer.gameState.QueueManager;
-import com.timohenderson.RPGMusicServer.models.Tune;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.managers.QueueManager;
+import com.timohenderson.RPGMusicServer.models.tunes.Tune;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import com.timohenderson.RPGMusicServer.timeline.Timeline;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;

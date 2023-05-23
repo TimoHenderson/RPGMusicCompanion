@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.models.sections;
+package com.timohenderson.RPGMusicServer.models.tunes.sections;
 
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
 

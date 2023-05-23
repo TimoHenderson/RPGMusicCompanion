@@ -1,6 +1,6 @@
-package com.timohenderson.RPGMusicServer.gameState;
+package com.timohenderson.RPGMusicServer.models.queues;
 
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 
 import java.util.ArrayList;
 import java.util.List;

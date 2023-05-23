@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.models.parts;
+package com.timohenderson.RPGMusicServer.models.tunes.parts;
 
 import org.javatuples.Pair;
 

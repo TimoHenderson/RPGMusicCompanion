@@ -2,10 +2,10 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.TestingUtils.EventCatcher;
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
-import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
-import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
-import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.AdaptiveSection;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.RenderedSection;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.SectionData;
 import com.timohenderson.RPGMusicServer.timeline.Timeline;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

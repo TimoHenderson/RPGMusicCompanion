@@ -1,9 +1,9 @@
 package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.DirectoryScanner.FileWalker;
-import com.timohenderson.RPGMusicServer.models.Movement;
-import com.timohenderson.RPGMusicServer.models.Tune;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.Movement;
+import com.timohenderson.RPGMusicServer.models.tunes.Tune;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;

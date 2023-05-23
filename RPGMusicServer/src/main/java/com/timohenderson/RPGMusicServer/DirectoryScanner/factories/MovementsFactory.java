@@ -1,7 +1,7 @@
 package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
-import com.timohenderson.RPGMusicServer.models.Movement;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.Movement;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 
 import java.io.IOException;
 import java.nio.file.Files;

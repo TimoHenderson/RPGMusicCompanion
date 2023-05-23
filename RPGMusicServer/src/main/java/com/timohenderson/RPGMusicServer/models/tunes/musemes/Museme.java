@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.models.musemes;
+package com.timohenderson.RPGMusicServer.models.tunes.musemes;
 
 import org.springframework.data.annotation.Transient;
 

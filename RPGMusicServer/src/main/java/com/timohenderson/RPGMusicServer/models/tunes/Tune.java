@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.models;
+package com.timohenderson.RPGMusicServer.models.tunes;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
