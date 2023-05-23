@@ -2,6 +2,7 @@ package com.timohenderson.RPGMusicServer.services;
 
 import com.timohenderson.RPGMusicServer.gameState.QueueManager;
 import com.timohenderson.RPGMusicServer.models.Tune;
+import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,14 @@ public class ConductorService {
 
     public void play() throws LineUnavailableException, InterruptedException {
         System.out.println(qm.getCurrentSection());
-        if (timeline.getCurrentSection() == null) timeline.setCurrentSection(qm.getCurrentSection());
+        if (timeline.getCurrentSection() == null) {
+            Section currentSection = qm.getCurrentSection();
+            if (currentSection == null) {
+                loadNextSection();
+            } else {
+                timeline.setCurrentSection(currentSection);
+            }
+        }
         timeline.play();
     }
 
