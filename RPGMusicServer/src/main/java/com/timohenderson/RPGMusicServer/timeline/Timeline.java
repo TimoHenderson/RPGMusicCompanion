@@ -1,7 +1,7 @@
-package com.timohenderson.RPGMusicServer.services.timeline;
+package com.timohenderson.RPGMusicServer.timeline;
 
+import com.timohenderson.RPGMusicServer.gameState.GameParameters;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
-import com.timohenderson.RPGMusicServer.services.AudioPlayer;
 import com.timohenderson.RPGMusicServer.services.ConductorService;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,12 +21,12 @@ public class Timeline {
     private boolean immediateTransition = false;
     @Getter
     private Section currentSection;
-
-    private AudioPlayer audioPlayer = new AudioPlayer();
+    private AudioPlayer audioPlayer;
     private ConductorService conductor;
 
-    public Timeline(ConductorService conductor) throws LineUnavailableException {
+    public Timeline(ConductorService conductor, GameParameters gameParameters) throws LineUnavailableException {
         this.conductor = conductor;
+        audioPlayer = new AudioPlayer(gameParameters);
         timeLoop = new TimeLoop(this, audioPlayer);
     }
 

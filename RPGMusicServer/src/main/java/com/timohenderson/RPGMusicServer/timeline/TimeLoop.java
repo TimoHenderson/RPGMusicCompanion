@@ -1,6 +1,4 @@
-package com.timohenderson.RPGMusicServer.services.timeline;
-
-import com.timohenderson.RPGMusicServer.services.AudioPlayer;
+package com.timohenderson.RPGMusicServer.timeline;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.util.concurrent.Executors;
