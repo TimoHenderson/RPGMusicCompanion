@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
 import com.google.gson.Gson;
 import com.timohenderson.RPGMusicServer.enums.MusicalType;
@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildPartLists;
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildRenderedParts;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.PartFactory.buildPartLists;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.PartFactory.buildRenderedParts;
 
 class SectionFactory {
     static List<Section> buildSections(Path movementPath) throws IOException {

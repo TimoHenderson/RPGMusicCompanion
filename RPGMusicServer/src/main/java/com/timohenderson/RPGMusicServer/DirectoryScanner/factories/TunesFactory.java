@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
 import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.Tune;
@@ -9,10 +9,10 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.MovementsFactory.buildMovements;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.MovementsFactory.buildMovements;
 
-class TunesFactory {
-    static List<Tune> buildTunes(Path startPath) throws IOException {
+public class TunesFactory {
+    public static List<Tune> buildTunes(Path startPath) throws IOException {
         List<Tune> tunes = Files.list(startPath)
                 .map((f) -> {
                     String name = f.getFileName().toString();

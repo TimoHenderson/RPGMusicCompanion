@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
 import com.timohenderson.RPGMusicServer.models.musemes.Museme;
 import com.timohenderson.RPGMusicServer.models.musemes.MusemeData;
