@@ -6,7 +6,7 @@ import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.models.sections.SectionData;
-import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
+import com.timohenderson.RPGMusicServer.timeline.Timeline;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;

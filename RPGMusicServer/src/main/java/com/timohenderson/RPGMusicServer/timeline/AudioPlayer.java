@@ -1,10 +1,10 @@
-package com.timohenderson.RPGMusicServer.services;
+package com.timohenderson.RPGMusicServer.timeline;
 
 import com.timohenderson.RPGMusicServer.audio.MusicCue;
 import com.timohenderson.RPGMusicServer.audio.RPGMixer;
+import com.timohenderson.RPGMusicServer.gameState.GameParameters;
 import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
-import lombok.Setter;
 import org.javatuples.Pair;
 import org.springframework.scheduling.annotation.Async;
 
@@ -21,10 +21,7 @@ public class AudioPlayer {
     RPGMixer mixer = new RPGMixer();
     Section section;
     int currentBar = 0;
-    @Setter
-    double darkness = 2.5;
-    @Setter
-    double intensity = 2.5;
+    GameParameters gameParameters;
     Timer timer;
     ArrayList<MusicCue> nextCues = new ArrayList<MusicCue>();
     ArrayList<MusicCue> currentCues = new ArrayList<MusicCue>();
@@ -32,7 +29,8 @@ public class AudioPlayer {
     MusicCue[] nextCuesArray;
     int[] ids;
 
-    public AudioPlayer() throws LineUnavailableException {
+    public AudioPlayer(GameParameters gameParameters) throws LineUnavailableException {
+        this.gameParameters = gameParameters;
     }
 
     public void loadSection(Section section) throws LineUnavailableException {
@@ -50,7 +48,9 @@ public class AudioPlayer {
 
     public void queueNextMusemes() {
         nextCues.clear();
-        List<Pair<PartData, URL>> nextMusemeURLs = section.getNextMusemeURLs(currentBar, darkness, intensity);
+        System.out.println(gameParameters.getDarkness() + " " + gameParameters.getIntensity());
+        List<Pair<PartData, URL>> nextMusemeURLs =
+                section.getNextMusemeURLs(currentBar, gameParameters.getDarkness(), gameParameters.getIntensity());
         if (nextMusemeURLs != null) {
             nextMusemeURLs.forEach((url) -> {
                 try {

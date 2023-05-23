@@ -65,11 +65,11 @@ public class EventHandler {
         }
     }
 
-//    @Async
-//    @EventListener
-//    public void handleGameParamsEvent(GameParamsEvent event) {
-//        gs.setGameParams(event.getParams());
-//    }
+    @Async
+    @EventListener
+    public void handleGameParamsEvent(GameParamsEvent event) {
+        conductor.setGameParams(event.getParams());
+    }
 
     @EventListener
     public void handleLoadTuneEvent(LoadTuneEvent event) throws LineUnavailableException, InterruptedException {

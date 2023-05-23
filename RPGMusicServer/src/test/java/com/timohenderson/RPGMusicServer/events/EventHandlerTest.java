@@ -1,6 +1,6 @@
 package com.timohenderson.RPGMusicServer.events;
 
-import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
+import com.timohenderson.RPGMusicServer.timeline.Timeline;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
