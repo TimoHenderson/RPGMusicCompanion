@@ -4,7 +4,7 @@ import com.timohenderson.RPGMusicServer.models.Movement;
 import com.timohenderson.RPGMusicServer.models.Tune;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import com.timohenderson.RPGMusicServer.repositories.TuneRepository;
-import com.timohenderson.RPGMusicServer.services.timeline.TimelineService;
+import com.timohenderson.RPGMusicServer.services.timeline.Timeline;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,13 +16,13 @@ import javax.sound.sampled.LineUnavailableException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class AudioPlayerServiceTest {
+class AudioPlayerTest {
     @Autowired
-    AudioPlayerService audioPlayerService;
+    AudioPlayer audioPlayer;
     @Autowired
     TuneRepository tuneRepository;
     @Autowired
-    TimelineService timelineService;
+    Timeline timeline;
     Section renderedSection;
     Section adaptiveSection;
     Section combatAdaptiveSection;
@@ -58,30 +58,30 @@ class AudioPlayerServiceTest {
 
     @Test
     void loadSection() throws LineUnavailableException {
-        audioPlayerService.loadSection(renderedSection);
-        Section loadedSection = audioPlayerService.getLoadedSection();
+        audioPlayer.loadSection(renderedSection);
+        Section loadedSection = audioPlayer.getLoadedSection();
         assertEquals(renderedSection, loadedSection);
     }
 
     @Test
     void setCurrentBar() throws InterruptedException, LineUnavailableException {
-        audioPlayerService.loadSection(renderedSection);
-        audioPlayerService.setCurrentBar(0);
+        audioPlayer.loadSection(renderedSection);
+        audioPlayer.setCurrentBar(0);
         System.out.println("loaded");
         Thread.sleep(2000);
         System.out.println("mixerStart");
-        audioPlayerService.playNextCues();
+        audioPlayer.playNextCues();
         Thread.sleep(2000);
     }
 
     @Test
     void setCurrentBar2() throws InterruptedException, LineUnavailableException {
-        audioPlayerService.loadSection(adaptiveSection);
-        audioPlayerService.setCurrentBar(0);
+        audioPlayer.loadSection(adaptiveSection);
+        audioPlayer.setCurrentBar(0);
         System.out.println("loaded");
         Thread.sleep(2000);
         System.out.println("mixerStart");
-        audioPlayerService.playNextCues();
+        audioPlayer.playNextCues();
         Thread.sleep(2000);
     }
 

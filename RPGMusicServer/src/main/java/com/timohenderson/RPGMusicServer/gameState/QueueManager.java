@@ -6,6 +6,7 @@ import com.timohenderson.RPGMusicServer.models.sections.Section;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,27 +27,63 @@ public class QueueManager {
     @Setter
     private Section currentSection = null;
 
+    public Section loadTune(Tune tune) throws LineUnavailableException, InterruptedException {
+        if (!tune.getName().equals("Combat")) {
+            currentTune = tune;
+            prevTune = null;
+            movements.replace(tune.getMovements());
+            movementSections.add(movements.getNextMovement().getSections());
+            if (sectionQueue.isEmpty()) {
+                loadNextMovement();
+                fillNextMovementSectionQueue();
+            }
+        } else loadTuneNow(tune);
 
-    public void loadTuneNow(Tune tune) {
+        return currentSection;
+    }
 
+    public Section loadTuneNow(Tune tune) throws LineUnavailableException, InterruptedException {
         movements.replace(tune.getMovements());
         replaceSectionQueueStoreOld(movements.getNextMovement());
-        //sectionQueue.clear();
-        // replaceSectionQueue();
-
         prevTune = currentTune;
         currentTune = tune;
+        //loadNextSection();
+        return currentSection;
     }
 
-    public void loadTune(Tune tune) {
-        currentTune = tune;
-        prevTune = null;
-        movements.replace(tune.getMovements());
-        movementSections.add(movements.getNextMovement().getSections());
+    public void loadNextMovement() throws LineUnavailableException, InterruptedException {
+        if (movementSections.isEmpty()) {
+            fillNextMovementSectionQueue();
+        }
+        if (movementSections.isEmpty()) {
+            loadPrevTune();
+            return;
+        }
+        replaceSectionQueue();
+        updateCurrentSection();
     }
 
-    public boolean isSectionQueueEmpty() {
-        return sectionQueue.isEmpty();
+    public void updateCurrentSection() throws LineUnavailableException, InterruptedException {
+        if (currentSection == null)
+            loadNextSection();
+    }
+
+    public void loadPrevTune() throws LineUnavailableException, InterruptedException {
+        if (prevTune == null) {
+            System.out.println("No more tunes to play");
+            return;
+        }
+        loadTune(prevTune);
+    }
+
+    public Section loadNextSection() throws InterruptedException, LineUnavailableException {
+        if (sectionQueue.isOnLastSection()) {
+            setCurrentSection(null);
+            loadNextMovement();
+        } else {
+            setCurrentSection(sectionQueue.getSection());
+        }
+        return currentSection;
     }
 
     public void fillNextMovementSectionQueue() {
@@ -64,45 +101,31 @@ public class QueueManager {
         sectionQueue.replaceQueue(sections);
     }
 
-    public boolean isOnLastSection() {
-        return sectionQueue.isOnLastSection();
-    }
 
-    public boolean isMovementSectionsEmpty() {
-        return movementSections.isEmpty();
-    }
-
-
-    //applicationEventPublisher.publishEvent(new SectionLoadedEvent(this, currentSection));
-    public Section getNextSection() {
-        return sectionQueue.getSection();
-    }
-
-
-    public String getCurrentTuneName() {
-        if (currentTune != null) return currentTune.getName();
-        return null;
-    }
-
-    public String getPrevTuneName() {
-        if (prevTune != null) return prevTune.getName();
-        return null;
-    }
-
-    public String getCurrentMovementName() {
-        return movements.getCurrentMovementName();
-    }
-
-    public String getNextMovementName() {
-        return movements.getNextMovementName();
-    }
-
-    public String getCurrentSectionName() {
-        if (currentSection != null) return currentSection.getName();
-        return null;
-    }
-
-    public String getNextSectionName() {
-        return sectionQueue.getNextSectionName();
-    }
+//    public String getCurrentTuneName() {
+//        if (currentTune != null) return currentTune.getName();
+//        return null;
+//    }
+//
+//    public String getPrevTuneName() {
+//        if (prevTune != null) return prevTune.getName();
+//        return null;
+//    }
+//
+//    public String getCurrentMovementName() {
+//        return movements.getCurrentMovementName();
+//    }
+//
+//    public String getNextMovementName() {
+//        return movements.getNextMovementName();
+//    }
+//
+//    public String getCurrentSectionName() {
+//        if (currentSection != null) return currentSection.getName();
+//        return null;
+//    }
+//
+//    public String getNextSectionName() {
+//        return sectionQueue.getNextSectionName();
+//    }
 }

@@ -6,9 +6,7 @@ import com.timohenderson.RPGMusicServer.models.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.sections.Section;
 import lombok.Setter;
 import org.javatuples.Pair;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -16,11 +14,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-@Service
-public class AudioPlayerService {
 
-    @Autowired
-    RPGMixer mixer;
+public class AudioPlayer {
+
+
+    RPGMixer mixer = new RPGMixer();
     Section section;
     int currentBar = 0;
     @Setter
@@ -33,6 +31,9 @@ public class AudioPlayerService {
     ArrayList<MusicCue> fadingCues = new ArrayList<>();
     MusicCue[] nextCuesArray;
     int[] ids;
+
+    public AudioPlayer() throws LineUnavailableException {
+    }
 
     public void loadSection(Section section) throws LineUnavailableException {
         section.reset();
