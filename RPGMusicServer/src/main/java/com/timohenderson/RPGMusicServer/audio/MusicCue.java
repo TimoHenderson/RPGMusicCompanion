@@ -2,7 +2,7 @@ package com.timohenderson.RPGMusicServer.audio;
 
 import com.adonax.audiocue.AudioCue;
 import com.adonax.audiocue.AudioMixer;
-import com.timohenderson.RPGMusicServer.models.parts.PartData;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.PartData;
 import org.javatuples.Pair;
 
 import javax.sound.sampled.UnsupportedAudioFileException;

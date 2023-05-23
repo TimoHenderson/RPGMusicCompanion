@@ -1,13 +1,13 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
 import com.google.gson.Gson;
 import com.timohenderson.RPGMusicServer.enums.MusicalType;
-import com.timohenderson.RPGMusicServer.models.parts.AdaptivePart;
-import com.timohenderson.RPGMusicServer.models.parts.LinearPart;
-import com.timohenderson.RPGMusicServer.models.sections.AdaptiveSection;
-import com.timohenderson.RPGMusicServer.models.sections.RenderedSection;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
-import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.AdaptivePart;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.LinearPart;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.AdaptiveSection;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.RenderedSection;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.SectionData;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildPartLists;
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.PartFactory.buildRenderedParts;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.PartFactory.buildPartLists;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.PartFactory.buildRenderedParts;
 
 class SectionFactory {
     static List<Section> buildSections(Path movementPath) throws IOException {

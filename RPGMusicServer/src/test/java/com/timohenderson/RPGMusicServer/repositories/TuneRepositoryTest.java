@@ -1,6 +1,6 @@
 package com.timohenderson.RPGMusicServer.repositories;
 
-import com.timohenderson.RPGMusicServer.models.Tune;
+import com.timohenderson.RPGMusicServer.models.tunes.Tune;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

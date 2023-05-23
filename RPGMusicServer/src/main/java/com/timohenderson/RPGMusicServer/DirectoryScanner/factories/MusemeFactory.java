@@ -1,8 +1,8 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
-import com.timohenderson.RPGMusicServer.models.musemes.Museme;
-import com.timohenderson.RPGMusicServer.models.musemes.MusemeData;
-import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.models.tunes.musemes.Museme;
+import com.timohenderson.RPGMusicServer.models.tunes.musemes.MusemeData;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.SectionData;
 
 import java.io.IOException;
 import java.nio.file.Path;

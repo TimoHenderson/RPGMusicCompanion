@@ -41,13 +41,6 @@ public class EventHandler {
     }
 
 
-    @Async
-    @EventListener
-    public void handleBarEvent(BarEvent event) throws LineUnavailableException {
-
-    }
-
-
     @EventListener
     public void handleTransportEvent(TransportEvent event) throws InterruptedException, LineUnavailableException {
         switch (event.getAction()) {

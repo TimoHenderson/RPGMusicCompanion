@@ -1,6 +1,6 @@
-package com.timohenderson.RPGMusicServer.gameState;
+package com.timohenderson.RPGMusicServer.models.queues;
 
-import com.timohenderson.RPGMusicServer.models.Movement;
+import com.timohenderson.RPGMusicServer.models.tunes.Movement;
 
 import java.util.ArrayList;
 import java.util.List;

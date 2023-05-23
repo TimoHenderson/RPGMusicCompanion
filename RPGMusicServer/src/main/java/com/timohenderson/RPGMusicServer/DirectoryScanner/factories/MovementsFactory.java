@@ -1,7 +1,7 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
-import com.timohenderson.RPGMusicServer.models.Movement;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.Movement;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.SectionFactory.buildSections;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.SectionFactory.buildSections;
 
 class MovementsFactory {
     static List<Movement> buildMovements(Path tunePath) throws IOException {

@@ -1,7 +1,7 @@
 package com.timohenderson.RPGMusicServer.repositories;
 
 
-import com.timohenderson.RPGMusicServer.models.Tune;
+import com.timohenderson.RPGMusicServer.models.tunes.Tune;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

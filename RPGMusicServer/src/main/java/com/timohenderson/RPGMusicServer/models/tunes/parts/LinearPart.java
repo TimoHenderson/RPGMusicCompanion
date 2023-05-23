@@ -1,7 +1,7 @@
-package com.timohenderson.RPGMusicServer.models.parts;
+package com.timohenderson.RPGMusicServer.models.tunes.parts;
 
 
-import com.timohenderson.RPGMusicServer.models.musemes.Museme;
+import com.timohenderson.RPGMusicServer.models.tunes.musemes.Museme;
 import org.javatuples.Pair;
 
 import java.net.URL;

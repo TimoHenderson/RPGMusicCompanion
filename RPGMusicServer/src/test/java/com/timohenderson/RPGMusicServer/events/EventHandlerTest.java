@@ -27,9 +27,7 @@ class EventHandlerTest {
 
     @Test
     void canLogEvents() {
-        applicationEventPublisher.publishEvent(new BarEvent(this, 1));
-        applicationEventPublisher.publishEvent(new BarEvent(this, 2));
-        applicationEventPublisher.publishEvent(new BarEvent(this, 3));
+
         ArrayList<String> log = eventHandler.getLog();
         eventHandler.printLog();
         assertEquals(3, log.size());

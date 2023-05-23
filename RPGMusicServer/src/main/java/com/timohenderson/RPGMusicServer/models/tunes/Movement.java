@@ -1,6 +1,6 @@
-package com.timohenderson.RPGMusicServer.models;
+package com.timohenderson.RPGMusicServer.models.tunes;
 
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 
 import java.util.List;
 

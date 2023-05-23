@@ -1,11 +1,11 @@
-package com.timohenderson.RPGMusicServer.DirectoryScanner;
+package com.timohenderson.RPGMusicServer.DirectoryScanner.factories;
 
 import com.timohenderson.RPGMusicServer.enums.MusicalType;
-import com.timohenderson.RPGMusicServer.models.musemes.Museme;
-import com.timohenderson.RPGMusicServer.models.parts.AdaptivePart;
-import com.timohenderson.RPGMusicServer.models.parts.LinearPart;
-import com.timohenderson.RPGMusicServer.models.parts.PartData;
-import com.timohenderson.RPGMusicServer.models.sections.SectionData;
+import com.timohenderson.RPGMusicServer.models.tunes.musemes.Museme;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.AdaptivePart;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.LinearPart;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.PartData;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.SectionData;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.timohenderson.RPGMusicServer.DirectoryScanner.MusemeFactory.buildMuseme;
+import static com.timohenderson.RPGMusicServer.DirectoryScanner.factories.MusemeFactory.buildMuseme;
 
 class PartFactory {
 

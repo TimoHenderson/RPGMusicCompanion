@@ -1,7 +1,7 @@
-package com.timohenderson.RPGMusicServer.models.sections;
+package com.timohenderson.RPGMusicServer.models.tunes.sections;
 
-import com.timohenderson.RPGMusicServer.models.parts.Part;
-import com.timohenderson.RPGMusicServer.models.parts.PartData;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.Part;
+import com.timohenderson.RPGMusicServer.models.tunes.parts.PartData;
 import org.javatuples.Pair;
 
 import java.net.URL;

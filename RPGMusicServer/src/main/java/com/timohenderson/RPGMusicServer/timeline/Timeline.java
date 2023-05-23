@@ -1,7 +1,7 @@
 package com.timohenderson.RPGMusicServer.timeline;
 
 import com.timohenderson.RPGMusicServer.gameState.GameParameters;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import com.timohenderson.RPGMusicServer.services.ConductorService;
 import lombok.Getter;
 import lombok.Setter;

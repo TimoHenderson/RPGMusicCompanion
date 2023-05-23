@@ -1,8 +1,11 @@
-package com.timohenderson.RPGMusicServer.gameState;
+package com.timohenderson.RPGMusicServer.managers;
 
-import com.timohenderson.RPGMusicServer.models.Movement;
-import com.timohenderson.RPGMusicServer.models.Tune;
-import com.timohenderson.RPGMusicServer.models.sections.Section;
+import com.timohenderson.RPGMusicServer.models.queues.MovementQueue;
+import com.timohenderson.RPGMusicServer.models.queues.NextMovementSectionsQueue;
+import com.timohenderson.RPGMusicServer.models.queues.SectionQueue;
+import com.timohenderson.RPGMusicServer.models.tunes.Movement;
+import com.timohenderson.RPGMusicServer.models.tunes.Tune;
+import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import lombok.Getter;
 import lombok.Setter;
 
