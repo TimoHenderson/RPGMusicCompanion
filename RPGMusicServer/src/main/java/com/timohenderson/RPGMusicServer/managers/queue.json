@@ -1,0 +1,2535 @@
+{
+  "currentTune": {
+    "Id": "646de7f350f3af777f304610",
+    "name": "Enchanted_Forest",
+    "movements": [
+      {
+        "sections": [
+          {
+            "partListsMap": {
+              "MELODY": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Flute",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                }
+              ],
+              "BASS": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cello",
+                    "intensity": 3,
+                    "darkness": 2,
+                    "sectionLength": 4
+                  }
+                }
+              ],
+              "PAD": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa2",
+                    "intensity": 3,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Harp",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa",
+                    "intensity": 1,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                }
+              ]
+            },
+            "nextMusemeURLs": [],
+            "name": "main",
+            "sectionData": {
+              "order": 0,
+              "numBars": 4,
+              "numBeats": 4,
+              "beatValue": 4,
+              "bpm": 110,
+              "preRendered": false,
+              "loop": true,
+              "transitionType": "END"
+            }
+          },
+          {
+            "part": {
+              "museme": {
+                "musemeData": {
+                  "name": "Master",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/out/Master/master/Master.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/out/Master/master/Master.wav"
+              },
+              "partData": {
+                "name": "master",
+                "intensity": 0,
+                "darkness": 0,
+                "sectionLength": 4
+              }
+            },
+            "nextMusemeURLs": [],
+            "name": "out",
+            "sectionData": {
+              "order": 1,
+              "numBars": 4,
+              "numBeats": 4,
+              "beatValue": 4,
+              "bpm": 110,
+              "preRendered": true,
+              "loop": false,
+              "transitionType": "END"
+            }
+          }
+        ],
+        "order": 0,
+        "name": "0_Intro",
+        "currentSection": 0
+      },
+      {
+        "sections": [
+          {
+            "partListsMap": {
+              "MELODY": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Harp_i0/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Harp_i0/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Harp",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/3_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/3_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/1_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/1_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/4_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/4_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/6_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/6_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/2_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/2_l4.wav"
+                      }
+                    ],
+                    "5": [
+                      {
+                        "musemeData": {
+                          "name": "9",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/9_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/9_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "10",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/10_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/10_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "8",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/8_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/8_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "11",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/11_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/11_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "12",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/12_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/12_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/7_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/7_b5_l4.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Flute",
+                    "intensity": 3,
+                    "darkness": 1,
+                    "sectionLength": 8
+                  }
+                }
+              ],
+              "BASS": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cyclosa_d3/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cyclosa_d3/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa",
+                    "intensity": 0,
+                    "darkness": 3,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Basses_d4_i3/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Basses_d4_i3/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Basses",
+                    "intensity": 3,
+                    "darkness": 4,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/2_b1_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/2_b1_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/1_b1_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/1_b1_l2.wav"
+                      }
+                    ],
+                    "3": [
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/3_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/3_b3_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/4_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/4_b3_l2.wav"
+                      }
+                    ],
+                    "5": [
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/5_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/5_b5_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/6_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/6_b5_l2.wav"
+                      }
+                    ],
+                    "7": [
+                      {
+                        "musemeData": {
+                          "name": "8",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/8_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/8_b7_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/7_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/7_b7_l2.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cello",
+                    "intensity": 2,
+                    "darkness": 2,
+                    "sectionLength": 8
+                  }
+                }
+              ],
+              "PAD": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/1_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/1_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/2_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/2_l2.wav"
+                      }
+                    ],
+                    "3": [
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/3_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/3_b3_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/4_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/4_b3_l2.wav"
+                      }
+                    ],
+                    "5": [
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/5_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/5_b5_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/6_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/6_b5_l2.wav"
+                      }
+                    ],
+                    "7": [
+                      {
+                        "musemeData": {
+                          "name": "8",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/8_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/8_b7_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/7_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/7_b7_l2.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cello",
+                    "intensity": 4,
+                    "darkness": 0,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cyclosa/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cyclosa/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Harp_i3_d2/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Harp_i3_d2/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Harp",
+                    "intensity": 3,
+                    "darkness": 2,
+                    "sectionLength": 8
+                  }
+                }
+              ]
+            },
+            "nextMusemeURLs": [],
+            "name": "main",
+            "sectionData": {
+              "order": 0,
+              "numBars": 8,
+              "numBeats": 4,
+              "beatValue": 4,
+              "bpm": 90,
+              "preRendered": false,
+              "loop": true,
+              "transitionType": "NEXT_BAR"
+            }
+          }
+        ],
+        "order": 1,
+        "name": "1_Story",
+        "currentSection": 0
+      }
+    ],
+    "currentMovement": 0
+  },
+  "movements": {
+    "nextMovementQueue": [
+      {
+        "sections": [
+          {
+            "partListsMap": {
+              "MELODY": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Flute",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                }
+              ],
+              "BASS": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cello",
+                    "intensity": 3,
+                    "darkness": 2,
+                    "sectionLength": 4
+                  }
+                }
+              ],
+              "PAD": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa2",
+                    "intensity": 3,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Harp",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa",
+                    "intensity": 1,
+                    "darkness": 0,
+                    "sectionLength": 4
+                  }
+                }
+              ]
+            },
+            "nextMusemeURLs": [],
+            "name": "main",
+            "sectionData": {
+              "order": 0,
+              "numBars": 4,
+              "numBeats": 4,
+              "beatValue": 4,
+              "bpm": 110,
+              "preRendered": false,
+              "loop": true,
+              "transitionType": "END"
+            }
+          },
+          {
+            "part": {
+              "museme": {
+                "musemeData": {
+                  "name": "Master",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/out/Master/master/Master.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/out/Master/master/Master.wav"
+              },
+              "partData": {
+                "name": "master",
+                "intensity": 0,
+                "darkness": 0,
+                "sectionLength": 4
+              }
+            },
+            "nextMusemeURLs": [],
+            "name": "out",
+            "sectionData": {
+              "order": 1,
+              "numBars": 4,
+              "numBeats": 4,
+              "beatValue": 4,
+              "bpm": 110,
+              "preRendered": true,
+              "loop": false,
+              "transitionType": "END"
+            }
+          }
+        ],
+        "order": 0,
+        "name": "0_Intro",
+        "currentSection": 0
+      },
+      {
+        "sections": [
+          {
+            "partListsMap": {
+              "MELODY": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Harp_i0/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Harp_i0/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Harp",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/3_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/3_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/1_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/1_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/4_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/4_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/6_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/6_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 4,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/2_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/2_l4.wav"
+                      }
+                    ],
+                    "5": [
+                      {
+                        "musemeData": {
+                          "name": "9",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/9_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/9_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "10",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/10_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/10_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "8",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/8_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/8_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "11",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/11_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/11_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "12",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/12_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/12_b5_l4.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 4,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/7_b5_l4.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/7_b5_l4.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Flute",
+                    "intensity": 3,
+                    "darkness": 1,
+                    "sectionLength": 8
+                  }
+                }
+              ],
+              "BASS": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cyclosa_d3/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cyclosa_d3/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa",
+                    "intensity": 0,
+                    "darkness": 3,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Basses_d4_i3/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Basses_d4_i3/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Basses",
+                    "intensity": 3,
+                    "darkness": 4,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/2_b1_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/2_b1_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/1_b1_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/1_b1_l2.wav"
+                      }
+                    ],
+                    "3": [
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/3_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/3_b3_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/4_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/4_b3_l2.wav"
+                      }
+                    ],
+                    "5": [
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/5_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/5_b5_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/6_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/6_b5_l2.wav"
+                      }
+                    ],
+                    "7": [
+                      {
+                        "musemeData": {
+                          "name": "8",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/8_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/8_b7_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/7_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/7_b7_l2.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cello",
+                    "intensity": 2,
+                    "darkness": 2,
+                    "sectionLength": 8
+                  }
+                }
+              ],
+              "PAD": [
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/1_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/1_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "2",
+                          "length": 2,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/2_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/2_l2.wav"
+                      }
+                    ],
+                    "3": [
+                      {
+                        "musemeData": {
+                          "name": "3",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/3_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/3_b3_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "4",
+                          "length": 2,
+                          "startBars": [
+                            3
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/4_b3_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/4_b3_l2.wav"
+                      }
+                    ],
+                    "5": [
+                      {
+                        "musemeData": {
+                          "name": "5",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/5_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/5_b5_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "6",
+                          "length": 2,
+                          "startBars": [
+                            5
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/6_b5_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/6_b5_l2.wav"
+                      }
+                    ],
+                    "7": [
+                      {
+                        "musemeData": {
+                          "name": "8",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/8_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/8_b7_l2.wav"
+                      },
+                      {
+                        "musemeData": {
+                          "name": "7",
+                          "length": 2,
+                          "startBars": [
+                            7
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/7_b7_l2.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/7_b7_l2.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cello",
+                    "intensity": 4,
+                    "darkness": 0,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cyclosa/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cyclosa/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Cyclosa",
+                    "intensity": 0,
+                    "darkness": 0,
+                    "sectionLength": 8
+                  }
+                },
+                {
+                  "musemesByStartBars": {
+                    "1": [
+                      {
+                        "musemeData": {
+                          "name": "1",
+                          "length": 8,
+                          "startBars": [
+                            1
+                          ]
+                        },
+                        "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Harp_i3_d2/1.wav",
+                        "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Harp_i3_d2/1.wav"
+                      }
+                    ]
+                  },
+                  "currentMusemeLength": 0,
+                  "barsPassedSinceMusemeLoaded": 0,
+                  "partData": {
+                    "name": "Harp",
+                    "intensity": 3,
+                    "darkness": 2,
+                    "sectionLength": 8
+                  }
+                }
+              ]
+            },
+            "nextMusemeURLs": [],
+            "name": "main",
+            "sectionData": {
+              "order": 0,
+              "numBars": 8,
+              "numBeats": 4,
+              "beatValue": 4,
+              "bpm": 90,
+              "preRendered": false,
+              "loop": true,
+              "transitionType": "NEXT_BAR"
+            }
+          }
+        ],
+        "order": 1,
+        "name": "1_Story",
+        "currentSection": 0
+      }
+    ],
+    "movementIndex": 2
+  },
+  "movementSections": {
+    "nextMovementSectionsQueue": [
+      {
+        "partListsMap": {
+          "MELODY": [
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 8,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Harp_i0/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Harp_i0/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Harp",
+                "intensity": 0,
+                "darkness": 0,
+                "sectionLength": 8
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "5",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/5_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "3",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/3_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/3_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/1_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/1_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "4",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/4_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/4_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "6",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/6_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/6_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "2",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/2_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/2_l4.wav"
+                  }
+                ],
+                "5": [
+                  {
+                    "musemeData": {
+                      "name": "9",
+                      "length": 4,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/9_b5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/9_b5_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "10",
+                      "length": 4,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/10_b5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/10_b5_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "8",
+                      "length": 4,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/8_b5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/8_b5_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "11",
+                      "length": 4,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/11_b5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/11_b5_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "12",
+                      "length": 4,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/12_b5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/12_b5_l4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "7",
+                      "length": 4,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/7_b5_l4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/MELODY/Flute_i3_d1/7_b5_l4.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Flute",
+                "intensity": 3,
+                "darkness": 1,
+                "sectionLength": 8
+              }
+            }
+          ],
+          "BASS": [
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 8,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cyclosa_d3/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cyclosa_d3/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cyclosa",
+                "intensity": 0,
+                "darkness": 3,
+                "sectionLength": 8
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 8,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Basses_d4_i3/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Basses_d4_i3/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Basses",
+                "intensity": 3,
+                "darkness": 4,
+                "sectionLength": 8
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "2",
+                      "length": 2,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/2_b1_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/2_b1_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 2,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/1_b1_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/1_b1_l2.wav"
+                  }
+                ],
+                "3": [
+                  {
+                    "musemeData": {
+                      "name": "3",
+                      "length": 2,
+                      "startBars": [
+                        3
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/3_b3_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/3_b3_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "4",
+                      "length": 2,
+                      "startBars": [
+                        3
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/4_b3_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/4_b3_l2.wav"
+                  }
+                ],
+                "5": [
+                  {
+                    "musemeData": {
+                      "name": "5",
+                      "length": 2,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/5_b5_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/5_b5_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "6",
+                      "length": 2,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/6_b5_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/6_b5_l2.wav"
+                  }
+                ],
+                "7": [
+                  {
+                    "musemeData": {
+                      "name": "8",
+                      "length": 2,
+                      "startBars": [
+                        7
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/8_b7_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/8_b7_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "7",
+                      "length": 2,
+                      "startBars": [
+                        7
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/7_b7_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/BASS/Cello_d2_i2/7_b7_l2.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cello",
+                "intensity": 2,
+                "darkness": 2,
+                "sectionLength": 8
+              }
+            }
+          ],
+          "PAD": [
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 2,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/1_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/1_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "2",
+                      "length": 2,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/2_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/2_l2.wav"
+                  }
+                ],
+                "3": [
+                  {
+                    "musemeData": {
+                      "name": "3",
+                      "length": 2,
+                      "startBars": [
+                        3
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/3_b3_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/3_b3_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "4",
+                      "length": 2,
+                      "startBars": [
+                        3
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/4_b3_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/4_b3_l2.wav"
+                  }
+                ],
+                "5": [
+                  {
+                    "musemeData": {
+                      "name": "5",
+                      "length": 2,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/5_b5_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/5_b5_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "6",
+                      "length": 2,
+                      "startBars": [
+                        5
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/6_b5_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/6_b5_l2.wav"
+                  }
+                ],
+                "7": [
+                  {
+                    "musemeData": {
+                      "name": "8",
+                      "length": 2,
+                      "startBars": [
+                        7
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/8_b7_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/8_b7_l2.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "7",
+                      "length": 2,
+                      "startBars": [
+                        7
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/7_b7_l2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cello_i4/7_b7_l2.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cello",
+                "intensity": 4,
+                "darkness": 0,
+                "sectionLength": 8
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 8,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cyclosa/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Cyclosa/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cyclosa",
+                "intensity": 0,
+                "darkness": 0,
+                "sectionLength": 8
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 8,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/1_Story/main/PAD/Harp_i3_d2/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/1_Story/main/PAD/Harp_i3_d2/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Harp",
+                "intensity": 3,
+                "darkness": 2,
+                "sectionLength": 8
+              }
+            }
+          ]
+        },
+        "nextMusemeURLs": [],
+        "name": "main",
+        "sectionData": {
+          "order": 0,
+          "numBars": 8,
+          "numBeats": 4,
+          "beatValue": 4,
+          "bpm": 90,
+          "preRendered": false,
+          "loop": true,
+          "transitionType": "NEXT_BAR"
+        }
+      }
+    ]
+  },
+  "sectionQueue": {
+    "sectionQueue": [
+      {
+        "partListsMap": {
+          "MELODY": [
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "6",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "7",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "5",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "4",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "3",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav"
+                  },
+                  {
+                    "musemeData": {
+                      "name": "2",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Flute",
+                "intensity": 0,
+                "darkness": 0,
+                "sectionLength": 4
+              }
+            }
+          ],
+          "BASS": [
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cello",
+                "intensity": 3,
+                "darkness": 2,
+                "sectionLength": 4
+              }
+            }
+          ],
+          "PAD": [
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cyclosa2",
+                "intensity": 3,
+                "darkness": 0,
+                "sectionLength": 4
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Harp",
+                "intensity": 0,
+                "darkness": 0,
+                "sectionLength": 4
+              }
+            },
+            {
+              "musemesByStartBars": {
+                "1": [
+                  {
+                    "musemeData": {
+                      "name": "1",
+                      "length": 4,
+                      "startBars": [
+                        1
+                      ]
+                    },
+                    "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav",
+                    "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav"
+                  }
+                ]
+              },
+              "currentMusemeLength": 0,
+              "barsPassedSinceMusemeLoaded": 0,
+              "partData": {
+                "name": "Cyclosa",
+                "intensity": 1,
+                "darkness": 0,
+                "sectionLength": 4
+              }
+            }
+          ]
+        },
+        "nextMusemeURLs": [],
+        "name": "main",
+        "sectionData": {
+          "order": 0,
+          "numBars": 4,
+          "numBeats": 4,
+          "beatValue": 4,
+          "bpm": 110,
+          "preRendered": false,
+          "loop": true,
+          "transitionType": "END"
+        }
+      },
+      {
+        "part": {
+          "museme": {
+            "musemeData": {
+              "name": "Master",
+              "length": 4,
+              "startBars": [
+                1
+              ]
+            },
+            "filePath": "/static/tunes/Enchanted_Forest/0_Intro/out/Master/master/Master.wav",
+            "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/out/Master/master/Master.wav"
+          },
+          "partData": {
+            "name": "master",
+            "intensity": 0,
+            "darkness": 0,
+            "sectionLength": 4
+          }
+        },
+        "nextMusemeURLs": [],
+        "name": "out",
+        "sectionData": {
+          "order": 1,
+          "numBars": 4,
+          "numBeats": 4,
+          "beatValue": 4,
+          "bpm": 110,
+          "preRendered": true,
+          "loop": false,
+          "transitionType": "END"
+        }
+      }
+    ],
+    "sectionIndex": 1
+  },
+  "currentSection": {
+    "partListsMap": {
+      "MELODY": [
+        {
+          "musemesByStartBars": {
+            "1": [
+              {
+                "musemeData": {
+                  "name": "6",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/6.wav"
+              },
+              {
+                "musemeData": {
+                  "name": "7",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/7.wav"
+              },
+              {
+                "musemeData": {
+                  "name": "5",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/5.wav"
+              },
+              {
+                "musemeData": {
+                  "name": "4",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/4.wav"
+              },
+              {
+                "musemeData": {
+                  "name": "1",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/1.wav"
+              },
+              {
+                "musemeData": {
+                  "name": "3",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/3.wav"
+              },
+              {
+                "musemeData": {
+                  "name": "2",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/MELODY/Flute_i0_d0/2.wav"
+              }
+            ]
+          },
+          "currentMusemeLength": 0,
+          "barsPassedSinceMusemeLoaded": 0,
+          "partData": {
+            "name": "Flute",
+            "intensity": 0,
+            "darkness": 0,
+            "sectionLength": 4
+          }
+        }
+      ],
+      "BASS": [
+        {
+          "musemesByStartBars": {
+            "1": [
+              {
+                "musemeData": {
+                  "name": "1",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/BASS/Cello_i3_d2/1.wav"
+              }
+            ]
+          },
+          "currentMusemeLength": 0,
+          "barsPassedSinceMusemeLoaded": 0,
+          "partData": {
+            "name": "Cello",
+            "intensity": 3,
+            "darkness": 2,
+            "sectionLength": 4
+          }
+        }
+      ],
+      "PAD": [
+        {
+          "musemesByStartBars": {
+            "1": [
+              {
+                "musemeData": {
+                  "name": "1",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa2_i3/1.wav"
+              }
+            ]
+          },
+          "currentMusemeLength": 0,
+          "barsPassedSinceMusemeLoaded": 0,
+          "partData": {
+            "name": "Cyclosa2",
+            "intensity": 3,
+            "darkness": 0,
+            "sectionLength": 4
+          }
+        },
+        {
+          "musemesByStartBars": {
+            "1": [
+              {
+                "musemeData": {
+                  "name": "1",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Harp/1.wav"
+              }
+            ]
+          },
+          "currentMusemeLength": 0,
+          "barsPassedSinceMusemeLoaded": 0,
+          "partData": {
+            "name": "Harp",
+            "intensity": 0,
+            "darkness": 0,
+            "sectionLength": 4
+          }
+        },
+        {
+          "musemesByStartBars": {
+            "1": [
+              {
+                "musemeData": {
+                  "name": "1",
+                  "length": 4,
+                  "startBars": [
+                    1
+                  ]
+                },
+                "filePath": "/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav",
+                "url": "file:/Users/timo/codeclan_work/projects/module_03_java/rpg_music_companion/RPGMusicServer/target/classes/static/tunes/Enchanted_Forest/0_Intro/main/PAD/Cyclosa_i1/1.wav"
+              }
+            ]
+          },
+          "currentMusemeLength": 0,
+          "barsPassedSinceMusemeLoaded": 0,
+          "partData": {
+            "name": "Cyclosa",
+            "intensity": 1,
+            "darkness": 0,
+            "sectionLength": 4
+          }
+        }
+      ]
+    },
+    "nextMusemeURLs": [],
+    "name": "main",
+    "sectionData": {
+      "order": 0,
+      "numBars": 4,
+      "numBeats": 4,
+      "beatValue": 4,
+      "bpm": 110,
+      "preRendered": false,
+      "loop": true,
+      "transitionType": "END"
+    }
+  }
+}
