@@ -1,6 +1,5 @@
 package com.timohenderson.RPGMusicServer.services;
 
-import com.timohenderson.RPGMusicServer.TestingUtils.EventCatcher;
 import com.timohenderson.RPGMusicServer.enums.TransitionType;
 import com.timohenderson.RPGMusicServer.models.tunes.sections.AdaptiveSection;
 import com.timohenderson.RPGMusicServer.models.tunes.sections.RenderedSection;
@@ -19,8 +18,8 @@ import javax.sound.sampled.LineUnavailableException;
 class TimelineServiceTest {
     @Autowired
     Timeline timeline;
-    @Autowired
-    EventCatcher eventCatcher;
+    //    @Autowired
+//    EventCatcher eventCatcher;
     Section section;
     Section loopingSection;
     Section slowSection;
@@ -66,7 +65,7 @@ class TimelineServiceTest {
     @AfterEach
     void tearDown() throws LineUnavailableException {
         timeline.stopAndCleanUp();
-        eventCatcher.clearLog();
+        //   eventCatcher.clearLog();
     }
 
 //    @Test

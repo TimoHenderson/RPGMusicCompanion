@@ -9,7 +9,6 @@ import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.sound.sampled.LineUnavailableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class QueueManager {
     @Setter
     private Section currentSection = null;
 
-    public Section loadTune(Tune tune) throws LineUnavailableException, InterruptedException {
+    public Section loadTune(Tune tune) {
         if (!tune.getName().equals("Combat")) {
             currentTune = tune;
             prevTune = null;
@@ -45,7 +44,7 @@ public class QueueManager {
         return currentSection;
     }
 
-    public Section loadTuneNow(Tune tune) throws LineUnavailableException, InterruptedException {
+    public Section loadTuneNow(Tune tune) {
         movements.replace(tune.getMovements());
         replaceSectionQueueStoreOld(movements.getNextMovement());
         prevTune = currentTune;
@@ -54,7 +53,7 @@ public class QueueManager {
         return currentSection;
     }
 
-    public void loadNextMovement() throws LineUnavailableException, InterruptedException {
+    public void loadNextMovement() {
         if (movementSections.isEmpty()) {
             fillNextMovementSectionQueue();
         }
@@ -66,12 +65,12 @@ public class QueueManager {
         updateCurrentSection();
     }
 
-    public void updateCurrentSection() throws LineUnavailableException, InterruptedException {
+    public void updateCurrentSection() {
         if (currentSection == null)
             loadNextSection();
     }
 
-    public void loadPrevTune() throws LineUnavailableException, InterruptedException {
+    public void loadPrevTune() {
         if (prevTune == null) {
             System.out.println("No more tunes to play");
             return;
@@ -79,7 +78,7 @@ public class QueueManager {
         loadTune(prevTune);
     }
 
-    public Section loadNextSection() throws InterruptedException, LineUnavailableException {
+    public Section loadNextSection() {
         if (sectionQueue.isOnLastSection()) {
             setCurrentSection(null);
             loadNextMovement();
