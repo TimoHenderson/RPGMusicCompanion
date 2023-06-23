@@ -1,4 +1,4 @@
-package com.timohenderson.RPGMusicServer.models.queues;
+package com.timohenderson.RPGMusicServer.managers.queues;
 
 import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 

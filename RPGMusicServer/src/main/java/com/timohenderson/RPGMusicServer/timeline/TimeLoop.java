@@ -54,8 +54,12 @@ public class TimeLoop {
     }
 
     private void runExecutor() {
-        executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(new TimeLineLoop(), 0, barLength, TimeUnit.MILLISECONDS);
+        executorService = Executors.newScheduledThreadPool(4, runnable -> {
+            Thread thread = new Thread(runnable);
+            thread.setPriority(Thread.NORM_PRIORITY);
+            return thread;
+        });
+        executorService.scheduleAtFixedRate(new TimeLineLoop(), 0, barLength * 1000000, TimeUnit.NANOSECONDS);
     }
 
 

@@ -4,7 +4,6 @@ import com.timohenderson.RPGMusicServer.services.ConductorService;
 import com.timohenderson.RPGMusicServer.websocket.SocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -58,7 +57,7 @@ public class EventHandler {
         }
     }
 
-    @Async
+   
     @EventListener
     public void handleGameParamsEvent(GameParamsEvent event) {
         conductor.setGameParams(event.getParams());

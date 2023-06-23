@@ -6,7 +6,6 @@ import com.timohenderson.RPGMusicServer.gameState.GameParameters;
 import com.timohenderson.RPGMusicServer.models.tunes.parts.PartData;
 import com.timohenderson.RPGMusicServer.models.tunes.sections.Section;
 import org.javatuples.Pair;
-import org.springframework.scheduling.annotation.Async;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -97,7 +96,7 @@ public class AudioPlayer {
         currentCues.clear();
     }
 
-    @Async
+    //@Async
     public void fadeCurrentCues() throws LineUnavailableException {
         //
         fadingCues.addAll(currentCues);
