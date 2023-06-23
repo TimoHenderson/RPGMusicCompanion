@@ -1,20 +1,23 @@
+import d20 from '../../images/d20.png';
+import { CombatButton } from '../styled/Buttons';
+import { Logo } from '../styled/Images';
+import { HeaderDiv } from '../styled/Layouts';
+
 const Header = ({ connected, reconnect }) => {
     return (
-        <div style={{
-            width: "100%",
-            background: "darkgray",
-            display: "grid",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center"
-        }}>
-            <h1 >RPG Music Companion</h1>
-            {
-                connected ?
-                    <p style={{ marginBottom: "1rem" }}>{connected ? 'Connected' : 'Disconnected'}</p> :
-                    <button style={{ marginBottom: "1rem" }} onClick={reconnect}>Reconnect</button>
-            }
-        </div >
+        <HeaderDiv>
+            <Logo style={{ justifySelf: 'start', alignSelf: 'center', paddingLeft: "2rem" }} src={d20} alt="D20" />
+            <h1 style={{ justifySelf: 'center', alignSelf: 'center', color: "white" }} >RPG Music Companion</h1>
+            <div style={{ justifySelf: 'end', alignSelf: 'center', paddingRight: "2rem" }}>
+                {
+                    connected ?
+                        <p style={{ color: "white" }}>
+                            {connected ? 'Connected' : 'Disconnected'} 🟢</p> :
+                        <p><CombatButton onClick={reconnect}>Reconnect</CombatButton>  🔴</p>
+                }
+
+            </div>
+        </HeaderDiv>
     );
 }
 
