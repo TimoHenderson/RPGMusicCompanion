@@ -1,3 +1,4 @@
+import { CentredFlexColumn } from "../styled/Layouts";
 import TransportButtons from "./TransportButtons";
 
 const Transport = ({ forwardMessage, gameState }) => {
@@ -9,23 +10,28 @@ const Transport = ({ forwardMessage, gameState }) => {
         });
         forwardMessage(messageJSON);
     }
+
+    const sendNavMessage = (action) => {
+        const messageJSON = JSON.stringify({
+            event: "NAVIGATION",
+            action
+        });
+        forwardMessage(messageJSON);
+    }
+
     if (!gameState) {
         return null;
     }
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "start",
-            }}>
+        <CentredFlexColumn>
+            <h3>Transport</h3>
             <TransportButtons
                 sendTransportMessage={sendTransportMessage}
+                sendNavMessage={sendNavMessage}
                 isPlaying={gameState.isPlaying}
 
             />
-        </div>
+        </CentredFlexColumn>
     );
 }
 

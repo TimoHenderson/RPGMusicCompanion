@@ -1,3 +1,4 @@
+import { CentredFlexColumn } from "../styled/Layouts";
 import LocationButtons from "./LocationButtons";
 
 const Location = ({ forwardMessage, gameState }) => {
@@ -9,17 +10,12 @@ const Location = ({ forwardMessage, gameState }) => {
         forwardMessage(messageJSON);
     }
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "start",
-            }}>
+        <CentredFlexColumn>
+            <h3>Location</h3>
             <LocationButtons
                 sendLocationMessage={sendLocationMessage}
             />
-        </div>
+        </CentredFlexColumn>
     );
 }
 

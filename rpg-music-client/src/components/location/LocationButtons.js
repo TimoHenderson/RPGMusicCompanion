@@ -1,17 +1,20 @@
-const LocationButtons = ({ sendLocationMessage}) => {
+import { CombatButton, LocationButton } from "../styled/Buttons";
+import { CentredFlexColumn, TwoColGrid } from "../styled/Layouts";
+
+const LocationButtons = ({ sendLocationMessage }) => {
 
     return (
-        <div
-            style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr  ",
-                gap: "1rem",
-                justifyContent: "center",
-            }}>
-            <button onClick={() => sendLocationMessage("Combat")}>Combat</button>
-            <button onClick={() => sendLocationMessage("Abandoned_Mine")}>Abandoned Mine</button>
-            <button onClick={() => sendLocationMessage("Enchanted_Forest")}>Enchanted Forest</button>
-        </div>);
+        <>
+
+            <CentredFlexColumn>
+                <TwoColGrid>
+                    <LocationButton onClick={() => sendLocationMessage("Abandoned_Mine")}>Abandoned Mine</LocationButton>
+                    <LocationButton onClick={() => sendLocationMessage("Enchanted_Forest")}>Enchanted Forest</LocationButton>
+                </TwoColGrid>
+                <CombatButton onClick={() => sendLocationMessage("Combat")}>Combat</CombatButton>
+            </CentredFlexColumn>
+        </>
+    );
 }
 
 export default LocationButtons;
